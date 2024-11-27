@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:smart_mart/const.dart';
 
 abstract class Styles {
 
@@ -17,8 +18,10 @@ abstract class Styles {
     fontFamily: 'Urbanist',
   );
   static const Urbanist16 = TextStyle(
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: 'Urbanist',
+    fontWeight: FontWeight.w500,
+      color: ksecodaryColor
   );
   static const Urbanist15 = TextStyle(
     fontSize: 15,
@@ -39,6 +42,7 @@ abstract class Styles {
   static const NexaBold30 = TextStyle(
     fontSize: 30,
     fontFamily: 'NexaBold',
+    color: kColor
   );
   static const NexaBold24 = TextStyle(
     fontSize: 24,

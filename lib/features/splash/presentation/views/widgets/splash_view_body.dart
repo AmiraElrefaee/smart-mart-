@@ -1,7 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smart_mart/features/splash/presentation/views/widgets/sliding_text.dart';
+import 'package:smart_mart/utils/functions/app_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -90,6 +92,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
     _controller.forward();
     _controller2.forward();
+    NaviagateToHome();
   }
 
   @override
@@ -136,25 +139,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
     );
   }
 
+void NaviagateToHome(){
+    Future.delayed(const Duration(seconds: 2),(){
+      GoRouter.of(context).push(AppRouter.konBoarding);
 
-//   void NavigateT0Home() {
-//     Future.delayed(const Duration(seconds: 5), () {
-//       GoRouter.of(context).push(AppRouter.kHomeView,);
-//       // GoRouter.of(context).go(AppRouter.kHomeView);
-//
-//       // Navigator.push(
-//       //   context,
-//       //   PageTransition(
-//       //       type: PageTransitionType.rightToLeft,
-//       //       child: HomeView(),
-//       //       inheritTheme: true,
-//       //       ctx: context),
-//       // );
-// // Navigator.push(context, PageTransition(child:HomeView() , type: PageTransitionType.fade));
-// //    Get.to(()=> const HomeView(), transition: Transition.topLevel);
-//
-//     });
-//   }
-
-
+    });
+}
 }

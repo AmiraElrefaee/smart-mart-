@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_mart/utils/functions/app_router.dart';
 
 import 'features/splash/presentation/views/splash_view.dart';
 
@@ -12,9 +13,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
-      home: const SplashView(),
+      // home: const SplashView(),
     );
   }
 }
