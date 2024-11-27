@@ -75,6 +75,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     ];
     _fadeAnimations2 =
     Tween<double>(begin: 0.0, end: 1.0).animate(_controller,);
+
     _fadeAnimations = [
       Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
         parent: _controller2,

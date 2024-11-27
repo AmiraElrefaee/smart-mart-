@@ -16,11 +16,12 @@ abstract class Styles {
   static const Urbanist20 = TextStyle(
     fontSize: 20,
     fontFamily: 'Urbanist',
+    fontWeight: FontWeight.bold,
   );
   static const Urbanist16 = TextStyle(
-    fontSize: 17,
+    fontSize: 18,
     fontFamily: 'Urbanist',
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
       color: ksecodaryColor
   );
   static const Urbanist15 = TextStyle(
