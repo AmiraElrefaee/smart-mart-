@@ -30,24 +30,20 @@ class _TitleSectionState extends State<TitleSection>
   }
   @override
   Widget build(BuildContext context) {
-    return  Stack(
-      children: [
-        Positioned(
-          key: ValueKey<int>(widget.index), // This ensures the widget rebuilds and triggers animation
-          width: MediaQuery.of(context).size.width,
-          top: MediaQuery.of(context).size.height * .57,
-          child: FadeTransition(
-            // padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .107),
+    return  Positioned(
+      key: ValueKey<int>(widget.index), // This ensures the widget rebuilds and triggers animation
+      width: MediaQuery.of(context).size.width,
+      top: MediaQuery.of(context).size.height * .57,
+      child: FadeTransition(
+        // padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .107),
 
-          opacity: _fadeAnimations2,
-            child: Text(
-              contents[widget.index].title, // Assuming `contents[index].title` is the title
-              style: Styles.NexaBold30,
-              textAlign: TextAlign.center,
-            ),
-          ),
+      opacity: _fadeAnimations2,
+        child: Text(
+          contents[widget.index].title, // Assuming `contents[index].title` is the title
+          style: Styles.NexaBold30,
+          textAlign: TextAlign.center,
         ),
-      ],
+      ),
     );
   }
 }

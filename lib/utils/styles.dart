@@ -35,10 +35,12 @@ abstract class Styles {
   static const Urbanist12 = TextStyle(
     fontSize: 12,
     fontFamily: 'Urbanist',
+
   );
   static const NexaBold32 = TextStyle(
-    fontSize: 32,
+    fontSize: 42,
     fontFamily: 'NexaBold',
+      color: kColor
   );
   static const NexaBold30 = TextStyle(
     fontSize: 30,
