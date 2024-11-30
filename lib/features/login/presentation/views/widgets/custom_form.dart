@@ -27,7 +27,7 @@ class _addNoteFormState extends State<CustomForm> {
     return Positioned(
 
       width: MediaQuery.of(context).size.width,
-      top: MediaQuery.of(context).size.height * .47,
+      top: MediaQuery.of(context).size.height * .425,
       child: Form(
         key: formKey,
         autovalidateMode: autovalidateMode,
@@ -38,8 +38,9 @@ class _addNoteFormState extends State<CustomForm> {
 
 
             Padding(
-              padding:   EdgeInsets.only(right: MediaQuery.of(context).size.width*.05
-                  ,left: MediaQuery.of(context).size.width*.05,
+              padding:   EdgeInsets.only(
+                  right: MediaQuery.of(context).size.width*.06
+                  ,left: MediaQuery.of(context).size.width*.06,
                   bottom: MediaQuery.of(context).size.width*.03
               ),
               child: CustomTextFormFiled(
@@ -55,9 +56,10 @@ class _addNoteFormState extends State<CustomForm> {
             SideTitleSection(text: 'Password',),
 
             Padding(
-              padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.05
-              ,left: MediaQuery.of(context).size.width*.05,
-                bottom: MediaQuery.of(context).size.width*.03
+              padding:  EdgeInsets.only(
+                  right: MediaQuery.of(context).size.width*.06
+                  ,left: MediaQuery.of(context).size.width*.06,
+
               ),
               child: CustomTextFieldPassWord(
                 onSaved: (value) {

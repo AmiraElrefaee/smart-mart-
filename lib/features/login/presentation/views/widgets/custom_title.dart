@@ -11,7 +11,7 @@ class CustomTitle extends StatelessWidget {
     return Positioned(
        // This ensures the widget rebuilds and triggers animation
       width: MediaQuery.of(context).size.width,
-      top: MediaQuery.of(context).size.height * .38,
+      top: MediaQuery.of(context).size.height * .34,
       child: Column(
         children: [
           Text(

@@ -28,7 +28,9 @@ class CustomTextFormFiled extends StatelessWidget {
       },
 
       maxLines: maxlines,
-      style:Styles.Urbanist16.copyWith(color: Colors.black),
+      style:Styles.Urbanist20.copyWith(
+          fontSize: MediaQuery.of(context).size.width*.04,
+          color: Colors.black,fontWeight: FontWeight.w500),
       // cursorColor: kprimaryColor,
       decoration: InputDecoration(
 
@@ -36,7 +38,8 @@ class CustomTextFormFiled extends StatelessWidget {
           hintText:hint,
           hintStyle: Styles.Urbanist20.copyWith(
             color: Colors.black.withOpacity(0.5),
-            // fontSize: MediaQuery.of(context).size.width*0001
+              fontSize: MediaQuery.of(context).size.width*.04,
+            fontWeight: FontWeight.w500
           ),
           border: buildBorder(),
           enabledBorder:buildBorder(),

@@ -70,7 +70,7 @@ class _CustomBackgroundImagesState extends State<CustomBackgroundImages>
             right: 0,
             bottom: 0,
             child: SvgPicture.asset('assets/images/Rectangle 5.svg',
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
           Positioned(
@@ -79,7 +79,7 @@ class _CustomBackgroundImagesState extends State<CustomBackgroundImages>
             right: 0,
             bottom: 0,
             child: SvgPicture.asset('assets/images/Rectangle 3.svg',
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
         ],),

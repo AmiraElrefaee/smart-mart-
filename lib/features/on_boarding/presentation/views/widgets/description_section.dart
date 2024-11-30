@@ -16,7 +16,9 @@ final int index ;
             child:  Padding(
               padding: EdgeInsets.symmetric( horizontal:MediaQuery.of(context).size.width*.1),
               child: Text(contents[index].discription,
-                  style: Styles.Urbanist16,
+                  style: Styles.Urbanist16.copyWith(
+                    fontSize: MediaQuery.of(context).size.width*.037
+                  ),
 
               textAlign: TextAlign.center,),
             )),

@@ -10,7 +10,7 @@ class SideTitleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(left:MediaQuery.of(context).size.width*.05 ,
+      padding:  EdgeInsets.only(left:MediaQuery.of(context).size.width*.06 ,
           bottom: MediaQuery.of(context).size.width*.01
       ),
       child: Text(text,style: Styles.Urbanist15.copyWith(

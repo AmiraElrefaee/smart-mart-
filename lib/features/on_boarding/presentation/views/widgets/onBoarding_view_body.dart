@@ -12,7 +12,7 @@ import '../../../../../utils/functions/app_router.dart';
 import '../../../../../utils/styles.dart';
 import '../../../data/models/content_model.dart';
 import 'custom_background_images.dart';
-import 'custom_botton.dart';
+import '../../../../login/presentation/views/widgets/custom_botton.dart';
 import 'description_section.dart';
 
 class OnboardingViewBody extends StatefulWidget {

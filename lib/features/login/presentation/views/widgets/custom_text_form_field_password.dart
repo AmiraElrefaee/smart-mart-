@@ -41,7 +41,10 @@ bool obscureText=true ;
       ,
 
       maxLines: widget.maxlines,
-      style:Styles.Urbanist16.copyWith(color: Colors.black),
+      style:Styles.Urbanist16.copyWith(color: Colors.black,
+        fontSize: MediaQuery.of(context).size.width*.04,
+      fontWeight: FontWeight.w500
+      ),
       // cursorColor: kprimaryColor,
       decoration: InputDecoration(
         suffixIcon:InkWell(onTap:(){
@@ -51,14 +54,15 @@ bool obscureText=true ;
 
         } ,child:  obscureText==true?
         Padding(
-          padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.04),
+          padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.05),
           child: SvgPicture.asset('assets/images/Component 16.svg',
+            width:  MediaQuery.of(context).size.width*.01,
 
 
               ),
         ):
         Padding(
-          padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.04),
+          padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.05),
           child: SvgPicture.asset('assets/images/eye_show_regular_icon_203603.svg'),
         ),),
 
@@ -79,6 +83,8 @@ bool obscureText=true ;
         hintText:widget.hint,
         hintStyle: Styles.Urbanist20.copyWith(
             color: Colors.black.withOpacity(0.5),
+        fontWeight: FontWeight.w500,
+        fontSize: MediaQuery.of(context).size.width*.04
         // fontSize: MediaQuery.of(context).size.width*0001
         ),
         border: buildBorder(),

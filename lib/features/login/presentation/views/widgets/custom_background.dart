@@ -26,7 +26,7 @@ class CustomBackground extends StatelessWidget {
 
       ),
       Positioned(
-        top: MediaQuery.of(context).size.height*.26, // تقطع الجزء العلوي من الصورة الأولى
+        top: MediaQuery.of(context).size.height*.22, // تقطع الجزء العلوي من الصورة الأولى
         left: 0,
         right: 0,
         bottom: 0,
@@ -35,7 +35,7 @@ class CustomBackground extends StatelessWidget {
         ),
       ),
       Positioned(
-        top: MediaQuery.of(context).size.height*.289, // تقطع الجزء العلوي من الصورة الأولى
+        top: MediaQuery.of(context).size.height*.247, // تقطع الجزء العلوي من الصورة الأولى
         left: 0,
         right: 0,
         bottom: 0,
