@@ -20,38 +20,82 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: SizedBox(
         height: screenHeight,
+        width: screenWidth,
         child: Stack(children: [
           CustomBackground(),
-          CustomTitle(),
+          Positioned
+            (
+              width: screenWidth,
+              top: screenHeight* .34,
+              child: Padding(
+                padding:  EdgeInsets.only(
+                  right: MediaQuery.of(context).size.width*.05
+                  ,left: MediaQuery.of(context).size.width*.05,),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
 
-          CustomForm(),
-          CustomCheckBox(),
-          // SectionBottons(),
-          CustomBotton(
-            top: .684,
-            background: kColor,
-            colorText: Colors.white,
-            text: 'Log in ',
-          ),
-          SeparateLineSection(),
-          SectionGoogleBotton(),
-
-          Positioned(
-              top: MediaQuery.of(context).size.height*.93,
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomSideText(text: 'Already have an account ?',),
-
-                  CustomTextBottom(
-                    text: 'Sign up',
+                  CustomTitle(
+                    screenHeight: screenHeight,
+                    screenWidth: screenWidth,
                   ),
-                ],
-              ))
+                    SizedBox(
+                      height: screenHeight*.025,
+                    ),
+                    CustomForm(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                    ),
+                    CustomCheckBox(
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                    ),
+
+                    SizedBox(
+                      height:screenHeight*.02,
+                    ),
+
+                    CustomBotton(
+                      screenHeight: screenHeight*.7,
+                      screenWidth: screenWidth,
+                      background: kColor,
+                      colorText: Colors.white,
+                      text: 'Log in ',
+                    ),
+                    SizedBox(
+                      height: screenHeight*.025,
+                    ),
+                    SeparateLineSection(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                    ),
+                    SizedBox(
+                      height: screenHeight*.025,
+                    ),
+                    SectionGoogleBotton(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                    ),
+                    SizedBox(
+                      height: screenHeight*.02,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomSideText(text: 'Already have an account ?',),
+
+                        CustomTextBottom(
+                          text: 'Sign up',
+                        ),
+                      ],),
+
+
+                          ],),
+              )),
         ],),
       ),
     );

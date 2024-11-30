@@ -4,14 +4,14 @@ import '../../../../../const.dart';
 import '../../../../../utils/styles.dart';
 
 class CustomTitle extends StatelessWidget {
-  const CustomTitle({super.key});
-
+  const CustomTitle({super.key, required this.screenHeight, required this.screenWidth});
+  final double screenHeight;
+  final double screenWidth;
   @override
   Widget build(BuildContext context) {
     return Positioned(
        // This ensures the widget rebuilds and triggers animation
-      width: MediaQuery.of(context).size.width,
-      top: MediaQuery.of(context).size.height * .34,
+
       child: Column(
         children: [
           Text(
