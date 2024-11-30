@@ -13,7 +13,7 @@ class SideTitleSection extends StatelessWidget {
       padding:  EdgeInsets.only(bottom:  MediaQuery.of(context).size.width*.01),
       child: Text(text,style: Styles.Urbanist15.copyWith(
           fontWeight: FontWeight.w600,
-          fontSize: MediaQuery.of(context).size.width*.04
+          fontSize:MediaQuery.of(context).size.height*.019,
       )
       ),
     );

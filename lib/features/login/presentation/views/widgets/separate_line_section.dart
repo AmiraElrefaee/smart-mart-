@@ -27,7 +27,7 @@ class SeparateLineSection extends StatelessWidget {
           child: Text('or continue with',
           style: Styles.Urbanist16.copyWith(
             fontWeight: FontWeight.w500,
-            fontSize:  MediaQuery.of(context).size.width * .04
+            fontSize: MediaQuery.of(context).size.height*.018,
           ),
           ),
         ),

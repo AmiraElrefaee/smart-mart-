@@ -37,7 +37,7 @@ class SectionGoogleBotton extends StatelessWidget {
               Text('Continue with google', style:
               Styles.Urbanist20.copyWith(
                 fontWeight: FontWeight.w600,
-                  fontSize: MediaQuery.of(context).size.width*.04
+                  fontSize: MediaQuery.of(context).size.height*.018,
               ),),
             ],
           )),

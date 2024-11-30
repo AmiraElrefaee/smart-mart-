@@ -29,8 +29,8 @@ final Color colorText;
               borderRadius: BorderRadius.circular(10)
           ),
           child: Text(text, style:
-          Styles.NexaBold24.copyWith(color: colorText,
-          fontSize: MediaQuery.of(context).size.width*.05
+          Styles.Urbanist20.copyWith(color: colorText,
+          fontSize:MediaQuery.of(context).size.height*.023,
           ),)),
     );
   }
