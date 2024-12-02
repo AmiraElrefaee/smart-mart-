@@ -15,7 +15,7 @@ class SectionGoogleBotton extends StatelessWidget {
       onTap: (){},
       child: Container(
           alignment: Alignment.center,
-          height: MediaQuery.of(context).size.height * .06,
+          height:MediaQuery.of(context).size.height * .055,
 
           decoration: BoxDecoration(
             border: Border.all(

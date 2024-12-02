@@ -10,19 +10,23 @@ class CustomBotton extends StatelessWidget {
 
     required this.text,
     required this.background,
-    required this.colorText, required this.screenHeight, required this.screenWidth});
+    required this.colorText,
+    required this.screenHeight,
+    required this.screenWidth,
+   required this.onTap});
   final double screenHeight;
   final double screenWidth;
 final String text;
 final Color background;
 final Color colorText;
+final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: onTap,
       child: Container(
           alignment: Alignment.center,
-          height: MediaQuery.of(context).size.height * .06,
+          height: MediaQuery.of(context).size.height * .055,
 
           decoration: BoxDecoration(
               color: background,

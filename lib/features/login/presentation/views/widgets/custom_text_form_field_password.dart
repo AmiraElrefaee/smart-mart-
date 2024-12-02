@@ -27,7 +27,6 @@ bool obscureText=true ;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-
       obscureText:obscureText,
       onChanged:widget.onChanged ,
       onSaved:widget.onSaved ,
@@ -42,7 +41,7 @@ bool obscureText=true ;
 
       maxLines: widget.maxlines,
       style:Styles.Urbanist16.copyWith(color: Colors.black,
-        fontSize: MediaQuery.of(context).size.height*.018,
+        fontSize:  MediaQuery.of(context).size.height*.019,
       fontWeight: FontWeight.w500
       ),
       // cursorColor: kprimaryColor,
@@ -84,7 +83,7 @@ bool obscureText=true ;
         hintStyle: Styles.Urbanist20.copyWith(
             color: Colors.black.withOpacity(0.5),
         fontWeight: FontWeight.w500,
-        fontSize: MediaQuery.of(context).size.height*.018,
+        fontSize:  MediaQuery.of(context).size.height*.019,
         // fontSize: MediaQuery.of(context).size.width*0001
         ),
         border: buildBorder(),

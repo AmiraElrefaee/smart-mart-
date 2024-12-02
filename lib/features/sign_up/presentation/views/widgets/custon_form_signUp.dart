@@ -8,51 +8,73 @@ import 'package:smart_mart/features/login/presentation/views/widgets/separate_li
 import 'package:smart_mart/features/login/presentation/views/widgets/side_title_section.dart';
 import 'package:smart_mart/utils/styles.dart';
 
-import '../../../../../const.dart';
-import 'custom_botton.dart';
-import 'custom_check_box.dart';
-import 'custom_side_text.dart';
-import 'custom_text_botton.dart';
-import 'custom_text_form_field_password.dart';
-import 'custom_text_form_filed.dart';
+import '../../../../login/presentation/views/widgets/custom_text_form_field_password.dart';
+import '../../../../login/presentation/views/widgets/custom_text_form_filed.dart';
 
-class CustomForm extends StatefulWidget {
-  const CustomForm({
+
+class CustonFormSignup extends StatefulWidget {
+  const CustonFormSignup({
     super.key, required this.screenHeight, required this.screenWidth,
   });
   final double screenHeight;
   final double screenWidth;
   @override
-  State<CustomForm> createState() => _addNoteFormState();
+  State<CustonFormSignup> createState() => _addNoteFormState();
 }
 
-class _addNoteFormState extends State<CustomForm> {
+class _addNoteFormState extends State<CustonFormSignup> {
   @override
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String ?title, subTitle;
 
   Widget build(BuildContext context) {
+    final double bottom=MediaQuery.of(context).size.height*.015;
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SideTitleSection(text: 'Email address',),
-
+          SideTitleSection(text: 'First name',),
 
           Padding(
             padding:   EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height*.008
+                bottom: bottom
+            ),
+            child: CustomTextFormFiled(
+              onSaved: (value) {
+                title = value;
+              },
+              hint: 'enter your first name',
+            ),
+          ),
+
+          SideTitleSection(text: 'Last name',),
+
+          Padding(
+            padding:   EdgeInsets.only(
+                bottom:bottom
+            ),
+            child: CustomTextFormFiled(
+              onSaved: (value) {
+                title = value;
+              },
+              hint: 'enter your last name',
+            ),
+          ),
+
+          SideTitleSection(text: 'Email address',),
+
+          Padding(
+            padding:   EdgeInsets.only(
+                bottom: bottom
             ),
             child: CustomTextFormFiled(
               onSaved: (value) {
                 title = value;
               },
               hint: 'enter your email address',
-
-
             ),
           ),
 
@@ -60,17 +82,30 @@ class _addNoteFormState extends State<CustomForm> {
 
           Padding(
             padding:  EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height*.008
+              bottom:   bottom
             ),
             child: CustomTextFieldPassWord(
               onSaved: (value) {
                 subTitle = value;
               },
               hint: 'enter your password',
-
-
             ),
           ),
+
+          SideTitleSection(text: 'Confirm Password',),
+
+          Padding(
+            padding:  EdgeInsets.only(
+              bottom: bottom
+            ),
+            child: CustomTextFieldPassWord(
+              onSaved: (value) {
+                subTitle = value;
+              },
+              hint: 'enter your password',
+            ),
+          ),
+
           SizedBox(
             height: widget.screenHeight*.01,
           ),
@@ -100,15 +135,15 @@ class _addNoteFormState extends State<CustomForm> {
     );
   }
 
-  // void saveNote(BuildContext context) {
-  //   DateTime now=DateTime.now();
-  //   String formattedDay=DateFormat('yyy-MM-dd').format(now);
-  //   var notModel = NoteModel(title: title!,
-  //       subTitle: subTitle!,
-  //       date: formattedDay,
-  //       color: Colors.brown.value);
-  //   BlocProvider.of<AddNoteCubit>(context).addNote(notModel);
-  // }
+// void saveNote(BuildContext context) {
+//   DateTime now=DateTime.now();
+//   String formattedDay=DateFormat('yyy-MM-dd').format(now);
+//   var notModel = NoteModel(title: title!,
+//       subTitle: subTitle!,
+//       date: formattedDay,
+//       color: Colors.brown.value);
+//   BlocProvider.of<AddNoteCubit>(context).addNote(notModel);
+// }
 }
 
 

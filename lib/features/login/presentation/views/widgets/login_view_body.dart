@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_bottons.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_google_botton.dart';
+import 'package:smart_mart/features/login/presentation/views/widgets/custom_question_botton.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/separate_line_section.dart';
 
+import '../../../../../utils/functions/app_router.dart';
 import '../../../../on_boarding/presentation/views/widgets/custom_background_images.dart';
 import 'custom_background.dart';
 import 'custom_botton.dart';
@@ -40,16 +43,20 @@ class LoginViewBody extends StatelessWidget {
                   children: [
 
                   CustomTitle(
-                    screenHeight: screenHeight,
-                    screenWidth: screenWidth,
+                    title: 'Welcome Back',
+                    subTitle: 'Let’s get started and go shopping',
+
                   ),
+
                     SizedBox(
                       height: screenHeight*.025,
                     ),
+
                     CustomForm(
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
                     ),
+
                     CustomCheckBox(
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
@@ -60,38 +67,43 @@ class LoginViewBody extends StatelessWidget {
                     ),
 
                     CustomBotton(
+                      onTap: (){},
                       screenHeight: screenHeight*.7,
                       screenWidth: screenWidth,
                       background: kColor,
                       colorText: Colors.white,
                       text: 'Log in ',
                     ),
+
                     SizedBox(
                       height: screenHeight*.025,
                     ),
+
                     SeparateLineSection(
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
                     ),
+
                     SizedBox(
                       height: screenHeight*.025,
                     ),
+
                     SectionGoogleBotton(
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
                     ),
+
                     SizedBox(
                       height: screenHeight*.02,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomSideText(text: 'Already have an account ?',),
 
-                        CustomTextBottom(
-                          text: 'Sign up',
-                        ),
-                      ],),
+                    CustomQuesBotton(
+                      mainQest: 'Already have an account ?',
+                      bottonText:'Sign up' ,
+                      onTap: (){
+                        GoRouter.of(context).push(AppRouter.kSignUpPage);
+                      },
+                    ),
 
 
                           ],),
@@ -101,3 +113,4 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
+
