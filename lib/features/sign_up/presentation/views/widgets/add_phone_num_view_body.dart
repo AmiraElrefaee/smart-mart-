@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
 
+import '../../../../login/presentation/views/widgets/custom_botton.dart';
+import '../../../../login/presentation/views/widgets/custom_side_text.dart';
+import '../../../../login/presentation/views/widgets/custom_title.dart';
 import 'custom_app_bar.dart';
+import 'custom_form_number.dart';
 
 class AddPhoneNumViewBody extends StatelessWidget {
   const AddPhoneNumViewBody({super.key});
@@ -16,10 +20,38 @@ class AddPhoneNumViewBody extends StatelessWidget {
 
     Padding(
       padding:  EdgeInsets.symmetric(horizontal:screenHeight*.04 ),
-      child: Column(children: [
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
 
         customAppBar(screenHeight: screenHeight),
 
+        CustomTitle(
+          title: 'Add phone number',
+          subTitle: 'we will send an OTP Verification to you',
+        ),
+          SizedBox(
+            height: screenHeight*.03,
+          ),
+          Padding(
+            padding:  EdgeInsets.symmetric(vertical: screenHeight*.005),
+            child: CustomSideText(
+              text: 'Phone number',
+            ),
+          ),
+          CustomFormNumber(),
+          Spacer(),
+          Padding(
+            padding:  EdgeInsets.only(bottom: screenHeight*.04),
+            child:  CustomBotton(
+              text: 'Send me code',
+              colorText: Colors.white,
+              background:kColor ,
+              screenHeight:screenHeight ,
+              screenWidth: screenWidth,
+              onTap: (){},
+            ),
+          ),
 
       ],),
     ));

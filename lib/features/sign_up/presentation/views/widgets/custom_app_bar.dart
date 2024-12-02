@@ -15,7 +15,8 @@ class customAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical:  screenHeight*.05),
+      alignment: Alignment.topLeft,
+      margin: EdgeInsets.symmetric(vertical:  screenHeight*.04),
       height: screenHeight*.053,
       width: screenHeight*.053,
       decoration: BoxDecoration(

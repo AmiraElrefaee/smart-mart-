@@ -56,8 +56,6 @@ bool obscureText=true ;
           padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.05),
           child: SvgPicture.asset('assets/images/Component 16.svg',
             width:  MediaQuery.of(context).size.width*.01,
-
-
               ),
         ):
         Padding(
