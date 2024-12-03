@@ -7,15 +7,15 @@ import 'package:smart_mart/features/login/presentation/views/widgets/section_goo
 import 'package:smart_mart/features/login/presentation/views/widgets/custom_question_botton.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/separate_line_section.dart';
 
-import '../../../../../utils/functions/app_router.dart';
+import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../on_boarding/presentation/views/widgets/custom_background_images.dart';
 import 'custom_background.dart';
-import 'custom_botton.dart';
+import '../../../../../core/widgets/custom_botton.dart';
 import 'custom_check_box.dart';
 import 'custom_form.dart';
-import 'custom_side_text.dart';
-import 'custom_text_botton.dart';
-import 'custom_title.dart';
+import '../../../../../core/widgets/custom_side_text.dart';
+import '../../../../../core/widgets/custom_text_botton.dart';
+import '../../../../../core/widgets/custom_title.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -43,6 +43,9 @@ class LoginViewBody extends StatelessWidget {
                   children: [
 
                   CustomTitle(
+                    sizeBox: 0,
+                    fontTitle: .041*MediaQuery.of(context).size.height,
+                    fontSubTitle:.02*MediaQuery.of(context).size.height,
                     title: 'Welcome Back',
                     subTitle: 'Let’s get started and go shopping',
 

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:smart_mart/features/on_boarding/data/models/content_model.dart';
 
-import '../../../../../utils/styles.dart';
+import '../../../../../core/utils/styles.dart';
+
+
 
 class TitleSection extends StatefulWidget {
   const TitleSection({super.key, required this.index});

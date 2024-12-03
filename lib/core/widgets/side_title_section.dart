@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../../utils/styles.dart';
+import '../utils/styles.dart';
+
 
 class SideTitleSection extends StatelessWidget {
   const SideTitleSection({

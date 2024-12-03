@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_mart/const.dart';
-import 'package:smart_mart/utils/styles.dart';
+
+import '../../../../../core/utils/styles.dart';
 
 class SeparateLineSection extends StatelessWidget {
   const SeparateLineSection({super.key, required this.screenHeight, required this.screenWidth});

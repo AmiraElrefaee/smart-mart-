@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:smart_mart/utils/styles.dart';
-
 import '../../../../../const.dart';
+import '../../../../../core/utils/styles.dart';
 
 class ExplantoryText extends StatelessWidget {
   const ExplantoryText({

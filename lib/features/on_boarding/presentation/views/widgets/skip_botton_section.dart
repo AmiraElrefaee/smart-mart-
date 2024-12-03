@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../const.dart';
-import '../../../../../utils/functions/app_router.dart';
-import '../../../../../utils/styles.dart';
+import '../../../../../core/utils/functions/app_router.dart';
+import '../../../../../core/utils/styles.dart';
 
 class SkipBottonSection extends StatelessWidget {
   const SkipBottonSection({

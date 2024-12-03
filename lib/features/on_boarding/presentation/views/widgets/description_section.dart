@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:smart_mart/features/on_boarding/data/models/content_model.dart';
 
-import '../../../../../utils/styles.dart';
+import '../../../../../core/utils/styles.dart';
+
 
 class DescriptionSection extends StatelessWidget {
   const DescriptionSection({super.key, required this.index});

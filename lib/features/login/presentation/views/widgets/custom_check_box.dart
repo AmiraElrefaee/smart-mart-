@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 
-import 'custom_side_text.dart';
-import 'custom_text_botton.dart';
+import '../../../../../core/widgets/custom_side_text.dart';
+import '../../../../../core/widgets/custom_text_botton.dart';
 
 class CustomCheckBox extends StatefulWidget {
   const CustomCheckBox ({super.key, required this.screenHeight, required this.screenWidth});
@@ -62,7 +64,11 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
 
     Spacer(),
 
-      CustomTextBottom( text: 'Forgot password ?',)
+      CustomTextBottom( text: 'Forgot password ?',
+      onTap: (){
+        GoRouter.of(context).push(AppRouter.kForgetPasswordPage);
+      },
+      )
 
     ],);
   }

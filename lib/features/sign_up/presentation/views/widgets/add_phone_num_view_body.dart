@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
 
-import '../../../../login/presentation/views/widgets/custom_botton.dart';
-import '../../../../login/presentation/views/widgets/custom_side_text.dart';
-import '../../../../login/presentation/views/widgets/custom_title.dart';
-import 'custom_app_bar.dart';
+
+import '../../../../../core/utils/functions/app_router.dart';
+import '../../../../../core/widgets/custom_botton.dart';
+import '../../../../../core/widgets/custom_side_text.dart';
+import '../../../../../core/widgets/custom_title.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
 import 'custom_form_number.dart';
 
 class AddPhoneNumViewBody extends StatelessWidget {
@@ -17,9 +19,8 @@ class AddPhoneNumViewBody extends StatelessWidget {
     double screenHeight= MediaQuery.of(context).size.height;
     double screenWidth= MediaQuery.of(context).size.width;
     return SafeArea(child:
-
     Padding(
-      padding:  EdgeInsets.symmetric(horizontal:screenHeight*.04 ),
+      padding:  EdgeInsets.symmetric(horizontal:screenWidth*.06 ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,6 +28,9 @@ class AddPhoneNumViewBody extends StatelessWidget {
         customAppBar(screenHeight: screenHeight),
 
         CustomTitle(
+          sizeBox:  screenHeight*.02,
+          fontTitle: .041*MediaQuery.of(context).size.height,
+          fontSubTitle:.02*MediaQuery.of(context).size.height,
           title: 'Add phone number',
           subTitle: 'we will send an OTP Verification to you',
         ),
@@ -40,16 +44,19 @@ class AddPhoneNumViewBody extends StatelessWidget {
             ),
           ),
           CustomFormNumber(),
+
           Spacer(),
           Padding(
-            padding:  EdgeInsets.only(bottom: screenHeight*.04),
+            padding:  EdgeInsets.only(bottom: screenHeight*.08),
             child:  CustomBotton(
               text: 'Send me code',
               colorText: Colors.white,
               background:kColor ,
               screenHeight:screenHeight ,
               screenWidth: screenWidth,
-              onTap: (){},
+              onTap: (){
+                GoRouter.of(context).push(AppRouter.kOTPpage);
+              },
             ),
           ),
 

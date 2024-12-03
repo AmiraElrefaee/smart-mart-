@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../utils/styles.dart';
+import '../../../../../core/utils/styles.dart';
+
 
 class CustomTextFormPhoneNum extends StatelessWidget {
   const CustomTextFormPhoneNum({super.key,

@@ -8,11 +8,11 @@ import 'package:smart_mart/features/on_boarding/presentation/views/widgets/skip_
 import 'package:smart_mart/features/on_boarding/presentation/views/widgets/title_section.dart';
 
 import '../../../../../const.dart';
-import '../../../../../utils/functions/app_router.dart';
-import '../../../../../utils/styles.dart';
+
+import '../../../../../core/utils/functions/app_router.dart';
 import '../../../data/models/content_model.dart';
 import 'custom_background_images.dart';
-import '../../../../login/presentation/views/widgets/custom_botton.dart';
+import '../../../../../core/widgets/custom_botton.dart';
 import 'description_section.dart';
 
 class OnboardingViewBody extends StatefulWidget {

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_mart/const.dart';
 
-import '../../../../../utils/styles.dart';
 import 'Explanatory_text.dart';
 
 class SlidingText extends StatelessWidget {

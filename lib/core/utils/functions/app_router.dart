@@ -4,21 +4,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_mart/features/login/presentation/views/login_view.dart';
 import 'package:smart_mart/features/on_boarding/presentation/views/onBoarding_view.dart';
+import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
-import '../../features/sign_up/presentation/views/add_phone_num_view.dart';
-import '../../features/sign_up/presentation/views/sign_up_view.dart';
-import '../../features/splash/presentation/views/splash_view.dart';
+import '../../../features/sign_up/presentation/views/OTP_forget_password_page_view.dart';
+import '../../../features/sign_up/presentation/views/add_phone_num_view.dart';
+import '../../../features/sign_up/presentation/views/forget_password_page_view.dart';
+import '../../../features/sign_up/presentation/views/sign_up_view.dart';
+import '../../../features/splash/presentation/views/splash_view.dart';
+
+
 
 abstract class AppRouter {
   static const konBoarding='/OnboardingView';
   static const kloginPage='/LoginLoginView';
   static const kSignUpPage='/SignUpView';
   static const kAddPhoneNumPage='/AddPhoneNumView';
+  static const kOTPpage='/OtpView' ;
+  static const kForgetPasswordPage='/ForgetPasswordPageView' ;
+  static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
    static final router = GoRouter(
     routes: [
-      GoRoute(path: kAddPhoneNumPage,
-      builder: (context,state)=> const AddPhoneNumView()
+      GoRoute(path: kOtpForgetPasswordPage,
+      builder: (context, state )=>OtpForgetPasswordPageView()
       ),
+      GoRoute(path: kForgetPasswordPage,
+      builder: (context,state)=> const ForgetPasswordPageView()
+      ),
+      GoRoute(path: kAddPhoneNumPage,
+          builder: (context,state)=> const AddPhoneNumView()
+      ),
+      GoRoute(path: kOTPpage,
+      builder: (context,state)=>const  OtpView()
+      ),
+
       GoRoute(path: kloginPage,
       builder: (context,state)=> const LoginView(),
         pageBuilder: (context, state) {

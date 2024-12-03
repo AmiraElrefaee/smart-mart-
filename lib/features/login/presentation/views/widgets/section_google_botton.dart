@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../const.dart';
-import '../../../../../utils/styles.dart';
+import '../../../../../core/utils/styles.dart';
 
 class SectionGoogleBotton extends StatelessWidget {
   const SectionGoogleBotton({super.key, required this.screenHeight, required this.screenWidth,});

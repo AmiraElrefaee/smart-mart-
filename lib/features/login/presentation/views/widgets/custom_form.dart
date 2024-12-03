@@ -5,14 +5,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_bottons.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_google_botton.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/separate_line_section.dart';
-import 'package:smart_mart/features/login/presentation/views/widgets/side_title_section.dart';
-import 'package:smart_mart/utils/styles.dart';
+import 'package:smart_mart/core/widgets/side_title_section.dart';
 
 import '../../../../../const.dart';
-import 'custom_botton.dart';
+import '../../../../../core/widgets/custom_botton.dart';
 import 'custom_check_box.dart';
-import 'custom_side_text.dart';
-import 'custom_text_botton.dart';
+import '../../../../../core/widgets/custom_side_text.dart';
+import '../../../../../core/widgets/custom_text_botton.dart';
 import 'custom_text_form_field_password.dart';
 import 'custom_text_form_filed.dart';
 

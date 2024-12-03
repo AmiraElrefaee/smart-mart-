@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_mart/utils/functions/app_router.dart';
 
+import 'core/utils/functions/app_router.dart';
 import 'features/splash/presentation/views/splash_view.dart';
 
 void main() {

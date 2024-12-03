@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../const.dart';
-import '../../../../../utils/styles.dart';
+import '../../const.dart';
+import '../utils/styles.dart';
 
 class CustomBotton extends StatelessWidget {
   const CustomBotton({super.key,

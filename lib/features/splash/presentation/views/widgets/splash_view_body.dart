@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_mart/features/splash/presentation/views/widgets/sliding_text.dart';
-import 'package:smart_mart/utils/functions/app_router.dart';
+
+import '../../../../../core/utils/functions/app_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});

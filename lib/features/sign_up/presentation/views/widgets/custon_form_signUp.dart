@@ -5,8 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_bottons.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_google_botton.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/separate_line_section.dart';
-import 'package:smart_mart/features/login/presentation/views/widgets/side_title_section.dart';
-import 'package:smart_mart/utils/styles.dart';
+import 'package:smart_mart/core/widgets/side_title_section.dart';
+
 
 import '../../../../login/presentation/views/widgets/custom_text_form_field_password.dart';
 import '../../../../login/presentation/views/widgets/custom_text_form_filed.dart';

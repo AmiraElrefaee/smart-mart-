@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_mart/utils/functions/app_router.dart';
+
 
 import '../../../../../const.dart';
-import '../../../../../utils/styles.dart';
+import '../../../../../core/utils/styles.dart';
+
 import '../../../../login/presentation/views/login_view.dart';
 import '../../../data/models/content_model.dart';
-import '../../../../login/presentation/views/widgets/custom_botton.dart';
+import '../../../../../core/widgets/custom_botton.dart';
 
 class SectionBotton extends StatelessWidget {
    SectionBotton({super.key, required this.currentIndex, required this.onNext});
