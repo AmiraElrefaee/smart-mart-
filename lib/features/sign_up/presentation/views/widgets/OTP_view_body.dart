@@ -39,71 +39,74 @@ class OtpViewBody extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal:screenWidth*.06 ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: EdgeInsets.symmetric(horizontal:screenWidth*.09),
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
 
-          children: [
-          customAppBar(
-            screenHeight: screenHeight,
-          ),
-          Center(
-            child: CustomTitle(
-              sizeBox:  screenHeight*.02,
-              fontTitle: .04*MediaQuery.of(context).size.height,
-              fontSubTitle:.02*MediaQuery.of(context).size.height,
-
-              title: 'Confirm your number',
-              subTitle: 'Enter the code we sent to +20 0122 ******30',
+            children: [
+            customAppBar(
+              screenHeight: screenHeight,
             ),
-          ),
+            Center(
+              child: CustomTitle(
+                sizeBox:  screenHeight*.02,
+                fontTitle: .075*MediaQuery.of(context).size.width,
+                fontSubTitle:.039*MediaQuery.of(context).size.width,
 
-            CustomTextFormOTP(screenHeight: screenHeight,
-                screenWidth: screenWidth,
-                defaultPinTheme: defaultPinTheme),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-              Text('Didn’t Receive the Code ?',
-                style: Styles.Urbanist25.copyWith(color: kcolor3,
-                    fontSize: screenHeight*.018),),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: InkWell(
-                      child: Text('Resend Code',
-                                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        // decorationThickness: 2,
-                        color: Colors.black,
-                      fontSize: screenHeight*.021
-                                      ),
-                                      ),
-                    ),
-                  )
-
-            ],),
-
-
-            Spacer(),
-
-            Padding(
-              padding:  EdgeInsets.only(bottom: screenHeight*.08,
-
-
+                title: 'Confirm your number',
+                subTitle: 'Enter the code we sent to +20 0122 ******30',
               ),
-              child: CustomBotton(
-                text: 'Verify now',
-                background: kColor,
-                colorText: Colors.white,
-                screenHeight: screenHeight,
-                screenWidth: screenWidth,
-                onTap: (){},
-              ),
-            )
+            ),
 
-        ],),
+              CustomTextFormOTP(screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  defaultPinTheme: defaultPinTheme),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Text('Didn’t Receive the Code ?',
+                  style: Styles.Urbanist25.copyWith(color: kcolor3,
+                      fontSize: screenHeight*.018),),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: InkWell(
+                        child: Text('Resend Code',
+                                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          // decorationThickness: 2,
+                          color: Colors.black,
+                        fontSize: screenHeight*.021
+                                        ),
+                                        ),
+                      ),
+                    )
+
+              ],),
+
+
+              Spacer(),
+
+              Padding(
+                padding:  EdgeInsets.only(bottom: screenHeight*.08,
+
+
+                ),
+                child: CustomBotton(
+                  text: 'Verify now',
+                  background: kColor,
+                  colorText: Colors.white,
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  onTap: (){},
+                ),
+              )
+
+          ],),
+        ),
       ),
     );
   }

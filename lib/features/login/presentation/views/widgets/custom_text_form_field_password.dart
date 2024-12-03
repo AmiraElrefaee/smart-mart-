@@ -60,7 +60,7 @@ bool obscureText=true ;
               ),
         ):
         Padding(
-          padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.05),
+          padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.04),
           child: SvgPicture.asset('assets/images/eye_show_regular_icon_203603.svg'),
         ),),
 
@@ -94,7 +94,7 @@ bool obscureText=true ;
 
   OutlineInputBorder buildBorder([colorr,widthh]) {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
         borderSide:  BorderSide(
             color: colorr==null? Color(0xffD8DADC):colorr,
             width:widthh==null? 2:widthh)

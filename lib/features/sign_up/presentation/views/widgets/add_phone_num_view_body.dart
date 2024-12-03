@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
 
 
+import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../../core/widgets/custom_side_text.dart';
@@ -19,48 +20,51 @@ class AddPhoneNumViewBody extends StatelessWidget {
     double screenHeight= MediaQuery.of(context).size.height;
     double screenWidth= MediaQuery.of(context).size.width;
     return SafeArea(child:
-    Padding(
-      padding:  EdgeInsets.symmetric(horizontal:screenWidth*.06 ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Padding(
+        padding:  EdgeInsets.symmetric(horizontal:screenWidth*.09 ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
 
-        customAppBar(screenHeight: screenHeight),
+          customAppBar(screenHeight: screenHeight),
 
-        CustomTitle(
-          sizeBox:  screenHeight*.02,
-          fontTitle: .041*MediaQuery.of(context).size.height,
-          fontSubTitle:.02*MediaQuery.of(context).size.height,
-          title: 'Add phone number',
-          subTitle: 'we will send an OTP Verification to you',
-        ),
-          SizedBox(
-            height: screenHeight*.03,
+          CustomTitle(
+            sizeBox:  screenHeight*.02,
+            fontTitle: .075*MediaQuery.of(context).size.width,
+            fontSubTitle:.039*MediaQuery.of(context).size.width,
+            title: 'Add phone number',
+            subTitle: 'we will send an OTP Verification to you',
           ),
-          Padding(
-            padding:  EdgeInsets.symmetric(vertical: screenHeight*.005),
-            child: CustomSideText(
-              text: 'Phone number',
+            SizedBox(
+              height: screenHeight*.03,
             ),
-          ),
-          CustomFormNumber(),
-
-          Spacer(),
-          Padding(
-            padding:  EdgeInsets.only(bottom: screenHeight*.08),
-            child:  CustomBotton(
-              text: 'Send me code',
-              colorText: Colors.white,
-              background:kColor ,
-              screenHeight:screenHeight ,
-              screenWidth: screenWidth,
-              onTap: (){
-                GoRouter.of(context).push(AppRouter.kOTPpage);
-              },
+            Padding(
+              padding:  EdgeInsets.symmetric(vertical: screenHeight*.005),
+              child: CustomSideText(
+                text: 'Phone number',
+              ),
             ),
-          ),
+            CustomFormNumber(),
 
-      ],),
+            Spacer(),
+            Padding(
+              padding:  EdgeInsets.only(bottom: screenHeight*.08),
+              child:  CustomBotton(
+                text: 'Send me code',
+                colorText: Colors.white,
+                background:kColor ,
+                screenHeight:screenHeight ,
+                screenWidth: screenWidth,
+             onTap:()=>navigateToPage(AppRouter.kOTPpage,context)
+
+
+              ),
+            ),
+
+        ],),
+      ),
     ));
   }
 }

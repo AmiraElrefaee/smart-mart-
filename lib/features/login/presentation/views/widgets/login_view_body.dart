@@ -28,90 +28,93 @@ class LoginViewBody extends StatelessWidget {
       child: SizedBox(
         height: screenHeight,
         width: screenWidth,
-        child: Stack(children: [
-          CustomBackground(),
-          Positioned
-            (
-              width: screenWidth,
-              top: screenHeight* .34,
-              child: Padding(
-                padding:  EdgeInsets.only(
-                  right: MediaQuery.of(context).size.width*.05
-                  ,left: MediaQuery.of(context).size.width*.05,),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Stack(children: [
+            CustomBackground(),
+            Positioned
+              (
+                width: screenWidth,
+                top: screenHeight* .34,
+                child: Padding(
+                  padding:  EdgeInsets.only(
+                    right: MediaQuery.of(context).size.width*.05
+                    ,left: MediaQuery.of(context).size.width*.05,),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
 
-                  CustomTitle(
-                    sizeBox: 0,
-                    fontTitle: .041*MediaQuery.of(context).size.height,
-                    fontSubTitle:.02*MediaQuery.of(context).size.height,
-                    title: 'Welcome Back',
-                    subTitle: 'Let’s get started and go shopping',
+                    CustomTitle(
+                      sizeBox: 0,
+                      fontTitle: .041*MediaQuery.of(context).size.height,
+                      fontSubTitle:.02*MediaQuery.of(context).size.height,
+                      title: 'Welcome Back',
+                      subTitle: 'Let’s get started and go shopping',
 
-                  ),
-
-                    SizedBox(
-                      height: screenHeight*.025,
                     ),
 
-                    CustomForm(
-                      screenHeight: screenHeight,
-                      screenWidth: screenWidth,
-                    ),
+                      SizedBox(
+                        height: screenHeight*.025,
+                      ),
 
-                    CustomCheckBox(
-                      screenWidth: screenWidth,
-                      screenHeight: screenHeight,
-                    ),
+                      CustomForm(
+                        screenHeight: screenHeight,
+                        screenWidth: screenWidth,
+                      ),
 
-                    SizedBox(
-                      height:screenHeight*.02,
-                    ),
+                      CustomCheckBox(
+                        screenWidth: screenWidth,
+                        screenHeight: screenHeight,
+                      ),
 
-                    CustomBotton(
-                      onTap: (){},
-                      screenHeight: screenHeight*.7,
-                      screenWidth: screenWidth,
-                      background: kColor,
-                      colorText: Colors.white,
-                      text: 'Log in ',
-                    ),
+                      SizedBox(
+                        height:screenHeight*.02,
+                      ),
 
-                    SizedBox(
-                      height: screenHeight*.025,
-                    ),
+                      CustomBotton(
+                        onTap: (){},
+                        screenHeight: screenHeight*.7,
+                        screenWidth: screenWidth,
+                        background: kColor,
+                        colorText: Colors.white,
+                        text: 'Log in ',
+                      ),
 
-                    SeparateLineSection(
-                      screenHeight: screenHeight,
-                      screenWidth: screenWidth,
-                    ),
+                      SizedBox(
+                        height: screenHeight*.025,
+                      ),
 
-                    SizedBox(
-                      height: screenHeight*.025,
-                    ),
+                      SeparateLineSection(
+                        screenHeight: screenHeight,
+                        screenWidth: screenWidth,
+                      ),
 
-                    SectionGoogleBotton(
-                      screenHeight: screenHeight,
-                      screenWidth: screenWidth,
-                    ),
+                      SizedBox(
+                        height: screenHeight*.025,
+                      ),
 
-                    SizedBox(
-                      height: screenHeight*.02,
-                    ),
+                      SectionGoogleBotton(
+                        screenHeight: screenHeight,
+                        screenWidth: screenWidth,
+                      ),
 
-                    CustomQuesBotton(
-                      mainQest: 'Already have an account ?',
-                      bottonText:'Sign up' ,
-                      onTap: (){
-                        GoRouter.of(context).push(AppRouter.kSignUpPage);
-                      },
-                    ),
+                      SizedBox(
+                        height: screenHeight*.02,
+                      ),
+
+                      CustomQuesBotton(
+                        mainQest: 'Already have an account ?',
+                        bottonText:'Sign up' ,
+                        onTap: (){
+                          GoRouter.of(context).push(AppRouter.kSignUpPage);
+                        },
+                      ),
 
 
-                          ],),
-              )),
-        ],),
+                            ],),
+                )),
+          ],),
+        ),
       ),
     );
   }

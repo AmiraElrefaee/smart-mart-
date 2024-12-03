@@ -8,6 +8,7 @@ import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
 import '../../../features/sign_up/presentation/views/OTP_forget_password_page_view.dart';
 import '../../../features/sign_up/presentation/views/add_phone_num_view.dart';
+import '../../../features/sign_up/presentation/views/create_new_password_page_view.dart';
 import '../../../features/sign_up/presentation/views/forget_password_page_view.dart';
 import '../../../features/sign_up/presentation/views/sign_up_view.dart';
 import '../../../features/splash/presentation/views/splash_view.dart';
@@ -22,8 +23,11 @@ abstract class AppRouter {
   static const kOTPpage='/OtpView' ;
   static const kForgetPasswordPage='/ForgetPasswordPageView' ;
   static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
+  static const kCreateNewPasswordpage='/CreateNewPasswordpageView';
    static final router = GoRouter(
     routes: [
+      GoRoute(path: kCreateNewPasswordpage,
+      builder: (context,state)=>CreateNewPasswordpageView()),
       GoRoute(path: kOtpForgetPasswordPage,
       builder: (context, state )=>OtpForgetPasswordPageView()
       ),

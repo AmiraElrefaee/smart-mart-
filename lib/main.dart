@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       color: Colors.white,
       routerConfig: AppRouter.router,
+
       debugShowCheckedModeBanner: false,
       // home: const SplashView(),
     );
