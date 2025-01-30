@@ -11,6 +11,7 @@ import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../login/presentation/views/widgets/custom_question_botton.dart';
 import '../../../../../core/widgets/custom_title.dart';
+import '../../../../login/presentation/views/widgets/section_google_botton.dart';
 import 'custon_form_signUp.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -21,15 +22,6 @@ class SignupViewBody extends StatefulWidget {
 }
 
 class _SignupViewBodyState extends State<SignupViewBody> {
-  // Timer?_debounce;
-  //
-  // void navigateToPage(  String Loaction) {
-  //   if ( _debounce?.isActive ?? false) return;
-  //
-  //   _debounce = Timer(Duration(milliseconds: 500), () {
-  //     GoRouter.of(context).push(Loaction);
-  //   });
-  // }
   @override
   Widget build(BuildContext context) {
      double screenHeight= MediaQuery.of(context).size.height;
@@ -81,31 +73,19 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   ),
                 ),
               ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                IconButton(onPressed: (){},
-                    icon: SvgPicture.asset('assets/images/Button with centered icon.svg',
-                      height: screenHeight*.06,
-
-                    )),
-
-                IconButton(onPressed: (){
-
-                },
-                    icon: SvgPicture.asset('assets/images/Button with centered icon (1).svg',
-                      height: screenHeight*.06,
-                    )),
-
-              ],),
-
-              CustomQuesBotton(
-                mainQest: 'Already have an account ?',
-                bottonText: 'Log in',
-                onTap: (){
-                  GoRouter.of(context).pop();
-                },
+              SectionGoogleBotton(
+                screenHeight: screenHeight,
+                screenWidth: screenWidth,
+              ),
+              Padding(
+                padding:  EdgeInsets.symmetric(vertical: screenHeight*.02),
+                child: CustomQuesBotton(
+                  mainQest: 'Already have an account ?',
+                  bottonText: 'Log in',
+                  onTap: (){
+                    GoRouter.of(context).pop();
+                  },
+                ),
               ),
 
           ],),

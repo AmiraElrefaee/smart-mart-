@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../core/widgets/custom_side_text.dart';
-import '../../../../login/presentation/views/widgets/custom_text_form_field_password.dart';
+import '../../../../../core/widgets/custom_text_form_field_password.dart';
 
 class FormCreateNewPassword extends StatefulWidget {
   const FormCreateNewPassword({super.key});

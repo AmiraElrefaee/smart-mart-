@@ -2,18 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_bottons.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_google_botton.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/separate_line_section.dart';
 import 'package:smart_mart/core/widgets/side_title_section.dart';
 
 import '../../../../../const.dart';
+import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../../core/widgets/custom_botton.dart';
 import 'custom_check_box.dart';
 import '../../../../../core/widgets/custom_side_text.dart';
 import '../../../../../core/widgets/custom_text_botton.dart';
-import 'custom_text_form_field_password.dart';
-import 'custom_text_form_filed.dart';
+import '../../../../../core/widgets/custom_text_form_field_password.dart';
+import '../../../../../core/widgets/custom_text_form_filed.dart';
 
 class CustomForm extends StatefulWidget {
   const CustomForm({
@@ -30,7 +32,7 @@ class _addNoteFormState extends State<CustomForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String ?title, subTitle;
-
+  double ?space ;
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
@@ -50,8 +52,6 @@ class _addNoteFormState extends State<CustomForm> {
                 title = value;
               },
               hint: 'enter your email address',
-
-
             ),
           ),
 
@@ -70,9 +70,58 @@ class _addNoteFormState extends State<CustomForm> {
 
             ),
           ),
-          SizedBox(
-            height: widget.screenHeight*.01,
+          // SizedBox(
+          //   height: widget.screenHeight*.01,
+          // ),
+
+          CustomCheckBox(
+            screenWidth: widget.screenWidth,
+            screenHeight: widget.screenHeight,
           ),
+
+          SizedBox(
+            height:widget.screenHeight*.015,
+          ),
+
+          CustomBotton(
+            onTap: (){
+              if (formKey.currentState!.validate()){
+                
+                navigateToPage(AppRouter.khome, context);
+                setState(() {
+                  space=widget. screenHeight*.025;
+                });
+              }else {
+                setState(() {
+                  space=widget. screenHeight*.01;
+                });
+              }
+              },
+            screenHeight:widget. screenHeight*.7,
+            screenWidth: widget.screenWidth,
+            background: kColor,
+            colorText: Colors.white,
+            text: 'Log in ',
+          ),
+
+          SizedBox(
+            height: space?? widget.screenHeight*.025,
+          ),
+
+          SeparateLineSection(
+            screenHeight: widget. screenHeight,
+            screenWidth: widget. screenWidth,
+          ),
+
+          SizedBox(
+            height:space ?? widget. screenHeight*.025,
+          ),
+
+          SectionGoogleBotton(
+            screenHeight:  widget.screenHeight,
+            screenWidth: widget. screenWidth,
+          ),
+
 
           // BlocBuilder<AddNoteCubit, AddNoteState>(
           //   builder: (context, state) {

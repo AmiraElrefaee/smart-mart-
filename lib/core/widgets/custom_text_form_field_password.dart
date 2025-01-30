@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../core/utils/styles.dart';
+import '../../const.dart';
+import '../utils/styles.dart';
 
 
 
@@ -47,6 +48,20 @@ bool obscureText=true ;
       ),
       // cursorColor: kprimaryColor,
       decoration: InputDecoration(
+          focusedErrorBorder: buildBorder(
+              Color(0xffFFA9AC),
+              2.0
+          ),
+          errorStyle: TextStyle(fontSize: MediaQuery.of(context).size.height*.017,
+              fontWeight: FontWeight.w400,
+              color: kColor
+          ),
+
+          errorBorder: buildBorder(
+              Color(0xffFFA9AC),
+              2.0
+          ),
+
         suffixIcon:InkWell(onTap:(){
           setState(() {
             obscureText=!obscureText;

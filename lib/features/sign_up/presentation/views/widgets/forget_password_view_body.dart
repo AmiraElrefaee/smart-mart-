@@ -10,7 +10,7 @@ import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../../core/widgets/custom_side_text.dart';
 import '../../../../../core/widgets/custom_title.dart';
-import '../../../../login/presentation/views/widgets/custom_text_form_filed.dart';
+import '../../../../../core/widgets/custom_text_form_filed.dart';
 import 'custom_form_number.dart';
 
 class ForgetPasswordViewBody extends StatelessWidget {

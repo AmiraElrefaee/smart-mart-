@@ -8,8 +8,8 @@ import 'package:smart_mart/features/login/presentation/views/widgets/separate_li
 import 'package:smart_mart/core/widgets/side_title_section.dart';
 
 
-import '../../../../login/presentation/views/widgets/custom_text_form_field_password.dart';
-import '../../../../login/presentation/views/widgets/custom_text_form_filed.dart';
+import '../../../../../core/widgets/custom_text_form_field_password.dart';
+import '../../../../../core/widgets/custom_text_form_filed.dart';
 
 
 class CustonFormSignup extends StatefulWidget {
@@ -26,7 +26,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
   @override
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String ?title, subTitle;
+  String ?fname, lname, pass, copass,mail;
 
   Widget build(BuildContext context) {
     final double bottom=MediaQuery.of(context).size.height*.015;
@@ -44,7 +44,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
             ),
             child: CustomTextFormFiled(
               onSaved: (value) {
-                title = value;
+                fname = value;
               },
               hint: 'enter your first name',
             ),
@@ -58,7 +58,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
             ),
             child: CustomTextFormFiled(
               onSaved: (value) {
-                title = value;
+                lname = value;
               },
               hint: 'enter your last name',
             ),
@@ -72,7 +72,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
             ),
             child: CustomTextFormFiled(
               onSaved: (value) {
-                title = value;
+                mail = value;
               },
               hint: 'enter your email address',
             ),
@@ -86,7 +86,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
             ),
             child: CustomTextFieldPassWord(
               onSaved: (value) {
-                subTitle = value;
+                pass = value;
               },
               hint: 'enter your password',
             ),
@@ -100,7 +100,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
             ),
             child: CustomTextFieldPassWord(
               onSaved: (value) {
-                subTitle = value;
+                copass = value;
               },
               hint: 'enter your password',
             ),

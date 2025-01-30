@@ -10,7 +10,7 @@ class CustomSideText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(fontSize: MediaQuery.of(context).size.width*.037,
+      style: TextStyle(fontSize: MediaQuery.of(context).size.height*.017,
       ),
     );
   }
