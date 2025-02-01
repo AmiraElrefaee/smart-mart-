@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'core/utils/functions/app_router.dart';
+import 'core/utils/service_locator.dart';
 import 'features/splash/presentation/views/splash_view.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -19,7 +21,6 @@ class MyApp extends StatelessWidget {
       ),
       color: Colors.white,
       routerConfig: AppRouter.router,
-
       debugShowCheckedModeBanner: false,
       // home: const SplashView(),
     );

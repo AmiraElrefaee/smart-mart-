@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_bottons.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_google_botton.dart';
@@ -8,8 +9,14 @@ import 'package:smart_mart/features/login/presentation/views/widgets/separate_li
 import 'package:smart_mart/core/widgets/side_title_section.dart';
 
 
+import '../../../../../const.dart';
+import '../../../../../core/utils/functions/Navigate_to_page.dart';
+import '../../../../../core/utils/functions/app_router.dart';
+import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../../core/widgets/custom_text_form_field_password.dart';
 import '../../../../../core/widgets/custom_text_form_filed.dart';
+import '../../../domain/entity/register_entity.dart';
+import '../../managers/register_cubit/register_cubit.dart';
 
 
 class CustonFormSignup extends StatefulWidget {
@@ -27,6 +34,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String ?fname, lname, pass, copass,mail;
+  // final RegisterEntity user;
 
   Widget build(BuildContext context) {
     final double bottom=MediaQuery.of(context).size.height*.015;
@@ -108,6 +116,27 @@ class _addNoteFormState extends State<CustonFormSignup> {
 
           SizedBox(
             height: widget.screenHeight*.01,
+          ),
+          CustomBotton(
+              text: 'Continue',
+              background: kColor,
+              colorText: Colors.white,
+              screenWidth: widget.screenWidth,
+              screenHeight:widget.screenHeight ,
+              onTap:(){
+
+                  if (formKey.currentState!.validate()){
+                    // navigateToPage(AppRouter.kAddPhoneNumPage, context);
+                    print('not error ');
+                    BlocProvider.of<RegisterCubit>(context).register('ssdssa','easasf','wssd@gmail.com','1','1');
+                    // context.read<RegisterCubit>()
+                    //     .register('asdsd', 'hasd', 'asessd@gmail.com', 'securePas', 'securePas');
+                  }else {
+                   print('error in custon form sign up');
+                  }
+
+
+              }
           ),
 
           // BlocBuilder<AddNoteCubit, AddNoteState>(

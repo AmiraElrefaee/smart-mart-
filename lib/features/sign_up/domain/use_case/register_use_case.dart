@@ -4,7 +4,7 @@ class RegisterUseCase{
 final RegisterRepo registerRepo;
 
   RegisterUseCase(this.registerRepo);
-  Future<String> call
+  Future<Map<String, dynamic>>call
       (String fname, String lname, String mail, String pass, String copass){
   return registerRepo.register(fname, lname, mail, pass, copass);
   }

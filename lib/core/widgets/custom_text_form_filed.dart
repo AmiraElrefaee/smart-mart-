@@ -24,7 +24,7 @@ class CustomTextFormFiled extends StatelessWidget {
         if (value?.isEmpty?? true){
           return 'field is require';
         }
-        else if (!value!.contains('.com')){
+        else if ( hint=='enter your email address'&&!value!.contains('.com')){
           return 'Invalid email. Please try again.';
         }
         else{

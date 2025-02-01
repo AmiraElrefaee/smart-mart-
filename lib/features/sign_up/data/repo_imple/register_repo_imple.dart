@@ -6,7 +6,7 @@ class RegisterRepoImple implements RegisterRepo{
 
   RegisterRepoImple(this.registerRmoteDataSource);
   @override
-  Future<String> register
+  Future<Map<String, dynamic>> register
       (String fname, String lname, String mail, String pass, String copass) {
     return registerRmoteDataSource
         .registerUser(mail, fname, lname, pass, copass);

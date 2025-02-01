@@ -15,9 +15,19 @@ class RegisterCubit extends Cubit<RegisterState> {
  emit(RegisterLoading());
 try{
   final response = await registerUseCase(fname, lname, mail, pass, copass);
-  emit(RegisterSuccess(response));
+  print('📌 Decoded Response: $response');
+
+  if (response["status"] == "success") {
+    print('✅ Success! Emitting RegisterSuccess...');
+    emit(RegisterSuccess());
+  } else {
+    print('❌ Registration failed: ${response["message"]}');
+    emit(RegisterFailure(response["message"] ?? "Unknown error"));
+  }
 }
 catch(error){
+
+  print('⚠️ here cubit error: $error');
   emit(RegisterFailure(error.toString()));
 }
   }

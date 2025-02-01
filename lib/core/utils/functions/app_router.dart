@@ -7,6 +7,7 @@ import 'package:smart_mart/features/login/presentation/views/login_view.dart';
 import 'package:smart_mart/features/on_boarding/presentation/views/onBoarding_view.dart';
 import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
+import '../../../features/sign_up/domain/use_case/register_use_case.dart';
 import '../../../features/sign_up/presentation/views/OTP_forget_password_page_view.dart';
 import '../../../features/sign_up/presentation/views/add_phone_num_view.dart';
 import '../../../features/sign_up/presentation/views/create_new_password_page_view.dart';

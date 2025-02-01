@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
@@ -12,6 +13,9 @@ import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../login/presentation/views/widgets/custom_question_botton.dart';
 import '../../../../../core/widgets/custom_title.dart';
 import '../../../../login/presentation/views/widgets/section_google_botton.dart';
+import '../../../domain/entity/register_entity.dart';
+import '../../managers/register_cubit/register_cubit.dart';
+import '../add_phone_num_view.dart';
 import 'custon_form_signUp.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -22,10 +26,25 @@ class SignupViewBody extends StatefulWidget {
 }
 
 class _SignupViewBodyState extends State<SignupViewBody> {
+
   @override
   Widget build(BuildContext context) {
+    RegisterEntity user ;
      double screenHeight= MediaQuery.of(context).size.height;
      double screenWidth= MediaQuery.of(context).size.width;
+    return BlocConsumer<RegisterCubit, RegisterState>(
+      listener: (context, state) {
+      if (state is RegisterSuccess) {
+        print("Registration successful, navigating...");
+        Future.microtask(() {
+          GoRouter.of(context).push(AppRouter.kAddPhoneNumPage);
+        });
+      } else if (state is RegisterFailure) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(state.errorMess)));
+      }
+      },
+  builder: (context, state) {
     return SafeArea(child: GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Padding(
@@ -54,14 +73,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 screenHeight:screenHeight ,
               ),
 
-              CustomBotton(
-                text: 'Continue',
-                background: kColor,
-                colorText: Colors.white,
-                screenWidth: screenWidth,
-                screenHeight:screenHeight ,
-                onTap:()=>navigateToPage(AppRouter.kAddPhoneNumPage,context)
-              ),
+
 
               Padding(
                 padding:  EdgeInsets.symmetric(vertical: screenHeight*.019),
@@ -92,5 +104,6 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         ),
       ),
     ));
+  },);
   }
 }

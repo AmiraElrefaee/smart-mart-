@@ -1,10 +1,12 @@
 
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import '../../../../const.dart';
 
 class RegisterRmoteDataSource{
 
-Future<String>registerUser
+Future<Map<String, dynamic>>registerUser
     (String mail, String fname ,String lname, String pass, String copass )
 async{
   final url=Uri.parse('${ApiConstants.baseUrl}/register');
@@ -19,10 +21,16 @@ async{
   }
   );
 
- if (response.statusCode==200){
-   return response.body;
- } else{
-   throw Exception('Failed to register user');
+  print("✅ Raw Response Body: ${response.body}");
+
+  final responseData = jsonDecode(response.body); // تحويل إلى JSON
+
+  if (responseData['status'] == "success") {
+    print('55555');
+    return responseData;
+  } else{
+    print('333333');
+    throw Exception(responseData["message"] ?? "Unknown error");
  }
 
 }
