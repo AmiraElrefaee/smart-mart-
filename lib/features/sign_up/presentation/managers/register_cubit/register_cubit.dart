@@ -10,7 +10,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   final RegisterUseCase registerUseCase ;
 
   Future<void> register
-      (String fname, String lname, String mail, String pass, String copass)
+      ({ required String fname, required String lname, required String mail,required String pass, required String copass})
   async{
  emit(RegisterLoading());
 try{

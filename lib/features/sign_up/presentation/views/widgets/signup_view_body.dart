@@ -36,9 +36,9 @@ class _SignupViewBodyState extends State<SignupViewBody> {
       listener: (context, state) {
       if (state is RegisterSuccess) {
         print("Registration successful, navigating...");
-        Future.microtask(() {
-          GoRouter.of(context).push(AppRouter.kAddPhoneNumPage);
-        });
+
+          navigateToPage(AppRouter.kAddPhoneNumPage, context);
+
       } else if (state is RegisterFailure) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(state.errorMess)));

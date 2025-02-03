@@ -12,13 +12,14 @@ async{
   final url=Uri.parse('${ApiConstants.baseUrl}/register');
 
   final response =await http.post(url,
-    body: {
+      headers: {'Content-Type': 'application/json'},
+    body:json.encode( {
   "firstName" : fname,
   "lastName" : lname,
   "email" : mail,
   "password" : pass,
   "confirmPassword" : copass
-  }
+  })
   );
 
   print("✅ Raw Response Body: ${response.body}");

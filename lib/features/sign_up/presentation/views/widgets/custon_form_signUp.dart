@@ -34,7 +34,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String ?fname, lname, pass, copass,mail;
-  // final RegisterEntity user;
+   // RegisterEntity user;
 
   Widget build(BuildContext context) {
     final double bottom=MediaQuery.of(context).size.height*.015;
@@ -51,7 +51,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
                 bottom: bottom
             ),
             child: CustomTextFormFiled(
-              onSaved: (value) {
+              onChanged: (String value) {
                 fname = value;
               },
               hint: 'enter your first name',
@@ -65,7 +65,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
                 bottom:bottom
             ),
             child: CustomTextFormFiled(
-              onSaved: (value) {
+              onChanged: ( String value) {
                 lname = value;
               },
               hint: 'enter your last name',
@@ -79,7 +79,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
                 bottom: bottom
             ),
             child: CustomTextFormFiled(
-              onSaved: (value) {
+              onChanged: (String value) {
                 mail = value;
               },
               hint: 'enter your email address',
@@ -93,7 +93,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
               bottom:   bottom
             ),
             child: CustomTextFieldPassWord(
-              onSaved: (value) {
+              onChanged: ( String value) {
                 pass = value;
               },
               hint: 'enter your password',
@@ -107,7 +107,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
               bottom: bottom
             ),
             child: CustomTextFieldPassWord(
-              onSaved: (value) {
+              onChanged: (String value) {
                 copass = value;
               },
               hint: 'enter your password',
@@ -128,11 +128,23 @@ class _addNoteFormState extends State<CustonFormSignup> {
                   if (formKey.currentState!.validate()){
                     // navigateToPage(AppRouter.kAddPhoneNumPage, context);
                     print('not error ');
-                    BlocProvider.of<RegisterCubit>(context).register('ssdssa','easasf','wssd@gmail.com','1','1');
+                    if (fname != null && lname != null && mail != null && pass != null && copass != null) {
+                      BlocProvider.of<RegisterCubit>(context).register(
+                        fname: fname!,
+                        lname: lname!,
+                        mail: mail!,
+                        pass: pass!,
+                        copass: copass!,
+                      );
+                    }
                     // context.read<RegisterCubit>()
                     //     .register('asdsd', 'hasd', 'asessd@gmail.com', 'securePas', 'securePas');
                   }else {
+                    setState(() {
+                      autovalidateMode = AutovalidateMode.always;
+                    });
                    print('error in custon form sign up');
+
                   }
 
 
