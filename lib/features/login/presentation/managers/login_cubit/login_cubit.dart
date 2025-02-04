@@ -9,16 +9,17 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.loginUseCase) : super(LoginInitial());
   final LoginUseCase loginUseCase;
-  Future<void>login(String mail , String pass )async{
-    void login(String email, String password) async {
+  Future<void>login({required String mail ,required String pass} )async{
+
       emit(LoginLoading());
       try {
-        final user = await loginUseCase(email, password);
+        final user = await loginUseCase(mail, pass);
         emit(LoginSuccess(user));
 
       } catch (e) {
+        print(e.toString());
         emit(LoginFailure(e.toString()));
       }
-    }
+
   }
 }

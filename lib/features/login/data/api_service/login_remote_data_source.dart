@@ -20,9 +20,10 @@ class LoginRemoteDataSource{
 
     if (responseData['status'] == "success") {
       print('5555522');
-      return Token(token: responseData['token']);
+      return Token(token: responseData['data']['token']);
     } else{
       print('33333322');
+      print(responseData["message"]);
       throw Exception(responseData["message"] ?? "Unknown error");
     }
   }

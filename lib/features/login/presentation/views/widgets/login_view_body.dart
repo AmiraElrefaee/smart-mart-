@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_bottons.dart';
@@ -10,6 +11,7 @@ import 'package:smart_mart/features/login/presentation/views/widgets/separate_li
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../on_boarding/presentation/views/widgets/custom_background_images.dart';
+import '../../managers/login_cubit/login_cubit.dart';
 import 'custom_background.dart';
 import '../../../../../core/widgets/custom_botton.dart';
 import 'custom_check_box.dart';
@@ -25,6 +27,20 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
+    return BlocConsumer<LoginCubit, LoginState>(
+  listener: (context, state) {
+    if (state is LoginSuccess) {
+      print("login successful, navigating...");
+
+      navigateToPage(AppRouter.khome, context);
+
+    } else if (state is LoginFailure) {
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(state.message)));
+    }
+  },
+  builder: (context, state) {
     return SingleChildScrollView(
       child: SizedBox(
         height: screenHeight,
@@ -80,6 +96,8 @@ class LoginViewBody extends StatelessWidget {
           ),
         ),
     );
+  },
+);
 
   }
 }
