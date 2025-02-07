@@ -11,8 +11,9 @@ class HomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation:  FloatingActionButtonLocation.miniCenterDocked,
-
+      resizeToAvoidBottomInset: false,
       floatingActionButton: Container(
+
         width: 80,
         height: 80,
         margin: EdgeInsets.only(top: 110),
