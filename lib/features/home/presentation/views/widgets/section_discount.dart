@@ -31,8 +31,8 @@ class SectionDisconut extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: screenWidth * .43,
-          bottom: screenWidth * .04,
+          left: screenWidth * .45,
+          bottom: screenWidth * .06,
           height: 177,
           width: 188,
           child: Image.asset('assets/back_grounds/SCAN 3 1 (1).png'),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_mart/const.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_discount.dart';
+import 'package:smart_mart/features/home/presentation/views/widgets/section_side_title_offers.dart';
 
 import '../../../../../core/utils/styles.dart';
 import '../../../../on_boarding/presentation/views/widgets/section_trigger_points.dart';
@@ -65,7 +66,9 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                 },
               ),
             ),
-            SectionTriggerPoints(currentIndex: currentIndex), // تمرير currentIndex
+            SectionTriggerPoints(currentIndex: currentIndex),
+
+            sectionSideTitleOfferrs(screenWidth: screenWidth)// تمرير currentIndex
           ],
         ),
       ),
