@@ -2,11 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_mart/const.dart';
+import 'package:smart_mart/features/home/presentation/views/widgets/section_best_sale_photo.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_discount.dart';
-import 'package:smart_mart/features/home/presentation/views/widgets/section_side_title_offers.dart';
+import 'package:smart_mart/features/home/presentation/views/widgets/custom_side_title.dart';
+import 'package:smart_mart/features/home/presentation/views/widgets/section_grid_category.dart';
+import 'package:smart_mart/features/home/presentation/views/widgets/section_scrolable_offer.dart';
 
 import '../../../../../core/utils/styles.dart';
 import '../../../../on_boarding/presentation/views/widgets/section_trigger_points.dart';
+import 'Section_ramadan_offers_photo.dart';
 import 'custom_app_bar.dart';
 import 'custom_search_bar.dart';
 
@@ -20,7 +24,7 @@ class HomePageViewBody extends StatefulWidget {
 class _HomePageViewBodyState extends State<HomePageViewBody> {
   final PageController _pageController = PageController();
   int currentIndex = 0; // لتتبع الصفحة الحالية
-
+  bool viewall=false;
   @override
   void dispose() {
     _pageController.dispose(); // تحرير الذاكرة عند التخلص من الـ Widget
@@ -33,44 +37,88 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * .06),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 34),
-              child: CustomAppBar(screenWidth: screenWidth),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 11),
-              child: CustomSearchBar(screenWidth: screenWidth),
-            ),
-            SizedBox(
-              height: 200, // ارتفاع ثابت لـ ListView
-              child: PageView.builder(
-                // controller: _pageController,
-                itemCount: 3,
-                onPageChanged: (index) {
-                  setState(() {
-                    currentIndex = index; // تحديث currentIndex عند تغيير الصفحة
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: SizedBox(
-                      width: screenWidth * 0.86, // عرض كل عنصر في ListView
-                      child: SectionDisconut(screenWidth: screenWidth),
+      child: ListView(
+        children: [
+          Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * .05),
+                child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 34),
+                    child: CustomAppBar(screenWidth: screenWidth),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 11),
+                    child: CustomSearchBar(screenWidth: screenWidth),
+                  ),
+                  SizedBox(
+                    height: 200, // ارتفاع ثابت لـ ListView
+                    child: PageView.builder(
+                      // controller: _pageController,
+                      itemCount: 3,
+                      onPageChanged: (index) {
+                        setState(() {
+                          currentIndex = index; // تحديث currentIndex عند تغيير الصفحة
+                        });
+                      },
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: SizedBox(
+                            width: screenWidth * 0.86, // عرض كل عنصر في ListView
+                            child: SectionDisconut(screenWidth: screenWidth),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
+                  ),
+                  SectionTriggerPoints(currentIndex: currentIndex),
+                ],),
               ),
-            ),
-            SectionTriggerPoints(currentIndex: currentIndex),
 
-            sectionSideTitleOfferrs(screenWidth: screenWidth)// تمرير currentIndex
-          ],
-        ),
+
+              CustomSideTitle(
+                screenWidth: screenWidth,
+              text: ' Offers',
+                icon: 'assets/icons/Vector (3).svg',
+              ),
+              SectionScrolableOffers(screenWidth: screenWidth),
+              SizedBox(
+                height: 20,
+              ),
+
+              Padding(
+                padding:  EdgeInsets.only(right:  screenWidth * .08, ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomSideTitle(
+                      screenWidth: screenWidth,
+                      text: ' Categories',
+                      icon: 'assets/icons/Group 6.svg',
+                    ),
+                    InkWell(
+                      onTap: (){
+                        setState(() {
+                          viewall=!viewall;
+                        });
+                      },
+                      child: Text('view all',
+                        style: Styles.NexaLight16.copyWith(
+                          color: kColor,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+           SectionGridCategory(screenWidth: screenWidth, viewall: viewall)
+
+            ],
+          ),
+        ],
       ),
     );
   }

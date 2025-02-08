@@ -1,27 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 
-class sectionSideTitleOfferrs extends StatelessWidget {
-  const sectionSideTitleOfferrs({
+class CustomSideTitle extends StatelessWidget {
+  const CustomSideTitle({
     super.key,
-    required this.screenWidth,
+    required this.screenWidth, required this.icon, required this.text,
   });
 
   final double screenWidth;
-
+final String icon;
+final String text;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(left: screenWidth * .08,
-          top:  screenWidth * .04
+      padding:  EdgeInsets.only(
+          top:  screenWidth * .02,
+        bottom: screenWidth * .03,
+        left:  screenWidth * .08,
       ),
       child: Row(
         children: [
-          SvgPicture.asset('assets/icons/Vector (3).svg',
+          SvgPicture.asset(icon,
             height: 20,
           ),
           Text(
-            ' Offers',
+            text,
             style: TextStyle(
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w600,

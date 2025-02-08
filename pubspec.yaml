@@ -77,6 +77,9 @@ flutter:
     - assets/icons/
     - assets/back_grounds/
     - assets/back_grounds/SCAN 3 1 (1).png
+    - assets/back_grounds/lantern 1.png
+    - assets/back_grounds/lantern 2.png
+    - assets/back_grounds/Frame 1984078169.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
