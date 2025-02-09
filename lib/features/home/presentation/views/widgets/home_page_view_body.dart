@@ -103,7 +103,9 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
 
                SectionBestSale(screenWidth: screenWidth),
               SvgPicture.asset('assets/back_grounds/Group 20 (1).svg'),
+              Text('amiia'),
               Text('amiia')
+
 
             ],
           ),
