@@ -102,7 +102,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
               SizedBox(height: 30,),
 
                SectionBestSale(screenWidth: screenWidth),
-
+              SvgPicture.asset('assets/back_grounds/Group 20 (1).svg')
 
 
 
