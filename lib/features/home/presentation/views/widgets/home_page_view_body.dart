@@ -1,15 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smart_mart/const.dart';
+import 'package:smart_mart/features/home/presentation/views/widgets/section_best_sale.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_best_sale_photo.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_discount.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/custom_side_title.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_grid_category.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_scrolable_offer.dart';
+import 'package:smart_mart/features/home/presentation/views/widgets/section_show_item_list_view.dart';
 
 import '../../../../../core/utils/styles.dart';
 import '../../../../on_boarding/presentation/views/widgets/section_trigger_points.dart';
+import 'Custom_show_discount_item.dart';
+import 'Custom_show_item.dart';
 import 'Section_ramadan_offers_photo.dart';
 import 'custom_app_bar.dart';
 import 'custom_search_bar.dart';
@@ -88,33 +93,18 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                 height: 20,
               ),
 
-              Padding(
-                padding:  EdgeInsets.only(right:  screenWidth * .08, ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomSideTitle(
-                      screenWidth: screenWidth,
-                      text: ' Categories',
-                      icon: 'assets/icons/Group 6.svg',
-                    ),
-                    InkWell(
-                      onTap: (){
-                        setState(() {
-                          viewall=!viewall;
-                        });
-                      },
-                      child: Text('view all',
-                        style: Styles.NexaLight16.copyWith(
-                          color: kColor,
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-           SectionGridCategory(screenWidth: screenWidth, viewall: viewall)
+           SectionGridCategory(screenWidth: screenWidth),
+
+              SizedBox(height: 70,),
+
+              SectonShowItemLisView(screenWidth: screenWidth),
+
+              SizedBox(height: 30,),
+
+               SectionBestSale(screenWidth: screenWidth),
+
+
+
 
             ],
           ),

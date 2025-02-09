@@ -1,62 +1,100 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import 'custom_side_title.dart';
 
-class SectionGridCategory extends StatelessWidget {
+class SectionGridCategory extends StatefulWidget {
   const SectionGridCategory({
     super.key,
     required this.screenWidth,
-    required this.viewall,
+
   });
 
   final double screenWidth;
-  final bool viewall;
 
   @override
+  State<SectionGridCategory> createState() => _SectionGridCategoryState();
+}
+
+class _SectionGridCategoryState extends State<SectionGridCategory> {
+  bool viewall=false;
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.symmetric(horizontal:screenWidth * .08 ),
-      child: GridView.builder(
-          shrinkWrap: true, // لجعل GridView تتكيف مع المحتوى
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, // عدد العناصر في الصف
-            crossAxisSpacing: 10, // المسافة بين العناصر أفقيًا
-            mainAxisSpacing:10,
 
-            mainAxisExtent: screenWidth * 0.27,
-
-            // المسافة بين العناصر عموديًا
-
+    return Column(
+      children: [
+        Padding(
+          padding:  EdgeInsets.only(right:  widget.screenWidth * .08, ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomSideTitle(
+                screenWidth: widget.screenWidth,
+                text: ' Categories',
+                icon: 'assets/icons/Group 6.svg',
+              ),
+              InkWell(
+                onTap: (){
+                  setState(() {
+                    viewall=!viewall;
+                  });
+                },
+                child: Text('view all',
+                  style: Styles.NexaLight16.copyWith(
+                      color: kColor,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              )
+            ],
           ),
-          itemCount: viewall?15:9,
-          itemBuilder: (context, snapshot) {
-            return Container(
-              // width: screenWidth*.25,
-              // height: screenWidth*.23,
-              // alignment: Alignment.center,
-              decoration: BoxDecoration(
+        ),
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal:widget.screenWidth * .08 ),
+          child: GridView.builder(
+              shrinkWrap: true, // لجعل GridView تتكيف مع المحتوى
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, // عدد العناصر في الصف
+                crossAxisSpacing: 10, // المسافة بين العناصر أفقيًا
+                mainAxisSpacing:10,
 
-                color: Color(0xffF8F8F8),
-                borderRadius: BorderRadius.circular(10),
+                mainAxisExtent: widget.screenWidth * 0.27,
+
+                // المسافة بين العناصر عموديًا
 
               ),
-              child: Column(children: [
-                Image.asset('assets/back_grounds/image.png',
-                  height: 95,
-                ),
-                Text('Drinks',
-                  style: Styles.NexaBold14.copyWith(
-                      fontSize: screenWidth*.032,
-                      color: kColor
-                  ),
-                )
+              itemCount: viewall?15:9,
+              itemBuilder: (context, snapshot) {
+                return Container(
+                  // width: screenWidth*.25,
+                  // height: screenWidth*.23,
+                  // alignment: Alignment.center,
+                  decoration: BoxDecoration(
 
-              ],),
-            );
-          }
-      ),
+                    color: Color(0xffF8F8F8),
+                    borderRadius: BorderRadius.circular(10),
+
+                  ),
+                  child: Column(children: [
+                    Image.asset('assets/back_grounds/image.png',
+                      height: 95,
+                    ),
+                    Text('Drinks',
+                      style: Styles.NexaBold14.copyWith(
+                          fontSize: widget.screenWidth*.032,
+                          color: kColor
+                      ),
+                    )
+
+                  ],),
+                );
+              }
+          ),
+        ),
+      ],
     );
   }
 }
