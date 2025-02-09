@@ -18,7 +18,7 @@ class CustomShowItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width:screenWidth*.42,
-      height:screenWidth*.55 ,
+      height:screenWidth*.6 ,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -31,7 +31,9 @@ class CustomShowItem extends StatelessWidget {
       child: Column(children: [
         Padding(
           padding: const EdgeInsets.all(10),
-          child: Image.asset('assets/items/image (1).png'),
+          child: Image.asset('assets/items/image (1).png',
+          height: screenWidth*.26,
+          ),
         ),
         Text('Cadbury Hot Chocolate',
           style: Styles.NexaBold14.copyWith(
@@ -103,7 +105,9 @@ class CustomShowItem extends StatelessWidget {
               ),
             ),
 
-          ],)
+          ],),
+        SizedBox(height: 10,)
+
       ],),
     );
   }

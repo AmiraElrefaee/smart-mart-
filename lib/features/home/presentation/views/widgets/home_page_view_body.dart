@@ -28,7 +28,7 @@ class HomePageViewBody extends StatefulWidget {
 
 class _HomePageViewBodyState extends State<HomePageViewBody> {
   final PageController _pageController = PageController();
-  int currentIndex = 0; // لتتبع الصفحة الحالية
+  // int currentIndex = 0; // لتتبع الصفحة الحالية
   bool viewall=false;
   @override
   void dispose() {
@@ -46,41 +46,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
         children: [
           Column(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * .05),
-                child: Column(children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 34),
-                    child: CustomAppBar(screenWidth: screenWidth),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 11),
-                    child: CustomSearchBar(screenWidth: screenWidth),
-                  ),
-                  SizedBox(
-                    height: 200, // ارتفاع ثابت لـ ListView
-                    child: PageView.builder(
-                      // controller: _pageController,
-                      itemCount: 3,
-                      onPageChanged: (index) {
-                        setState(() {
-                          currentIndex = index; // تحديث currentIndex عند تغيير الصفحة
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: SizedBox(
-                            width: screenWidth * 0.86, // عرض كل عنصر في ListView
-                            child: SectionDisconut(screenWidth: screenWidth),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  SectionTriggerPoints(currentIndex: currentIndex),
-                ],),
-              ),
+              SectionUpToOffers(screenWidth: screenWidth),
 
 
               CustomSideTitle(
@@ -95,22 +61,529 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
 
            SectionGridCategory(screenWidth: screenWidth),
 
-              SizedBox(height: 70,),
+
 
               SectonShowItemLisView(screenWidth: screenWidth),
 
               SizedBox(height: 30,),
 
                SectionBestSale(screenWidth: screenWidth),
-              SvgPicture.asset('assets/back_grounds/Group 20 (1).svg'),
-              Text('amiia'),
-              Text('amiia')
 
 
             ],
           ),
+
+          SizedBox(height: 20,),
+          SectionBakeryAndPastry(screenWidth: screenWidth),
+    SizedBox(
+    width: screenWidth,
+    height: screenWidth*1.46,
+    child: Stack(
+    // fit : StackFit.passthrough,
+    children: [
+    Positioned.fill(
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom:screenWidth*.23,
+    child: SvgPicture.asset('assets/back_grounds/Group 35.svg',
+    fit: BoxFit.fitWidth,
+    width: screenWidth,
+    // height: 50,
+    ),
+    ),
+    Positioned(
+    top: screenWidth*.19,
+    left: screenWidth*.17,
+    child: Text('FRESH',
+    style: Styles.Urbanist32.copyWith(
+    fontWeight: FontWeight.w700,
+    fontSize: 35,
+    color: Colors.white
+    ),),
+    ),
+    Positioned(
+    top: screenWidth*.27,
+    left: screenWidth*.26,
+    child: Text(' FOOD',
+    style: Styles.Urbanist32.copyWith(
+    fontWeight: FontWeight.w700,
+    fontSize: 35,
+    color: Colors.white
+    ),),
+    ),
+    Positioned(
+    top: screenWidth*.44,
+    left: screenWidth*.05,
+    child:
+    Container(
+
+    padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+    decoration: BoxDecoration(
+    color: Colors.white,
+
+    borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(children: [
+    Image.asset('assets/items/pngwing.com (24) 1.png',
+    ),
+    Text(' Croissants & Pate',
+    style: Styles.Urbanist15.copyWith(
+    color: kColor,
+    fontWeight: FontWeight.w600
+    ),
+
+    )
+    ],),
+    )
+    ),
+    Positioned(
+    top: screenWidth*.44,
+    left: screenWidth*.51,
+    child:
+    Container(
+
+    padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+    decoration: BoxDecoration(
+    color: Colors.white,
+
+    borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(children: [
+    Image.asset('assets/items/pngwing.com (23) 1.png',
+    ),
+    Text(' Bread',
+    style: Styles.Urbanist15.copyWith(
+
+    fontWeight: FontWeight.w500
+    ),
+
+    )
+    ],),
+    )
+    ),
+    Positioned(
+    top: screenWidth*.44,
+    left: screenWidth*.78,
+    child:
+    Container(
+
+    padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+    decoration: BoxDecoration(
+    color: Colors.white,
+
+    borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(children: [
+    Image.asset('assets/items/pngwing.com (25) 1.png',
+    ),
+    Text(' Rice',
+    style: Styles.Urbanist15.copyWith(
+
+    fontWeight: FontWeight.w500
+    ),
+
+    )
+    ],),
+    )
+    ),
+    Positioned(
+    top: screenWidth*.57,
+    left: screenWidth*.05,
+    child:
+    Container(
+
+    padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+    decoration: BoxDecoration(
+    color: Colors.white,
+
+    borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(children: [
+    Image.asset('assets/items/pngwing.com (26) 1 (1).png',
+    ),
+    Text(' Dessert',
+    style: Styles.Urbanist15.copyWith(
+
+    fontWeight: FontWeight.w500
+    ),
+
+    )
+    ],),
+    )
+    ),
+    Positioned(
+    top: screenWidth*.57,
+    left: screenWidth*.33,
+    child:
+    Container(
+
+    padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+    decoration: BoxDecoration(
+    color: Colors.white,
+
+    borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(children: [
+    Image.asset('assets/items/pngwing.com (27) 1.png',
+    ),
+    Text(' Biscuits & crackers',
+    style: Styles.Urbanist15.copyWith(
+
+    fontWeight: FontWeight.w500
+    ),
+
+    )
+    ],),
+    )
+    ),
+    Positioned(
+    top: screenWidth*.57,
+    left: screenWidth*.75,
+    child:
+    Container(
+
+    padding: EdgeInsets.symmetric(horizontal: 18,vertical: 8),
+    decoration: BoxDecoration(
+    color: Colors.white,
+
+    borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(children: [
+    SvgPicture.asset('assets/icons/Group 6.svg',
+    ),
+    Text('  more',
+    style: Styles.Urbanist15.copyWith(
+    color: kColor,
+    fontWeight: FontWeight.w500
+    ),
+
+    )
+    ],),
+    )
+    ),
+    Positioned(
+    top: screenWidth*.75,
+    left: screenWidth*.09,
+    child: Text('Best Products',
+    style: Styles.Urbanist20.copyWith(
+    fontWeight: FontWeight.w700,
+    fontSize: 25,
+    color: Colors.white
+
+    ),),
+    ),
+
+    Positioned.fill(
+    top: screenWidth*.9,
+    child: SizedBox(
+    // height: screenWidth*.4,
+    child: ListView.builder(
+    scrollDirection: Axis.horizontal,
+    itemCount: 5,
+    itemBuilder: (context,index) {
+    return Padding(
+    padding: const EdgeInsets.only(left: 15),
+    child: CustomShowItem(screenWidth: screenWidth),
+    );
+    }
+    ),
+    ),
+    ),
+    ],
+    ),
+    )
+
+
+
         ],
       ),
+    );
+  }
+}
+
+class SectionBakeryAndPastry extends StatelessWidget {
+  const SectionBakeryAndPastry({
+    super.key,
+    required this.screenWidth,
+  });
+
+  final double screenWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+    width: screenWidth,
+    height: screenWidth*1.46,
+    child: Stack(
+    // fit : StackFit.passthrough,
+    children: [
+    Positioned.fill(
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom:screenWidth*.23,
+    child: SvgPicture.asset('assets/back_grounds/Group 37.svg',
+    fit: BoxFit.fitWidth,
+    width: screenWidth,
+    // height: 50,
+    ),
+    ),
+        Positioned(
+          top: screenWidth*.19,
+          left: screenWidth*.17,
+          child: Text('Bakery',
+          style: Styles.Urbanist32.copyWith(
+            fontWeight: FontWeight.w700,
+            fontSize: 35,
+            color: Colors.white
+          ),),
+        ),
+      Positioned(
+        top: screenWidth*.27,
+        left: screenWidth*.26,
+        child: Text('& Pastry',
+          style: Styles.Urbanist32.copyWith(
+              fontWeight: FontWeight.w700,
+              fontSize: 35,
+              color: Colors.white
+          ),),
+      ),
+        Positioned(
+            top: screenWidth*.44,
+            left: screenWidth*.05,
+            child:
+            Container(
+
+    padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+    decoration: BoxDecoration(
+      color: Colors.white,
+
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(children: [
+      Image.asset('assets/items/pngwing.com (24) 1.png',
+          ),
+      Text(' Croissants & Pate',
+      style: Styles.Urbanist15.copyWith(
+        color: kColor,
+        fontWeight: FontWeight.w600
+      ),
+
+      )
+    ],),
+            )
+          ),
+      Positioned(
+          top: screenWidth*.44,
+          left: screenWidth*.51,
+          child:
+          Container(
+
+            padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(children: [
+              Image.asset('assets/items/pngwing.com (23) 1.png',
+              ),
+              Text(' Bread',
+                style: Styles.Urbanist15.copyWith(
+
+                    fontWeight: FontWeight.w500
+                ),
+
+              )
+            ],),
+          )
+      ),
+      Positioned(
+          top: screenWidth*.44,
+          left: screenWidth*.78,
+          child:
+          Container(
+
+            padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(children: [
+              Image.asset('assets/items/pngwing.com (25) 1.png',
+              ),
+              Text(' Rice',
+                style: Styles.Urbanist15.copyWith(
+
+                    fontWeight: FontWeight.w500
+                ),
+
+              )
+            ],),
+          )
+      ),
+      Positioned(
+          top: screenWidth*.57,
+          left: screenWidth*.05,
+          child:
+          Container(
+
+            padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(children: [
+              Image.asset('assets/items/pngwing.com (26) 1 (1).png',
+              ),
+              Text(' Dessert',
+                style: Styles.Urbanist15.copyWith(
+
+                    fontWeight: FontWeight.w500
+                ),
+
+              )
+            ],),
+          )
+      ),
+      Positioned(
+          top: screenWidth*.57,
+          left: screenWidth*.33,
+          child:
+          Container(
+
+            padding: EdgeInsets.symmetric(horizontal: 9,vertical: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(children: [
+              Image.asset('assets/items/pngwing.com (27) 1.png',
+              ),
+              Text(' Biscuits & crackers',
+                style: Styles.Urbanist15.copyWith(
+
+                    fontWeight: FontWeight.w500
+                ),
+
+              )
+            ],),
+          )
+      ),
+      Positioned(
+          top: screenWidth*.57,
+          left: screenWidth*.75,
+          child:
+          Container(
+
+            padding: EdgeInsets.symmetric(horizontal: 18,vertical: 8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(children: [
+              SvgPicture.asset('assets/icons/Group 6.svg',
+              ),
+              Text('  more',
+                style: Styles.Urbanist15.copyWith(
+                  color: kColor,
+                    fontWeight: FontWeight.w500
+                ),
+
+              )
+            ],),
+          )
+      ),
+      Positioned(
+        top: screenWidth*.75,
+        left: screenWidth*.09,
+        child: Text('Best Products',
+          style: Styles.Urbanist20.copyWith(
+              fontWeight: FontWeight.w700,
+              fontSize: 25,
+              color: Colors.white
+
+          ),),
+      ),
+
+        Positioned.fill(
+        top: screenWidth*.9,
+        child: SizedBox(
+        // height: screenWidth*.4,
+        child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        itemBuilder: (context,index) {
+        return Padding(
+        padding: const EdgeInsets.only(left: 15),
+        child: CustomShowItem(screenWidth: screenWidth),
+        );
+        }
+        ),
+        ),
+        ),
+        ],
+        ),
+        );
+  }
+}
+
+class SectionUpToOffers extends StatefulWidget {
+  const SectionUpToOffers({
+    super.key,
+    required this.screenWidth,
+  });
+
+  final double screenWidth;
+
+  @override
+  State<SectionUpToOffers> createState() => _SectionUpToOffersState();
+}
+
+class _SectionUpToOffersState extends State<SectionUpToOffers> {
+  int currentIndex=0;
+  @override
+  Widget build(BuildContext context) {
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: widget.screenWidth * .05),
+      child: Column(children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 34),
+          child: CustomAppBar(screenWidth: widget.screenWidth),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 11),
+          child: CustomSearchBar(screenWidth: widget.screenWidth),
+        ),
+        SizedBox(
+          height: 200, // ارتفاع ثابت لـ ListView
+          child: PageView.builder(
+            // controller: _pageController,
+            itemCount: 3,
+            onPageChanged: (index) {
+              setState(() {
+                currentIndex = index; // تحديث currentIndex عند تغيير الصفحة
+              });
+            },
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(5),
+                child: SizedBox(
+                  width: widget.screenWidth * 0.86, // عرض كل عنصر في ListView
+                  child: SectionDisconut(screenWidth: widget.screenWidth),
+                ),
+              );
+            },
+          ),
+        ),
+        SectionTriggerPoints(currentIndex: currentIndex),
+      ],),
     );
   }
 }
