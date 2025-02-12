@@ -31,7 +31,9 @@ class CustomSearchBar extends StatelessWidget {
           ),
           labelStyle: const TextStyle(fontSize: 20),
           prefixIcon: IconButton(onPressed: (){},
-              icon: SvgPicture.asset('assets/icons/icon-park-outline_search.svg')),
+              icon: SvgPicture.asset('assets/icons/icon-park-outline_search.svg',
+              height: screenWidth*.05,
+              )),
           suffixIcon: IconButton(
             onPressed: () {},
             icon: Icon(

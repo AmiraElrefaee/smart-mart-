@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smart_mart/features/details_item/presentation/views/details_psge_view.dart';
 import 'package:smart_mart/features/home/presentation/views/home_page_view.dart';
 import 'package:smart_mart/features/login/presentation/views/login_view.dart';
 import 'package:smart_mart/features/on_boarding/presentation/views/onBoarding_view.dart';
@@ -27,10 +28,14 @@ abstract class AppRouter {
   static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
   static const kCreateNewPasswordpage='/CreateNewPasswordpageView';
   static const khome='/HomePageView';
+  static const kdetails='/DetailsPageView';
    static final router = GoRouter(
     routes: [
       GoRoute(path: khome,
      builder: (contxet,state)=> HomePageView()
+      ),
+      GoRoute(path: kdetails,
+          builder: (contxet,state)=> DetailsPsgeView()
       ),
       GoRoute(path: kCreateNewPasswordpage,
       builder: (context,state)=>CreateNewPasswordpageView()),
