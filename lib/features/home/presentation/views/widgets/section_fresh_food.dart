@@ -63,60 +63,68 @@ class SectionFreshFood extends StatelessWidget {
               )),
           Positioned(
               top: screenWidth*.44,
-              left: screenWidth*.05,
+              // left: screenWidth*.05,
               child:
-              Row(
+              Padding(
+                padding: const EdgeInsets.only(right: 10,
+                left: 8
+                ),
+                child: Row(
 
-                children: [
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/image 49.png',
-                    text: ' Milk',
-                    color: kColor,
+                  children: [
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/image 49.png',
+                      text: ' Milk',
+                      color: kColor,
 
-                  ),
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/image (3).png',
-                    text: ' Cheese & Labneh',
-                    color: Colors.black,
+                    ),
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/image (3).png',
+                      text: ' Cheese & Labneh',
+                      color: Colors.black,
 
-                  ),
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/image (2).png',
-                    text: ' Cold cuts',
-                    color: Colors.black,
+                    ),
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/image (2).png',
+                      text: ' Cold cuts',
+                      color: Colors.black,
 
-                  ),
+                    ),
 
 
-                ],
+                  ],
+                ),
               )
           ),
 
 
           Positioned(
               top: screenWidth*.57,
-              left: screenWidth*.05,
+              // left: screenWidth*.05,
               child:
-              Row(
+              Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Row(
 
-                children: [
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/image (4).png',
-                    text: ' Yoghurt',
-                    color: Colors.black,
+                  children: [
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/image (4).png',
+                      text: ' Yoghurt',
+                      color: Colors.black,
 
-                  ),
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/image (5).png',
-                    text: ' Meat',
-                    color: Colors.black,
+                    ),
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/image (5).png',
+                      text: ' Meat',
+                      color: Colors.black,
 
-                  ),
-                  CustomBottomMore(screenWidth: screenWidth)
+                    ),
+                    CustomBottomMore(screenWidth: screenWidth)
 
 
 
-                ],
+                  ],
+                ),
               )
           ),
 

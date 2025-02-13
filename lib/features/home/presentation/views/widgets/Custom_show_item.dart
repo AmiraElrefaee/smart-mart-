@@ -7,6 +7,7 @@ import '../../../../../const.dart';
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../../core/utils/styles.dart';
+import 'custom_price.dart';
 
 class CustomShowItem extends StatelessWidget {
   const CustomShowItem({
@@ -24,7 +25,7 @@ class CustomShowItem extends StatelessWidget {
       },
       child: Container(
         width:screenWidth*.42,
-        height:screenWidth*.6 ,
+        height:screenWidth*.65 ,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -38,7 +39,7 @@ class CustomShowItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10),
             child: Image.asset('assets/items/image (1).png',
-            height: screenWidth*.26,
+            height: screenWidth*.25,
             ),
           ),
           Text('Cadbury Hot Chocolate',
@@ -64,54 +65,7 @@ class CustomShowItem extends StatelessWidget {
             height: 5,
           ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('84',
-                style: Styles.Urbanist25.copyWith(
-                  color: kColor,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Column(children: [
-                Text('.00',
-                  style: Styles.Urbanist16.copyWith(
-                    fontSize: 12,
-                    color: kColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(' EGP',
-                  style: Styles.Urbanist16.copyWith(
-                    fontSize: 10,
-                  ),
-                )
-              ],),
-
-              Text('  EGP 90,20  ',
-                style: Styles.Urbanist12.copyWith(
-                    decoration: TextDecoration.lineThrough,
-                    color: Color(0xffA5A5A5)
-                ),),
-
-
-              Container (
-                width: 1, // عرض الخط
-                height:  30, // طول الخط
-                color: const Color(0xffDADADA), // لون الخط
-              ),
-
-              Padding(
-                padding:  EdgeInsets.only(left: screenWidth*.03),
-                child: InkWell(onTap: (){}
-                    , child:SvgPicture.asset('assets/icons/Vector (4).svg',
-                      height: screenWidth*.04,
-                    )
-
-                ),
-              ),
-
-            ],),
+          CustomPrice(screenWidth: screenWidth),
           SizedBox(height: 10,)
 
         ],),

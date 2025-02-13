@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../const.dart';
 
@@ -14,7 +15,7 @@ class CustomFloatingActionButton extends StatelessWidget {
 
       width: 80,
       height: 80,
-      margin: EdgeInsets.only(top: 80),
+      margin: const EdgeInsets.only(top: 80),
       child: FloatingActionButton(
 
         onPressed: (){},
@@ -22,10 +23,9 @@ class CustomFloatingActionButton extends StatelessWidget {
         shape:   CircleBorder(
             eccentricity: .1
         ),
-        child:const Icon( Icons.qr_code_scanner_outlined,
-
-          color: Colors.white,
-          size: 50,
+        child: SvgPicture.asset(
+          'assets/icons/Vector (8).svg',
+        height: MediaQuery.of(context).size.width*.1,
         ),),
     );
   }

@@ -34,7 +34,7 @@ class SectionSmartShopStartAtHome extends StatelessWidget {
           ),
           Positioned(
             left: screenWidth * .55,
-            bottom: screenWidth * .12,
+            bottom: screenWidth * .1,
 
 
             child: SvgPicture.asset('assets/back_grounds/Frame 1984078149.svg',

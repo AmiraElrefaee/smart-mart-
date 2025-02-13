@@ -29,8 +29,8 @@ class CustomBottomCategoryFood extends StatelessWidget {
       ),
       child: Row(children: [
         Image.asset(Photo,
-          // height: screenWidth*.075,
-          // width: screenWidth*.085,
+          height: screenWidth*.075,
+          width: screenWidth*.08,
         ),
         Text(text,
           style: Styles.Urbanist15.copyWith(

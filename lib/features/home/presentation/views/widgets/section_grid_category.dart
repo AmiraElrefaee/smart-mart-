@@ -80,7 +80,7 @@ class _SectionGridCategoryState extends State<SectionGridCategory> {
                   ),
                   child: Column(children: [
                     Image.asset('assets/back_grounds/image.png',
-                      height: 95,
+                      height:  widget.screenWidth * .21,
                     ),
                     Text('Drinks',
                       style: Styles.NexaBold14.copyWith(

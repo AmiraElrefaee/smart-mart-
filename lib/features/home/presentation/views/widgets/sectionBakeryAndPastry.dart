@@ -6,6 +6,7 @@ import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
 import 'Custom_show_item.dart';
 import 'custom_botton_category_food.dart';
+import 'custom_show_item_out_of_stock.dart';
 import 'home_page_view_body.dart';
 
 class SectionBakeryAndPastry extends StatelessWidget {
@@ -57,57 +58,63 @@ class SectionBakeryAndPastry extends StatelessWidget {
           ),
           Positioned(
               top: screenWidth*.44,
-              left: screenWidth*.05,
+
               child:
-              Row(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
 
-                children: [
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/pngwing.com (24) 1.png',
-                    text: ' Croissants & Pate',
-                    color: kColor,
+                  children: [
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/pngwing.com (24) 1.png',
+                      text: ' Croissants & Pate',
+                      color: kColor,
 
-                  ),
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/pngwing.com (23) 1.png',
-                    text: ' Bread',
-                    color: Colors.black,
+                    ),
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/pngwing.com (23) 1.png',
+                      text: ' Bread',
+                      color: Colors.black,
 
-                  ),
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/pngwing.com (25) 1.png',
-                    text: ' Rice',
-                    color: Colors.black,
+                    ),
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/pngwing.com (25) 1.png',
+                      text: ' Rice',
+                      color: Colors.black,
 
-                  ),
+                    ),
 
 
-                ],
+                  ],
+                ),
               )
           ),
           Positioned(
               top: screenWidth*.57,
-              left: screenWidth*.05,
+              // left: screenWidth*.05,
               child:
-              Row(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
 
-                children: [
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/pngwing.com (26) 1 (1).png',
-                    text: ' Dessert',
-                    color: Colors.black,
+                  children: [
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/pngwing.com (26) 1 (1).png',
+                      text: ' Dessert',
+                      color: Colors.black,
 
-                  ),
-                  CustomBottomCategoryFood(screenWidth: screenWidth
-                    , Photo: 'assets/items/pngwing.com (27) 1.png',
-                    text: ' Biscuits & crackers',
-                    color: Colors.black,
+                    ),
+                    CustomBottomCategoryFood(screenWidth: screenWidth
+                      , Photo: 'assets/items/pngwing.com (27) 1.png',
+                      text: ' Biscuits & crackers',
+                      color: Colors.black,
 
-                  ),
-                  CustomBottomMore(screenWidth: screenWidth,)
+                    ),
+                    CustomBottomMore(screenWidth: screenWidth,)
 
 
-                ],
+                  ],
+                ),
               )
           ),
           Positioned(
@@ -132,7 +139,9 @@ class SectionBakeryAndPastry extends StatelessWidget {
                   itemBuilder: (context,index) {
                     return Padding(
                       padding: const EdgeInsets.only(left: 15),
-                      child: CustomShowItem(screenWidth: screenWidth),
+                      child: index==0?
+                      CustomShowItemOutOfStock(screenWidth: screenWidth,):
+                      CustomShowItem(screenWidth: screenWidth),
                     );
                   }
               ),

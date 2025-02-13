@@ -95,7 +95,7 @@ class _addNoteFormState extends State<CustomForm> {
                       mail: email!,
                       pass: pass!
                   );
-                  // navigateToPage(AppRouter.khome, context);
+                  navigateToPage(AppRouter.khome, context);
                   setState(() {
                     space = widget.screenHeight * .025;
                   });

@@ -36,10 +36,10 @@ class CustomSearchBar extends StatelessWidget {
               )),
           suffixIcon: IconButton(
             onPressed: () {},
-            icon: Icon(
-              Icons.qr_code_scanner_outlined,
-              color:  kColor,
-              size:screenWidth*.06 ,
+            icon: SvgPicture.asset(
+              'assets/icons/Vector (11).svg',
+              width: screenWidth*.06,
+
             ),
           ),
         ));
