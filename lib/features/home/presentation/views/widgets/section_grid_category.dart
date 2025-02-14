@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../data/models/categories_item.dart';
 import 'custom_side_title.dart';
 
 class SectionGridCategory extends StatefulWidget {
@@ -19,6 +20,7 @@ class SectionGridCategory extends StatefulWidget {
 }
 
 class _SectionGridCategoryState extends State<SectionGridCategory> {
+
   bool viewall=false;
   @override
   Widget build(BuildContext context) {
@@ -61,14 +63,15 @@ class _SectionGridCategoryState extends State<SectionGridCategory> {
                 crossAxisSpacing: 10, // المسافة بين العناصر أفقيًا
                 mainAxisSpacing:10,
 
-                mainAxisExtent: widget.screenWidth * 0.27,
+                mainAxisExtent: widget.screenWidth * 0.3,
 
                 // المسافة بين العناصر عموديًا
 
               ),
-              itemCount: viewall?15:9,
+              itemCount: viewall?12:9,
               itemBuilder: (context, snapshot) {
                 return Container(
+
                   // width: screenWidth*.25,
                   // height: screenWidth*.23,
                   // alignment: Alignment.center,
@@ -78,13 +81,16 @@ class _SectionGridCategoryState extends State<SectionGridCategory> {
                     borderRadius: BorderRadius.circular(10),
 
                   ),
-                  child: Column(children: [
-                    Image.asset('assets/back_grounds/image.png',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                    Image.asset(catgoryModels[snapshot].image,
                       height:  widget.screenWidth * .21,
                     ),
-                    Text('Drinks',
+                    Text(catgoryModels[snapshot].title,
+                      textAlign: TextAlign.center,
                       style: Styles.NexaBold14.copyWith(
-                          fontSize: widget.screenWidth*.032,
+                          fontSize: widget.screenWidth*.03,
                           color: kColor
                       ),
                     )
