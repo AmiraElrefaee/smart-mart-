@@ -163,6 +163,7 @@ class DetailsPageViewBody extends StatelessWidget {
                     }
                 ),
               ),
+              SizedBox(height: 150,)
           ],),
 
 

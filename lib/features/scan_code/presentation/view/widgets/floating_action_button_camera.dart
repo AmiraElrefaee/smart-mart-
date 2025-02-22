@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../const.dart';
-import '../../features/scan_code/presentation/view/scan_code_view.dart';
+import '../../../../../const.dart';
 
-class CustomFloatingActionButton extends StatelessWidget {
-  const CustomFloatingActionButton({
+class FloatingActionButtonCamera extends StatelessWidget {
+  const FloatingActionButtonCamera({
     super.key,
   });
 
@@ -18,12 +17,7 @@ class CustomFloatingActionButton extends StatelessWidget {
       margin: const EdgeInsets.only(top: 80),
       child: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ScanCodeView(),
-            ),
-          );
+
         },
         backgroundColor: kColor,
         shape: CircleBorder(

@@ -91,7 +91,9 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
       ),
     ),
     SectionSmartShopStartAtHome(screenWidth: screenWidth),
-    SectionFreshFood(screenWidth: screenWidth)
+    SectionFreshFood(screenWidth: screenWidth),
+
+          SizedBox(height: 150,)
 
 
 

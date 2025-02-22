@@ -19,6 +19,7 @@ class CustomBottomBar extends StatelessWidget {
             child: Image.asset(
               'assets/images/Subtract.png', // Replace with your image path
               fit: BoxFit.fill,
+
             ),
           ),
           Padding(

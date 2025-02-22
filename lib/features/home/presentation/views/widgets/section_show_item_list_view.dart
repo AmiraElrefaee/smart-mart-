@@ -15,7 +15,7 @@ class SectonShowItemLisView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: screenWidth,
-      height: screenWidth*1.03,
+      height: screenWidth*1.05,
       child: Stack(
         // fit : StackFit.passthrough,
         children: [

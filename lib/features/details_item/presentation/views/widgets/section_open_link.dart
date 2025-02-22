@@ -6,16 +6,16 @@ import '../../../../../const.dart';
 
 class SectionOpenLink extends StatelessWidget {
   const SectionOpenLink({super.key});
-  Future<void> _launchURL() async {
-    final Uri uri = Uri.parse("https://www.carrefouregypt.com/mafegy/en/c/50164");
-
-    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-      print("هنا مشكلة: لا يمكن فتح الرابط");
-      throw "لا يمكن فتح الرابط: $uri";
-    } else {
-      print("الرابط يعمل بنجاح");
-    }
-  }
+  // Future<void> _launchURL() async {
+  //   final Uri uri = Uri.parse("https://www.carrefouregypt.com/mafegy/en/c/50164");
+  //
+  //   if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+  //     print("هنا مشكلة: لا يمكن فتح الرابط");
+  //     throw "لا يمكن فتح الرابط: $uri";
+  //   } else {
+  //     print("الرابط يعمل بنجاح");
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     return      Row(children: [
@@ -26,7 +26,7 @@ class SectionOpenLink extends StatelessWidget {
   color: Color(0xff484C52)
   ),
   ),
-  TextButton(onPressed: _launchURL
+  TextButton(onPressed: (){}
   , child: Text('El Doha',
   style: TextStyle(
   color: kColor,

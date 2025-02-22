@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_mart/features/details_item/presentation/views/widgets/details_page_view_body.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/widgets/floating_action_button_camera.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/widgets/scan_code_view_body.dart';
 
 import '../../../../core/widgets/custom_bottom_bar.dart';
 import '../../../../core/widgets/custom_floating_action_botton.dart';
 
-class DetailsPsgeView extends StatelessWidget {
-  const DetailsPsgeView({super.key});
+class ScanCodeView extends StatelessWidget {
+  const ScanCodeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class DetailsPsgeView extends StatelessWidget {
       body: Stack(
         children: [
           /// شاشة الهوم تحت كل العناصر
-          DetailsPageViewBody(),
+         const  ScanCodeViewBody(),
 
           /// البار السفلي
           Align(
@@ -27,10 +28,11 @@ class DetailsPsgeView extends StatelessWidget {
           Positioned(
             bottom: 30, // رفعه فوق البار السفلي
             left: MediaQuery.of(context).size.width / 2 - 40, // توسيطه
-            child: const CustomFloatingActionButton(),
+            child: const FloatingActionButtonCamera()
           ),
         ],
       ),
+
     );
   }
 }

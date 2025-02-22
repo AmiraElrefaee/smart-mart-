@@ -28,6 +28,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  image_picker: ^1.0.4
+  permission_handler: ^11.3.1
+  mobile_scanner: ^6.0.6
   pinput: ^5.0.0
   font_awesome_flutter: ^10.7.0
   url_launcher: ^6.3.1
