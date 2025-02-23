@@ -3,8 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:smart_mart/const.dart';
 import 'package:smart_mart/core/utils/styles.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_box_message.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/widgets/square_camera.dart';
 
 import 'conrner_border_painter.dart';
+import 'fail_massege.dart';
+import 'main_massega.dart';
 // تأكد من أن اسم الملف صحيح
 
 class ScanCodeViewBody extends StatefulWidget {
@@ -41,26 +45,6 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
 
     // تفعيل الكاميرا ثم بدء المسح بعد قليل
     cameraController.start();
-  }
-
-  void _showSuccessDialog(String result) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("نجاح"),
-          content: Text("تم مسح QR Code بنجاح: $result"),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // إغلاق الصندوق
-              },
-              child: Text("موافق"),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -110,135 +94,13 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
               }
             },
           ),
-          Positioned(
-            
-            bottom: screenHeight*.25,
-            child: Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(vertical: 30),
-              width: screenWidth*.85,
-              height: screenHeight*.2,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10)
-
-              ),
-
-              child:scanResult==null||scanResult=='No data found'?
-              FailMassege(screenWidth: screenWidth):
-              MainMassege(screenWidth: screenWidth),
-            ),
-          ),
+          SectionBoxMassege(screenHeight: screenHeight, screenWidth: screenWidth, scanResult: scanResult),
 
 
-          aquareCamera(),
+          SaquareCamera(),
         ],
       ),
     );
   }
 }
 
-class MainMassege extends StatelessWidget {
-  const MainMassege({
-    super.key,
-    required this.screenWidth,
-  });
-
-  final double screenWidth;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Center(child: SvgPicture.asset('assets/icons/Vector (12).svg',
-        width: screenWidth*.13,
-        )),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-          Text('Scan the',
-          style: TextStyle(
-            fontFamily: 'Urbanis',
-            fontSize: screenWidth*.05,
-            fontWeight: FontWeight.w600,
-            color: Color(0xff263238),
-          ),
-          ),Text(' barcode',
-              style: TextStyle(
-                fontFamily: 'Urbanis',
-                fontSize: screenWidth*.05,
-                fontWeight: FontWeight.w600,
-                color: kColor,
-              ),
-            ),
-
-        ],),
-
-                Text('to add the product to your cart.',
-    style: TextStyle(
-      fontFamily: 'Urbanis',
-      fontSize: screenWidth*.05,
-      fontWeight: FontWeight.w600,
-      color: Color(0xff263238),
-    )),
-      ],
-    );
-  }
-}
-class FailMassege extends StatelessWidget {
-  const FailMassege({
-    super.key,
-    required this.screenWidth,
-  });
-
-  final double screenWidth;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Center(child: Icon(Icons.error_outline,
-        color: kColor,
-          size: screenWidth*.1,
-        ),),
-
-
-        Text('This item currently unavaliable',
-            style: TextStyle(
-              fontFamily: 'Urbanis',
-              fontSize: screenWidth*.05,
-              fontWeight: FontWeight.w600,
-              color: Color(0xff263238),
-            )),
-      ],
-    );
-  }
-}
-
-class aquareCamera extends StatelessWidget {
-  const aquareCamera({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      bottom: MediaQuery.of(context).size.height*.5,
-      child: Container(
-        width: 220,
-        height: 220,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.white.withOpacity(.44),
-        ),
-        child: CustomPaint(
-          painter: CornerBorderPainter(cornerRadius: 30.0), // Set your desired radius
-        ),
-      ),
-    );
-  }
-}
