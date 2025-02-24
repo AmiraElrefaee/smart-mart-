@@ -6,9 +6,9 @@ import '../../../../../const.dart';
 
 class FloatingActionButtonCamera extends StatelessWidget {
   const FloatingActionButtonCamera({
-    super.key,
+    super.key, required this.onTap,
   });
-
+final  Function() onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,9 +16,7 @@ class FloatingActionButtonCamera extends StatelessWidget {
       height: 80,
       margin: const EdgeInsets.only(top: 80),
       child: FloatingActionButton(
-        onPressed: () {
-
-        },
+        onPressed: onTap,
         backgroundColor: kColor,
         shape: CircleBorder(
           eccentricity: .1,

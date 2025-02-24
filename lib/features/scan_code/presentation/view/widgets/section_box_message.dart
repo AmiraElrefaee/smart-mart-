@@ -19,26 +19,20 @@ class SectionBoxMassege extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-
-      bottom: screenHeight*.25,
+      bottom: screenHeight * .25,
       child: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(vertical: 30),
-        width: screenWidth*.85,
-        height: screenHeight*.2,
+        width: screenWidth * .85,
+        height: screenHeight * .2,
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10)
-
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
         ),
-
-        child:scanResult==null||scanResult=='No data found'?
-        FailMassege(screenWidth: screenWidth):
-        MainMassege(screenWidth: screenWidth),
+        child: scanResult != null
+            ? MainMassege(screenWidth: screenWidth)
+            : FailMassege(screenWidth: screenWidth),
       ),
     );
   }
 }
-
-
-

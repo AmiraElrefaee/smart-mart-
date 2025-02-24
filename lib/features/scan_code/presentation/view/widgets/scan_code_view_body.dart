@@ -6,10 +6,12 @@ import 'package:smart_mart/core/utils/styles.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_box_message.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/square_camera.dart';
 
+import '../../../../../core/widgets/custom_bottom_bar.dart';
+import '../../../../details_item/presentation/views/details_psge_view.dart';
 import 'conrner_border_painter.dart';
 import 'fail_massege.dart';
+import 'floating_action_button_camera.dart';
 import 'main_massega.dart';
-// تأكد من أن اسم الملف صحيح
 
 class ScanCodeViewBody extends StatefulWidget {
   const ScanCodeViewBody({super.key});
@@ -19,10 +21,9 @@ class ScanCodeViewBody extends StatefulWidget {
 }
 
 class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
-
   MobileScannerController cameraController = MobileScannerController();
-  String ?scanResult;
-  bool isScanning = false; // متغير للتحكم في المسح
+  String? scanResult;
+  bool isScanning = true; // متغير للتحكم في حالة المسح
 
   @override
   void initState() {
@@ -37,14 +38,16 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
   }
 
   void startScanning() {
-    if (isScanning) return; // منع الضغط المتكرر
     setState(() {
       isScanning = true;
-      scanResult = "Scanning...";
+      scanResult = null; // إعادة تعيين scanResult للسماح بمسح جديد
     });
+  }
 
-    // تفعيل الكاميرا ثم بدء المسح بعد قليل
-    cameraController.start();
+  void stopScanning() {
+    setState(() {
+      isScanning = false;
+    });
   }
 
   @override
@@ -82,20 +85,49 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
           MobileScanner(
             controller: cameraController,
             onDetect: (capture) {
+              if (!isScanning) return; // إذا كان المسح متوقفًا، لا تفعل شيئًا
+
               final List<Barcode> barcodes = capture.barcodes;
               if (barcodes.isNotEmpty) {
-                setState(() {
-                  scanResult = barcodes.first.rawValue ?? 'No data found';
-                  isScanning = false;
-                });
+                final String? result = barcodes.first.rawValue;
+                if (result != null && result.isNotEmpty) {
+                  setState(() {
+                    scanResult = result;
+                    isScanning = false; // إيقاف المسح بعد الاكتشاف
+                  });
 
-                // إظهار صندوق الحوار عند اكتشاف QR Code
-                // _showSuccessDialog(scanResult);
+                  // إظهار الرسالة عند اكتشاف QR Code
+                  showModalBottomSheet(context: context, builder: (context){
+                    return DetailsPsgeView();
+                  }
+                  );
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   SnackBar(
+                  //     content: Text('Scan done: $scanResult'),
+                  //     duration: Duration(seconds: 2),
+                  //   ),
+                  // );
+                }
               }
             },
           ),
-          SectionBoxMassege(screenHeight: screenHeight, screenWidth: screenWidth, scanResult: scanResult),
-
+          SectionBoxMassege(screenHeight: screenHeight,
+              screenWidth: screenWidth,
+              scanResult: scanResult),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: const CustomBottomBar(),
+          ),
+          Positioned(
+              bottom: screenHeight*.04, // رفعه فوق البار السفلي
+              left: MediaQuery.of(context).size.width / 2 - 40, // توسيطه
+              child:  FloatingActionButtonCamera(
+                onTap:
+                    () {
+                  startScanning(); // استئناف المسح عند الضغط على الزر
+                },
+              )
+          ),
 
           SaquareCamera(),
         ],

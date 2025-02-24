@@ -13,25 +13,7 @@ class ScanCodeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          /// شاشة الهوم تحت كل العناصر
-         const  ScanCodeViewBody(),
-
-          /// البار السفلي
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: const CustomBottomBar(),
-          ),
-
-          /// الفلوتينج بوتون فوق البار السفلي
-          Positioned(
-            bottom: 30, // رفعه فوق البار السفلي
-            left: MediaQuery.of(context).size.width / 2 - 40, // توسيطه
-            child: const FloatingActionButtonCamera()
-          ),
-        ],
-      ),
+      body: const  ScanCodeViewBody(),
 
     );
   }
