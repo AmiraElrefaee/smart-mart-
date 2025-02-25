@@ -8,6 +8,8 @@ import 'package:smart_mart/features/scan_code/presentation/view/widgets/square_c
 
 import '../../../../../core/widgets/custom_bottom_bar.dart';
 import '../../../../details_item/presentation/views/details_psge_view.dart';
+import '../../../../details_item/presentation/views/widgets/details_page_view_body.dart';
+import '../details_sacn_product.dart';
 import 'conrner_border_painter.dart';
 import 'fail_massege.dart';
 import 'floating_action_button_camera.dart';
@@ -97,10 +99,32 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
                   });
 
                   // إظهار الرسالة عند اكتشاف QR Code
-                  showModalBottomSheet(context: context, builder: (context){
-                    return DetailsPsgeView();
-                  }
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent, // إزالة الخلفية البيضاء الزائدة
+                    builder: (context) {
+                      return DraggableScrollableSheet(
+                        expand: true,
+                        initialChildSize: 0.4, // يبدأ من 40% من الشاشة
+                        minChildSize: 0.1, // الحد الأدنى للارتفاع
+                        maxChildSize: 0.8, // لا يملأ الشاشة بالكامل
+                        builder: (context, scrollController) {
+                          return ClipRRect(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(20)), // تقليل الزوايا العلوية
+                            child: Container(
+                              color: Colors.white, // تأكد من لون الخلفية المطلوب
+                              child: DetailsSacnProduct(
+                                controller: scrollController, // تمرير الكنترولر هنا
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                   );
+
+
                   // ScaffoldMessenger.of(context).showSnackBar(
                   //   SnackBar(
                   //     content: Text('Scan done: $scanResult'),

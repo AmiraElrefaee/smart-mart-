@@ -27,7 +27,8 @@ abstract class AppRouter {
   static const kForgetPasswordPage='/ForgetPasswordPageView' ;
   static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
   static const kCreateNewPasswordpage='/CreateNewPasswordpageView';
-  static const khome='/HomePageView';
+  // static const khome='/HomePageView';
+  static const khome='/';
   static const kdetails='/DetailsPageView';
    static final router = GoRouter(
     routes: [
