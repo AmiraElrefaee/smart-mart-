@@ -105,7 +105,7 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
                     backgroundColor: Colors.transparent, // إزالة الخلفية البيضاء الزائدة
                     builder: (context) {
                       return DraggableScrollableSheet(
-                        expand: true,
+                        // expand: true,
                         initialChildSize: 0.4, // يبدأ من 40% من الشاشة
                         minChildSize: 0.1, // الحد الأدنى للارتفاع
                         maxChildSize: 0.8, // لا يملأ الشاشة بالكامل

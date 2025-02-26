@@ -7,6 +7,7 @@ import 'package:smart_mart/features/details_item/presentation/views/widgets/sect
 import 'package:smart_mart/features/details_item/presentation/views/widgets/section_prices.dart';
 import 'package:smart_mart/features/details_item/presentation/views/widgets/section_show_product_photo.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/custom_search_bar.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_add_or_scaa.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../const.dart';
@@ -185,6 +186,11 @@ final ScrollController controller;
             right: 0,
             child: SectionTopBar(),
           ),
+          Positioned(
+              bottom: 0,
+              right: 0,
+              left: 0,
+              child: SectionAddOrScaa())
         ],
       ),
     );
@@ -204,12 +210,12 @@ final ScrollController controller;
       ),
       decoration: BoxDecoration(
         color: Colors.white, // Background color
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color:ksecodaryColor.withOpacity(0.2), // Shadow color with opacity
+            color:ksecodaryColor.withOpacity(0.1), // Shadow color with opacity
             spreadRadius: .5, // How much the shadow spreads
-            blurRadius: 4, // Blurriness of the shadow
+            blurRadius: 2, // Blurriness of the shadow
             offset: Offset(0, 4), // Moves shadow down (X: 0, Y: 4)
           ),
         ],
@@ -234,7 +240,7 @@ final ScrollController controller;
 
             SvgPicture.asset('assets/icons/Vector (11).svg',
               color: Color(0xff484C52),
-              width: 25,
+              width: 27,
             ),
             Text('  Scanned Product',
               style: TextStyle(
