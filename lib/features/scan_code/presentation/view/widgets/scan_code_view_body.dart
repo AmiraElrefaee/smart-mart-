@@ -1,19 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:smart_mart/const.dart';
-import 'package:smart_mart/core/utils/styles.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/widgets/section-title_app_bar.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_box_message.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_draggle_total_num.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/square_camera.dart';
 
-import '../../../../../core/widgets/custom_bottom_bar.dart';
-import '../../../../details_item/presentation/views/details_psge_view.dart';
-import '../../../../details_item/presentation/views/widgets/details_page_view_body.dart';
 import '../details_sacn_product.dart';
-import 'conrner_border_painter.dart';
-import 'fail_massege.dart';
-import 'floating_action_button_camera.dart';
-import 'main_massega.dart';
 
 class ScanCodeViewBody extends StatefulWidget {
   const ScanCodeViewBody({super.key});
@@ -25,12 +18,12 @@ class ScanCodeViewBody extends StatefulWidget {
 class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
   MobileScannerController cameraController = MobileScannerController();
   String? scanResult;
-  bool isScanning = true; // متغير للتحكم في حالة المسح
+  bool isScanning = true;
 
   @override
   void initState() {
     super.initState();
-    startScanning(); // بدء المسح تلقائيًا عند فتح الشاشة
+    startScanning();
   }
 
   @override
@@ -42,7 +35,7 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
   void startScanning() {
     setState(() {
       isScanning = true;
-      scanResult = null; // إعادة تعيين scanResult للسماح بمسح جديد
+      scanResult = null;
     });
   }
 
@@ -63,23 +56,14 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
           icon: Padding(
             padding: const EdgeInsets.only(top: 25),
             child: Icon(Icons.arrow_back_ios_new_outlined),
-          ), // تغيير الأيقونة
+          ),
           onPressed: () {
-            Navigator.pop(context); // الرجوع للخلف عند الضغط
+            Navigator.pop(context);
           },
         ),
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 25),
-          child: const Text('QR Code Scanner',
-              style: TextStyle(
-                  fontFamily: 'Urbanis',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 22
-              )
-          ),
-        ),
+        title: SectionTitleAppBar(),
       ),
       body: Stack(
         alignment: Alignment.center,
@@ -87,7 +71,7 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
           MobileScanner(
             controller: cameraController,
             onDetect: (capture) {
-              if (!isScanning) return; // إذا كان المسح متوقفًا، لا تفعل شيئًا
+              if (!isScanning) return;
 
               final List<Barcode> barcodes = capture.barcodes;
               if (barcodes.isNotEmpty) {
@@ -95,68 +79,56 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
                 if (result != null && result.isNotEmpty) {
                   setState(() {
                     scanResult = result;
-                    isScanning = false; // إيقاف المسح بعد الاكتشاف
+                    isScanning = false;
                   });
 
-                  // إظهار الرسالة عند اكتشاف QR Code
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent, // إزالة الخلفية البيضاء الزائدة
-                    builder: (context) {
-                      return DraggableScrollableSheet(
-                        // expand: true,
-                        initialChildSize: 0.4, // يبدأ من 40% من الشاشة
-                        minChildSize: 0.1, // الحد الأدنى للارتفاع
-                        maxChildSize: 0.8, // لا يملأ الشاشة بالكامل
-                        builder: (context, scrollController) {
-                          return ClipRRect(
-                            borderRadius: BorderRadius.vertical(top: Radius.circular(20)), // تقليل الزوايا العلوية
-                            child: Container(
-                              color: Colors.white, // تأكد من لون الخلفية المطلوب
-                              child: DetailsSacnProduct(
-                                controller: scrollController, // تمرير الكنترولر هنا
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  );
-
-
-                  // ScaffoldMessenger.of(context).showSnackBar(
-                  //   SnackBar(
-                  //     content: Text('Scan done: $scanResult'),
-                  //     duration: Duration(seconds: 2),
-                  //   ),
-                  // );
+                  buildShowModalBottomSheet(context);
                 }
               }
             },
           ),
-          SectionBoxMassege(screenHeight: screenHeight,
-              screenWidth: screenWidth,
-              scanResult: scanResult),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: const CustomBottomBar(),
-          ),
-          Positioned(
-              bottom: screenHeight*.04, // رفعه فوق البار السفلي
-              left: MediaQuery.of(context).size.width / 2 - 40, // توسيطه
-              child:  FloatingActionButtonCamera(
-                onTap:
-                    () {
-                  startScanning(); // استئناف المسح عند الضغط على الزر
-                },
-              )
+
+          SectionBoxMassege(
+            screenHeight: screenHeight,
+            screenWidth: screenWidth,
+            scanResult: scanResult,
           ),
 
-          SaquareCamera(),
+          const SaquareCamera(),
+          // MyDraggableSheet(),
+
+          // إضافة SectionDraggleTotalNum هنا
+          
+          MyDraggableSheet(),
+
         ],
       ),
     );
   }
-}
 
+  Future<dynamic> buildShowModalBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.4,
+          minChildSize: 0.1,
+          maxChildSize: 0.8,
+          builder: (context, scrollController) {
+            return ClipRRect(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+              child: Container(
+                color: Colors.white,
+                child: DetailsSacnProduct(
+                  controller: scrollController,
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+}

@@ -19,7 +19,7 @@ class SectionBoxMassege extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: screenHeight * .25,
+      bottom: screenHeight * .15,
       child: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(vertical: 30),

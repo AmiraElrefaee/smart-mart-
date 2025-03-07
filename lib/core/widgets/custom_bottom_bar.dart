@@ -1,106 +1,145 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:smart_mart/core/utils/styles.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_mart/const.dart';
 
-class CustomBottomBar extends StatelessWidget {
+import '../utils/functions/app_router.dart';
+import '../utils/styles.dart';
+import 'custom_floating_action_botton.dart';
+
+class CustomBottomBar extends StatefulWidget {
+
   const CustomBottomBar({
     super.key,
   });
 
   @override
+  State<CustomBottomBar> createState() => _CustomBottomBarState();
+}
+
+class _CustomBottomBarState extends State<CustomBottomBar> {
+  int selectedIndex=0;
+  @override
   Widget build(BuildContext context) {
     return Container(
-
-      height: 120,
+      height: 120, // ارتفاع البار السفلي
       child: Stack(
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/Subtract.png', // Replace with your image path
+              'assets/images/Subtract.png', // صورة الخلفية
               fit: BoxFit.fill,
-
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10,
-            horizontal: 20
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                _buildNavItem(
+                  iconPath: 'assets/icons/Vector (6).svg',
+                  label: 'Home',
+                  index: 0,
+                  selectedIndex: selectedIndex,
+                  onTap: (){
+                    setState(() {
+                      selectedIndex=0;
+                    });
 
-                IconButton(onPressed: (){}, icon:Column(
-                  children: [
-                   SvgPicture.asset('assets/icons/Vector (6).svg'),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text('Home',
-                          style: Styles.Urbanist13.copyWith(
-                              color: Color(0xff484C52),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500
-                          )
-                      ),
-                    ),
-                  ],
-                )),
+                    context.go(AppRouter.khome);
+                  } ,
+                ),
+                const Spacer(flex: 1),
+                _buildNavItem(
+                  iconPath: 'assets/icons/Vector (9).svg',
+                  label: 'Wishlist',
+                  index: 1,
+                  selectedIndex: selectedIndex,
+                  onTap: () {
 
-                Spacer(flex: 1,),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: IconButton(onPressed: (){}, icon:Column(
-                    children: [
-                      SvgPicture.asset('assets/icons/Vector (9).svg'),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Text('Wishlist',
-                            style: Styles.Urbanist13.copyWith(
-                                color: Color(0xff484C52),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500
-                            )
-                        ),
-                      ),
-                    ],
-                  )),
+                    setState(() {
+                      selectedIndex=1;
+                    });
+                    context.go('/favorites');
+                  },
                 ),
 
-                Spacer(flex: 4,),
-                IconButton(onPressed: (){}, icon:Column(
-                  children: [
-                    SvgPicture.asset('assets/icons/Vector (7).svg'),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text('Cart',
-                          style: Styles.Urbanist13.copyWith(
-                              color: Color(0xff484C52),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500
-                          )
-                      ),
-                    ),
-                  ],
-                )),
-                Spacer(flex: 1,),
-                IconButton(onPressed: (){}, icon:Column(
-                  children: [
-                    SvgPicture.asset('assets/icons/li_user.svg'),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text('Profile',
-                        style: Styles.Urbanist13.copyWith(
-                          color: Color(0xff484C52),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500
-                        )
-                      ),
-                    ),
-                  ],
-                )),
+                const Spacer(flex: 4),
+                _buildNavItem(
+                  iconPath: 'assets/icons/Vector (7).svg',
+                  label: 'Cart',
+                  index: 2,
+                  selectedIndex: selectedIndex,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex=2;
+                    });
+                    context.go('/cart');
 
+                  },
+                ),
+                const Spacer(flex: 1),
+                _buildNavItem(
+                    iconPath: 'assets/icons/li_user.svg',
+                    label: 'Profile',
+                    index: 3,
+                    selectedIndex: selectedIndex,
+                    onTap: () {
+                      setState(() {
+                        selectedIndex=3;
+                      });
+                      context.go('/profile');
+                    }
+                ),
               ],
             ),
+          ),
+          Positioned(
+            bottom: 30, // رفعه فوق البار السفلي
+            left: MediaQuery.of(context).size.width / 1.95 - 40, // توسيطه
+            child:   CustomFloatingActionButton(
+              onItemTapped: (){
+                setState(() {
+                  selectedIndex=5;
+                });
+                context.go(AppRouter.kScanPage);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavItem({
+    required String iconPath,
+    required String label,
+    required int index,
+    required int selectedIndex,
+    required VoidCallback onTap,
+  }) {
+    final bool isSelected = selectedIndex == index;
+    final Color iconColor = isSelected ? kColor : const Color(0xff484C52);
+    final textStyle = TextStyle(
+      color: iconColor,
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+    );
+
+    return IconButton(
+      onPressed: onTap,
+      icon: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SvgPicture.asset(
+            iconPath,
+            color: iconColor,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            style: textStyle,
           ),
         ],
       ),

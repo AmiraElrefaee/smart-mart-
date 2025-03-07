@@ -6,8 +6,10 @@ import 'package:smart_mart/features/details_item/presentation/views/details_psge
 import 'package:smart_mart/features/home/presentation/views/home_page_view.dart';
 import 'package:smart_mart/features/login/presentation/views/login_view.dart';
 import 'package:smart_mart/features/on_boarding/presentation/views/onBoarding_view.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/scan_code_view.dart';
 import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
+import '../../../Main_screen.dart';
 import '../../../features/sign_up/domain/use_case/register_use_case.dart';
 import '../../../features/sign_up/presentation/views/OTP_forget_password_page_view.dart';
 import '../../../features/sign_up/presentation/views/add_phone_num_view.dart';
@@ -15,6 +17,7 @@ import '../../../features/sign_up/presentation/views/create_new_password_page_vi
 import '../../../features/sign_up/presentation/views/forget_password_page_view.dart';
 import '../../../features/sign_up/presentation/views/sign_up_view.dart';
 import '../../../features/splash/presentation/views/splash_view.dart';
+import '../../../features/wish_list/wish_list_ view.dart';
 
 
 
@@ -30,8 +33,48 @@ abstract class AppRouter {
   // static const khome='/HomePageView';
   static const khome='/';
   static const kdetails='/DetailsPageView';
+  static const kwishList='/WishlistPageView';
+  static const kScanPage='/ScanCodeView';
    static final router = GoRouter(
+
     routes: [
+       ShellRoute(
+         routes: [
+           GoRoute(
+             path: khome,
+             builder: (context, state) => HomePageView(),
+           ),
+           GoRoute(
+             path: '/favorites',
+             builder: (context, state) => WishlistPageView(),
+           ),
+           GoRoute(
+             path: '/profile',
+             builder: (context, state) => WishlistPageView(),
+           ),
+           GoRoute(
+             path: '/cart',
+             builder: (context, state) => WishlistPageView(),
+           ),
+           GoRoute(
+             path: kScanPage,
+             builder: (context, state) => ScanCodeView(),
+           ),
+           GoRoute(
+             path:kdetails,
+             builder: (context, state) {
+
+               return DetailsPsgeView();
+             },
+           ),
+         ],
+       builder: (context, state, child) {
+  return MainScreen(child: child);},
+       ),
+      GoRoute(
+        path: kScanPage,
+        builder: (context, state) => ScanCodeView(),
+      ),
       GoRoute(path: khome,
      builder: (contxet,state)=> HomePageView()
       ),
