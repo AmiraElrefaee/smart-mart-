@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../const.dart';
 
-class TopBarScannedItem extends StatelessWidget {
-  const TopBarScannedItem({
+class SectionTopBarScannedItem extends StatelessWidget {
+  const SectionTopBarScannedItem({
     super.key,
   });
 
@@ -47,10 +47,18 @@ class TopBarScannedItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Cart ( 3 items )',
+              Text('Cart ',
                 style: TextStyle(
                     fontFamily: 'Urbanist',
                     color: Color(0xff484C52),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600
+                ),
+              )
+              , Text('( 3 items )',
+                style: TextStyle(
+                    fontFamily: 'Urbanist',
+                    color: Color(0xff989797),
                     fontSize: 20,
                     fontWeight: FontWeight.w600
                 ),

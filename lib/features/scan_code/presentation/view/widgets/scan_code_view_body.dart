@@ -82,7 +82,9 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
                     isScanning = false;
                   });
 
-                  buildShowModalBottomSheet(context);
+                  buildShowModalBottomSheet(context).then((_) {
+                    startScanning(); // إعادة تشغيل المسح عند إغلاق الـ BottomSheet
+                  });
                 }
               }
             },
@@ -108,6 +110,7 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
 
   Future<dynamic> buildShowModalBottomSheet(BuildContext context) {
     return showModalBottomSheet(
+      useRootNavigator: true,
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,

@@ -143,11 +143,11 @@ class _MyDraggableSheetState extends State<MyDraggableSheet> {
           },
           child: DraggableScrollableSheet(
             controller: _controller,
-            initialChildSize: 0.17,
-            minChildSize: 0.17,
+            initialChildSize: 0.18,
+            minChildSize: 0.18,
             maxChildSize: _maxChildSize,
             snap: true,
-            snapSizes: const [0.17, 0.3],
+            snapSizes: const [0.18, 0.3],
             builder: (context, scrollController) {
               return DecoratedBox(
                 decoration: const BoxDecoration(
@@ -180,6 +180,7 @@ class _MyDraggableSheetState extends State<MyDraggableSheet> {
 
   void _openBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      useRootNavigator: true,
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {

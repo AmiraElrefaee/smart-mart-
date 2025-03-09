@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
 import 'Custom_show_discount_item.dart';
+import 'custom_grid_best_sale.dart';
 import 'custom_side_title.dart';
 
 class SectionBestSale extends StatefulWidget {
@@ -105,22 +106,11 @@ class _SectionBestSaleState extends State<SectionBestSale> {
 
       Padding(
         padding:  EdgeInsets.symmetric(horizontal:widget.screenWidth * .08 ),
-        child: GridView.builder(
-            shrinkWrap: true, // لجعل GridView تتكيف مع المحتوى
-            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // عدد العناصر في الصف
-              crossAxisSpacing: 10, // المسافة بين العناصر أفقيًا
-              mainAxisSpacing:10,
-              mainAxisExtent: widget.screenWidth*.58 ,
-            ),
-            itemCount: ViewAll?6:4,
-            itemBuilder: (context, snapshot) {
-              return CustomShowDiscountItem(
-                screenWidth: widget.screenWidth,
-              );
-            }
-        ),)
+        child: CustomGridBestSale(
+            // widget: widget
+            screenWidth: widget.screenWidth,
+             scroll: false,
+             ViewAll: ViewAll),)
     ],);
   }
 }

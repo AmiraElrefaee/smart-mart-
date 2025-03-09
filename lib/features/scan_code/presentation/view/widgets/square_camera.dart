@@ -11,7 +11,7 @@ class SaquareCamera extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: MediaQuery.of(context).size.height*.38,
+      bottom: MediaQuery.of(context).size.height*.5,
       child: Container(
         width: 220,
         height: 220,
