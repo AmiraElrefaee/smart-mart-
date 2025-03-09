@@ -5,9 +5,10 @@ import '../../../../../const.dart';
 
 class CustomAddOrMinusBotton extends StatefulWidget {
   const CustomAddOrMinusBotton({
-    super.key,
+    super.key, required this.screenWidth, required this.screenHeight,
   });
-
+final double screenWidth;
+final double screenHeight;
   @override
   State<CustomAddOrMinusBotton> createState() => _CustomAddOrMinusBottonState();
 }
@@ -19,8 +20,8 @@ class _CustomAddOrMinusBottonState extends State<CustomAddOrMinusBotton> {
     return
         Container(
           padding: EdgeInsets.symmetric(horizontal: 5),
-          width: MediaQuery.of(context).size.width*.24,
-          height:MediaQuery.of(context).size.width*.1 ,
+          width:widget. screenWidth,
+          height:widget. screenHeight ,
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: Color(0xffF5F5F5),
@@ -30,7 +31,7 @@ class _CustomAddOrMinusBottonState extends State<CustomAddOrMinusBotton> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Align(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.center,
             child: InkWell(onTap: (){
               if(num>0) setState(() {
                 num--;
@@ -38,6 +39,7 @@ class _CustomAddOrMinusBottonState extends State<CustomAddOrMinusBotton> {
 
             }
                 , child: Icon(Icons.minimize,
+                  size: widget.screenWidth*.2,
                   color: Color(0xff484C52),
                 )),
           ),
@@ -58,6 +60,7 @@ class _CustomAddOrMinusBottonState extends State<CustomAddOrMinusBotton> {
                 }
                 , child: Icon(Icons.add,
                   color: kColor,
+              size: widget.screenWidth*.2,
                 )),
           ),
 

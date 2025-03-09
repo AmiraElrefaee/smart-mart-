@@ -10,6 +10,7 @@ class SectionAddMore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth=MediaQuery.of(context).size.width;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -21,7 +22,10 @@ class SectionAddMore extends StatelessWidget {
           ),
         ),
 
-        CustomAddOrMinusBotton()
+        CustomAddOrMinusBotton(
+          screenHeight:40,
+          screenWidth: screenWidth*.19,
+        )
 
       ],);
   }

@@ -24,7 +24,8 @@ class _MainScreenState extends State<MainScreen> {
 
 
     return Scaffold(
-      body: Stack(
+      body:
+      Stack(
         children: [
           Positioned.fill(child: widget.child), // الشاشة الرئيسية
 

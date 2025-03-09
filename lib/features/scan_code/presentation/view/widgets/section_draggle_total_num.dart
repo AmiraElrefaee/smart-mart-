@@ -180,6 +180,7 @@ class _MyDraggableSheetState extends State<MyDraggableSheet> {
 
   void _openBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      useRootNavigator: true,
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
