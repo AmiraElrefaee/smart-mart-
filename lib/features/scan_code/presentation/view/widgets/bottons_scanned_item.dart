@@ -53,7 +53,7 @@ final void Function()? onTap;
                   ),borderRadius: BorderRadius.circular(10)
 
               ),
-              child:Text('Scan items',
+              child:Text('Scan item',
                 textAlign: TextAlign.center,
                 style: TextStyle(
 
