@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:smart_mart/features/sign_up/domain/use_case/register_use_case.dart';
 
 import '../../features/login/data/api_service/login_remote_data_source.dart';
@@ -18,6 +19,9 @@ void setupLocator() {
 //   getIt.registerLazySingleton<RegisterRmoteDataSource>(() => RegisterRemoteDataSourceImpl());
 // hgvkldskldklsdk
   // ✅ تسجيل Repository
+  getIt.registerLazySingleton<MobileScannerController>(
+        () => MobileScannerController(),
+  );
   getIt.registerLazySingleton<RegisterRmoteDataSource>(
         () => RegisterRmoteDataSource(),
   );

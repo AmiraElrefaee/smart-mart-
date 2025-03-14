@@ -10,8 +10,6 @@ List<CatgoryModels> catgoryModels = [
   CatgoryModels(
       title: 'Dairy & Eggs',
       image: 'assets/items/image 5.png',
-
-
   ),
   CatgoryModels(
       title: 'Fruits & Vegetables',

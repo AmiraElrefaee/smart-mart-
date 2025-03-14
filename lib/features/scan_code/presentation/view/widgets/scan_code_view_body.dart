@@ -49,23 +49,7 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100,
-        leading: IconButton(
-          icon: Padding(
-            padding: const EdgeInsets.only(top: 25),
-            child: Icon(Icons.arrow_back_ios_new_outlined),
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: SectionTitleAppBar(),
-      ),
-      body: Stack(
+    return Stack(
         alignment: Alignment.center,
         children: [
           MobileScanner(
@@ -101,10 +85,12 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
 
           // إضافة SectionDraggleTotalNum هنا
           
-          MyDraggableSheet(),
+          MyDraggableSheet(
+            cameraController: cameraController,
+          ),
 
         ],
-      ),
+
     );
   }
 

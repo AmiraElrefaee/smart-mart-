@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/scan_code_view_body.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section-title_app_bar.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_show_scanned_item.dart';
@@ -112,8 +113,8 @@ class _DraggableWidgetState extends State<SectionDraggleTotalNum> {
   }
 }
 class MyDraggableSheet extends StatefulWidget {
-  const MyDraggableSheet({super.key});
-
+  const MyDraggableSheet({super.key, required this.cameraController});
+  final MobileScannerController cameraController;
   @override
   State<MyDraggableSheet> createState() => _MyDraggableSheetState();
 }
@@ -121,6 +122,7 @@ class MyDraggableSheet extends StatefulWidget {
 class _MyDraggableSheetState extends State<MyDraggableSheet> {
   final DraggableScrollableController _controller = DraggableScrollableController();
   final double _maxChildSize = 0.3;
+
 
   @override
   void dispose() {
@@ -184,7 +186,9 @@ class _MyDraggableSheetState extends State<MyDraggableSheet> {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return SectionShowScannedItem();
+        return SectionShowScannedItem(
+          cameraController: widget.cameraController,
+        );
       },
     );
   }

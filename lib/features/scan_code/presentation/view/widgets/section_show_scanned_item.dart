@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_add_or_scaa.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_need_any_thing_bottom_sheet_content.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_payment_summary.dart';
@@ -23,12 +24,9 @@ import 'custom_details_scanned_ittem.dart';
 import 'custom_line.dart';
 
 class SectionShowScannedItem extends StatelessWidget {
-  const SectionShowScannedItem({super.key});
+  const SectionShowScannedItem({super.key, required this.cameraController});
 
-
-
-  get controller => null;
-
+ final  MobileScannerController cameraController;
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -108,7 +106,10 @@ class SectionShowScannedItem extends StatelessWidget {
                     useRootNavigator: true,
                   context: context,
                     builder: (context){
-                      return sectionNeedAnyThingBottomSheetContent(screenHeight: screenHeight, screenWidth: screenWidth) ;
+                      return sectionNeedAnyThingBottomSheetContent(screenHeight: screenHeight, screenWidth: screenWidth,
+
+                          cameraController:cameraController
+                      ) ;
                     }
                 );
               }

@@ -1,21 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/top_need_anything_sheet.dart';
 
 import '../../../../../const.dart';
+import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../home/presentation/views/widgets/Custom_show_discount_item.dart';
 import 'bottons_scanned_item.dart';
 
 class sectionNeedAnyThingBottomSheetContent extends StatelessWidget {
-  const sectionNeedAnyThingBottomSheetContent({
+  const  sectionNeedAnyThingBottomSheetContent({
     super.key,
     required this.screenHeight,
-    required this.screenWidth,
-  });
+    required this.screenWidth, required this.cameraController,
+  }
+
+  );
 
   final double screenHeight;
   final double screenWidth;
-
+  final MobileScannerController cameraController;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -96,7 +101,10 @@ class sectionNeedAnyThingBottomSheetContent extends StatelessWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: bottonsScannedItem(onTap: (){},))
+              child: bottonsScannedItem(onTap: (){
+                cameraController.stop();
+                navigateToPage( AppRouter.kPayment,context);
+              },))
         ],
       ),
     );

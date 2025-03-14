@@ -10,6 +10,7 @@ import 'package:smart_mart/features/scan_code/presentation/view/scan_code_view.d
 import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
 import '../../../Main_screen.dart';
+import '../../../features/payment/presentation/views/payment_page_view.dart';
 import '../../../features/sign_up/domain/use_case/register_use_case.dart';
 import '../../../features/sign_up/presentation/views/OTP_forget_password_page_view.dart';
 import '../../../features/sign_up/presentation/views/add_phone_num_view.dart';
@@ -35,6 +36,7 @@ abstract class AppRouter {
   static const kdetails='/DetailsPageView';
   static const kwishList='/WishlistPageView';
   static const kScanPage='/ScanCodeView';
+  static const kPayment='/PaymentView';
    static final router = GoRouter(
 
     routes: [
@@ -71,6 +73,9 @@ abstract class AppRouter {
        builder: (context, state, child) {
   return MainScreen(child: child);},
        ),
+      GoRoute(path: kPayment,
+      builder: (context, state )=>PaymentPageView()
+      ),
       GoRoute(
         path: kScanPage,
         builder: (context, state) => ScanCodeView(),
@@ -83,15 +88,19 @@ abstract class AppRouter {
       ),
       GoRoute(path: kCreateNewPasswordpage,
       builder: (context,state)=>CreateNewPasswordpageView()),
+
       GoRoute(path: kOtpForgetPasswordPage,
       builder: (context, state )=>OtpForgetPasswordPageView()
       ),
+
       GoRoute(path: kForgetPasswordPage,
       builder: (context,state)=> const ForgetPasswordPageView()
       ),
+
       GoRoute(path: kAddPhoneNumPage,
           builder: (context,state)=> const AddPhoneNumView()
       ),
+
       GoRoute(path: kOTPpage,
       builder: (context,state)=>const  OtpView()
       ),

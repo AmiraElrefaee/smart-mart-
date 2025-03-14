@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
 import 'custom_add_or_minus.dart';
+import 'custom_photo_scanned_item.dart';
 
 class customDetailsSCannedItem extends StatelessWidget {
   const customDetailsSCannedItem({
@@ -20,20 +21,7 @@ class customDetailsSCannedItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                  width: 1 ,
-                  color: Color(0xffDADADA)
-              )
-          ),
-          child: Image.asset('assets/items/image 15.png',
-            height: screenHeight*.11,
-            width: screenWidth*.18,
-          ),
-        ),
+        CustomPhotoScannedItem(screenHeight: screenHeight*.11, screenWidth: screenWidth*.18),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
