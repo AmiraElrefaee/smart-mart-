@@ -87,6 +87,7 @@ flutter:
     - assets/back_grounds/Frame 1984078169.png
     - assets/items/
     - assets/payment_icons/
+    - assets/video/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

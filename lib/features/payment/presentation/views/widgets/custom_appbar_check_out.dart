@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 
 class CustomAppBarCheckOut extends StatelessWidget {
   const CustomAppBarCheckOut({
-    super.key,
+    super.key, required this.title,
   });
-
+final String title ;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -16,8 +16,8 @@ class CustomAppBarCheckOut extends StatelessWidget {
       centerTitle: true,
       title: Padding(
         padding: const EdgeInsets.only(top: 10),
-        child: const Text(
-          'Checkout',
+        child:  Text(
+          title,
           style: TextStyle(
             fontFamily: 'Urbanist',
             fontSize: 20,

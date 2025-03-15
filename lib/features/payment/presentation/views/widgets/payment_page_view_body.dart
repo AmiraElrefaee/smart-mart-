@@ -6,6 +6,8 @@ import 'package:smart_mart/const.dart';
 import 'package:smart_mart/features/payment/presentation/views/widgets/section_bottons_ad_new.dart';
 import 'package:smart_mart/features/payment/presentation/views/widgets/section_my_cart.dart';
 
+import '../../../../../core/utils/functions/Navigate_to_page.dart';
+import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../scan_code/presentation/view/widgets/custom_photo_scanned_item.dart';
 import '../../../data/models/bank_photos.dart';
 import 'Custom_bottons_bank.dart';
@@ -59,6 +61,7 @@ class PaymentPageViewBody extends StatelessWidget {
               SizedBox(height: 10,),
               CustomBottonsBank(screenWidth: screenWidth, screenHeight: screenHeight,
               color: Color(0xffF8F8F8),
+                onTap: (){},
                 title: 'xxxx xxxx xxxx 3945',
                 photo: 'assets/payment_icons/image 59.png',
               ),
@@ -90,7 +93,11 @@ class PaymentPageViewBody extends StatelessWidget {
 
               CustomSideTitlePayemtMethod(title: 'other',),
               SizedBox(height: 10,),
-              CustomBottonsBank(screenWidth: screenWidth,
+              CustomBottonsBank(
+                onTap: (){
+                  navigateToPage(AppRouter.kaddCartCard, context);
+                },
+                screenWidth: screenWidth,
                 screenHeight: screenHeight,
                 color: Colors.white,
                 title: 'Pay through debit card',

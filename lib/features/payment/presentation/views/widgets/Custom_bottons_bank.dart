@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_mart/core/utils/functions/Navigate_to_page.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 
 class CustomBottonsBank extends StatelessWidget {
   const CustomBottonsBank({
@@ -7,7 +9,7 @@ class CustomBottonsBank extends StatelessWidget {
     required this.screenWidth,
     required this.screenHeight,
     required this.title,
-    required this.color, required this.photo,
+    required this.color, required this.photo, this.onTap,
   });
 
   final double screenWidth;
@@ -15,6 +17,7 @@ class CustomBottonsBank extends StatelessWidget {
   final String title;
   final Color color;
   final String photo;
+ final  void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class CustomBottonsBank extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: (){},
+            onTap: onTap,
             child: Icon(Icons.keyboard_arrow_right_rounded,
               size: screenWidth*.08,
               color: Color(0xff484C52),

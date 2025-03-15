@@ -1,21 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:smart_mart/features/payment/presentation/views/widgets/add_cart_cards_page_view.dart';
 import 'package:smart_mart/features/payment/presentation/views/widgets/custom_appbar_check_out.dart';
-import 'package:smart_mart/features/payment/presentation/views/widgets/payment_page_view_body.dart';
 
-class PaymentPageView extends StatelessWidget {
-  const PaymentPageView({super.key});
+class AddCartCardsPage extends StatelessWidget {
+  const AddCartCardsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double appBarHeight = MediaQuery.of(context).size.height * 0.11;
-
     return Scaffold(
-      body: Column(
+
+      resizeToAvoidBottomInset: false,
+      body:
+      Column(
         children: [
           Container(
-            height: appBarHeight,
+            height:  MediaQuery.of(context).size.height * 0.11,
             decoration: const BoxDecoration(
               color: Colors.white, // Ensure background color stays constant
               boxShadow: [
@@ -27,13 +27,13 @@ class PaymentPageView extends StatelessWidget {
               ],
             ),
             child: CustomAppBarCheckOut(
-              title: 'Checkout',
+              title: 'Add cart',
             ),
           ),
-          Expanded(child: PaymentPageViewBody()),
+          Expanded(child: AddCartCardsPageView()),
         ],
       ),
+
     );
   }
 }
-

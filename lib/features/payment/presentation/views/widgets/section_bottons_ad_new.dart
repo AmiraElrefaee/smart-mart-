@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
+
+import '../../../../../core/utils/functions/Navigate_to_page.dart';
 
 class SectionBottonsAddNew extends StatelessWidget {
   const SectionBottonsAddNew({
@@ -30,7 +33,9 @@ class SectionBottonsAddNew extends StatelessWidget {
           )
       ),
       child:InkWell(
-        onTap: (){},
+        onTap: (){
+          navigateToPage(AppRouter.kaddCartCard,context);
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
