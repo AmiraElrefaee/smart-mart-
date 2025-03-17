@@ -11,9 +11,10 @@ class CustomFloatingActionButton extends StatelessWidget {
   final VoidCallback onItemTapped; // تعديل النوع هنا
   @override
   Widget build(BuildContext context) {
+    double le=.18;
     return Container(
-      width: 80,
-      height: 80,
+      width: MediaQuery.of(context).size.width * le,
+      height: MediaQuery.of(context).size.width * le,
       margin: const EdgeInsets.only(top: 80),
       child: FloatingActionButton(
         onPressed: onItemTapped, // تعديل هنا

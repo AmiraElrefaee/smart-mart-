@@ -25,14 +25,7 @@ class _SectionUpToOffersState extends State<SectionUpToOffers> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: widget.screenWidth * .05),
       child: Column(children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 34),
-          child: CustomAppBar(screenWidth: widget.screenWidth),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 11),
-          child: CustomSearchBar(screenWidth: widget.screenWidth),
-        ),
+
         SizedBox(
           height: 200, // ارتفاع ثابت لـ ListView
           child: PageView.builder(

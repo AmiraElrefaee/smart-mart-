@@ -40,7 +40,9 @@ class DetailsPageViewBody extends StatelessWidget {
                   sectonArrowBack(screenWidth: screenWidth),
                   SizedBox(
                     width: screenWidth*.77,
-                    child:CustomSearchBar(screenWidth: screenWidth) ),
+                    child:CustomSearchBar(
+                        readOnly: true,
+                        screenWidth: screenWidth) ),
                 ],
               ),
             ),
@@ -151,7 +153,7 @@ class DetailsPageViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: screenWidth*.58,
+                height: screenWidth*.61,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,

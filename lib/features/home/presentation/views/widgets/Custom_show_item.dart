@@ -23,52 +23,60 @@ class CustomShowItem extends StatelessWidget {
       onTap: (){
         navigateToPage(AppRouter.kdetails, context);
       },
-      child: Container(
-        width:screenWidth*.42,
-        height:screenWidth*.65 ,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
+      child: Expanded(
+        child: Container(
+          // width:screenWidth*.6,
 
-            color: Color(0xffD9D9D9), // لون الحدود
-            width: 1, // سمك الحدود
-          ),
-        ),
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Image.asset('assets/items/image (1).png',
-            height: screenWidth*.25,
+        
+          // screenWidth*.03 ,
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+        
+              color: Color(0xffD9D9D9), // لون الحدود
+              width: 1, // سمك الحدود
             ),
           ),
-          Text('Cadbury Hot Chocolate',
-            style: Styles.NexaBold14.copyWith(
-                fontWeight: FontWeight.w500
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            
+            children: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Image.asset('assets/items/image (1).png',
+              height: screenWidth*.25,
+              ),
             ),
-
-          ),
-          Text('3 in1 (300 gm)',
+            Text('Cadbury Hot Chocolate',
               style: Styles.NexaBold14.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xff484C52)
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            width: 140, // عرض الخط
-            height: 1, // طول الخط
-            color: Color(0xffDADADA), // لون الخط
-          ),
-          SizedBox(
-            height: 5,
-          ),
-
-          CustomPrice(screenWidth: screenWidth),
-          SizedBox(height: 10,)
-
-        ],),
+                  fontWeight: FontWeight.w500
+              ),
+        
+            ),
+            Text('3 in1 (300 gm)',
+                style: Styles.NexaBold14.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff484C52)
+                )),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: 140, // عرض الخط
+              height: 1, // طول الخط
+              color: Color(0xffDADADA), // لون الخط
+            ),
+            SizedBox(
+              height: 5,
+            ),
+        
+            CustomPrice(screenWidth: screenWidth),
+            SizedBox(height: 10,)
+        
+          ],),
+        ),
       ),
     );
   }

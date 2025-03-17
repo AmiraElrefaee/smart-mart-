@@ -22,23 +22,23 @@ class SectionSmartShopStartAtHome extends StatelessWidget {
           SvgPicture.asset(
             'assets/back_grounds/Rectangle 189.svg',
             width: screenWidth,
-            height: 190,
+            height: screenWidth*.45,
           ),
           Positioned(
-            // bottom: screenWidth * .01,
-            // right: screenWidth * .61,
+            bottom: screenWidth * .009,
+            right: screenWidth * .61,
             child: SvgPicture.asset(
               'assets/back_grounds/Ellipse 19.svg',
-              height: screenWidth * .48,
+              // height: screenWidth * .45,
             ),
           ),
           Positioned(
             left: screenWidth * .55,
-            bottom: screenWidth * .1,
+            bottom: screenWidth * .07,
 
 
             child: SvgPicture.asset('assets/back_grounds/Frame 1984078149.svg',
-              height: screenWidth*.3,
+              height: screenWidth*.29,
             ),
           ),
           Positioned(
@@ -91,7 +91,7 @@ class SectionSmartShopStartAtHome extends StatelessWidget {
               child: Container(
                 alignment: Alignment.center,
                 height: 32,
-                width: screenWidth * .27,
+                width: screenWidth * .3,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -100,7 +100,7 @@ class SectionSmartShopStartAtHome extends StatelessWidget {
                   'Schedule & Shop',
                   style: Styles.Urbanist20.copyWith(
                     color: kColor,
-                    fontSize: 14,
+                    fontSize: screenWidth * .03 ,
                   ),
                 ),
               ),

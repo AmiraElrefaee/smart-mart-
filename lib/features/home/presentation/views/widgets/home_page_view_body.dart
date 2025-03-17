@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
+import 'package:smart_mart/core/utils/functions/Navigate_to_page.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/sectionBakeryAndPastry.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_best_sale.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_best_sale_photo.dart';
@@ -51,6 +54,30 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
         children: [
           Column(
             children: [
+              Padding(
+                padding:  EdgeInsets.only(top: 34,
+                left: screenWidth * .05,
+                  right: screenWidth * .05,
+                ),
+                child: CustomAppBar(screenWidth: screenWidth,
+
+
+                ),
+              ),
+              Padding(
+                padding:  EdgeInsets.only(top: 11,
+                  left: screenWidth * .05,
+                  right: screenWidth * .05,
+                ),
+                child: CustomSearchBar(
+                  readOnly: true,
+                  screenWidth: screenWidth,
+                onTap: (){
+                  GoRouter.of(context).push(AppRouter.kSearch);
+                  // navigateToPage(AppRouter.kSearch, context);
+                },
+                ),
+              ),
               SectionUpToOffers(screenWidth: screenWidth),
 
 

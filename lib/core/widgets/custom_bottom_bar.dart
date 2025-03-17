@@ -23,7 +23,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120, // ارتفاع البار السفلي
+      height: MediaQuery.of(context).size.height*.125, // ارتفاع البار السفلي
       child: Stack(
         children: [
           Positioned.fill(
@@ -96,7 +96,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
             ),
           ),
           Positioned(
-            bottom: 30, // رفعه فوق البار السفلي
+            bottom: MediaQuery.of(context).size.height*.02, // رفعه فوق البار السفلي
             left: MediaQuery.of(context).size.width / 1.95 - 40, // توسيطه
             child:   CustomFloatingActionButton(
               onItemTapped: (){
@@ -136,7 +136,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
             iconPath,
             color: iconColor,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 2),
           Text(
             label,
             style: textStyle,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_mart/core/utils/functions/Navigate_to_page.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 import 'package:smart_mart/features/payment/presentation/views/widgets/section_credit_or_debit.dart';
 
 import '../../../../../const.dart';
@@ -75,8 +77,32 @@ class _AddCartCardsPageViewState extends State<AddCartCardsPageView> {
                                   fontWeight: FontWeight.w500, fontFamily: 'Urbanist', fontSize: 16, color: kcolor3,
 
                                 ),
-                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(color: Color(0xffD8DADC))),
+                                  focusedBorder:OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:  BorderSide(color: Color(0xffD8DADC),
+                                        width: 1
+                                    ),)  ,
+                                  enabledBorder:OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:  BorderSide(color: Color(0xffD8DADC),
+                                        width: 1
+                                    ),),
+
+                                  errorBorder:OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:  BorderSide(color: kColor,
+                                        width: 1
+                                    ),),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:  BorderSide(color: kColor,
+                                        width: 1
+                                    ),),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:  BorderSide(color: Color(0xffD8DADC),
+                                      width: 1
+                                  ),),
                               ),
                               items: ["Visa", "MasterCard", "American Express"].map((String cardType) {
                                 return DropdownMenuItem<String>(
@@ -174,10 +200,12 @@ class _AddCartCardsPageViewState extends State<AddCartCardsPageView> {
               screenHeight: screenHeight,
               screenWidth: screenWidth,
               onTap: () {
+                navigateToPage(AppRouter.kcompletePayment, context);
                 if (formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Payment successful!")),
                   );
+
                 }
               },
             ),

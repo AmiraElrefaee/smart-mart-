@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_mart/const.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -28,6 +29,7 @@ class CustomTextField extends StatelessWidget {
       inputFormatters: inputFormatters,
       maxLength: maxLength,
       decoration: InputDecoration(
+
         counterText: "",
         hintText: hint,
         hintStyle: TextStyle(
@@ -36,12 +38,27 @@ class CustomTextField extends StatelessWidget {
           fontSize: 16,
           color: Color(0xff989797), // Replace with kcolor3 if needed
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Color(0xffD8DADC)),
-        ),
+        focusedBorder:buildOutlineInputBorder()  ,
+        enabledBorder:buildOutlineInputBorder() ,
+        border: buildOutlineInputBorder(),
+        errorBorder: buildOutlineInputBorder(color: kColor),
+          focusedErrorBorder: buildOutlineInputBorder(color: kColor)
+
+
+
+
       ),
       validator: (value) => value == null || value.isEmpty ? "This field cannot be empty" : null,
     );
+  }
+
+  OutlineInputBorder buildOutlineInputBorder({Color ?color}) {
+
+    return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide:  BorderSide(color: color ==null?Color(0xffD8DADC):color,
+        width: 1
+        ),
+      );
   }
 }

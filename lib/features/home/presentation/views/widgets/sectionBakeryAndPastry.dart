@@ -21,7 +21,7 @@ class SectionBakeryAndPastry extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: screenWidth,
-      height: screenWidth*1.46,
+      height: screenWidth*1.5,
       child: Stack(
         // fit : StackFit.passthrough,
         children: [

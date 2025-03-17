@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+
   persistent_bottom_nav_bar: ^6.2.1
   image_picker: ^1.0.4
   permission_handler: ^11.3.1
@@ -44,6 +45,7 @@ dependencies:
   get: ^4.6.6
   flutter:
     sdk: flutter
+  video_player: ^2.7.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -88,6 +90,7 @@ flutter:
     - assets/items/
     - assets/payment_icons/
     - assets/video/
+    - assets/video/e232cd7e5def8bce8ab885c43be920b7b293bbe0.mp4
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
