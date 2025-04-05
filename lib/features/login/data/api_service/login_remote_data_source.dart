@@ -6,7 +6,7 @@ import 'package:smart_mart/features/login/domain/entity/login_entity.dart';
 import '../../../../const.dart';
 class LoginRemoteDataSource{
 
-  final url=Uri.parse('${ApiConstants.baseUrl}/login');
+  final url=Uri.parse('${ApiConstants.baseUrl}/api/sessions/refresh');
 
   Future<Token> login(String email, String password)async{
     final response = await http.post(

@@ -9,16 +9,17 @@ class RegisterRmoteDataSource{
 Future<Map<String, dynamic>>registerUser
     (String mail, String fname ,String lname, String pass, String copass )
 async{
-  final url=Uri.parse('${ApiConstants.baseUrl}/register');
+  final url=Uri.parse('${ApiConstants.baseUrl}/users');
 
   final response =await http.post(url,
       headers: {'Content-Type': 'application/json'},
     body:json.encode( {
   "firstName" : fname,
   "lastName" : lname,
-  "email" : mail,
   "password" : pass,
-  "confirmPassword" : copass
+  "passwordConfirmation" : copass,
+      "email" : mail,
+      "phoneNumber" : "01557216874"
   })
   );
 
@@ -31,6 +32,8 @@ async{
     return responseData;
   } else{
     print('333333');
+    print(responseData['status']);
+    print(responseData['message']);
     throw Exception(responseData["message"] ?? "Unknown error");
  }
 

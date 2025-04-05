@@ -91,7 +91,10 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                 height: 20,
               ),
 
-           SectionGridCategory(screenWidth: screenWidth),
+           SectionGridCategory(screenWidth: screenWidth,
+           SideTitle: 'Categories',
+           numItems: 9,
+           ),
 
 
 

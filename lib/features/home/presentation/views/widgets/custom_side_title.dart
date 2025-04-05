@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomSideTitle extends StatelessWidget {
   const CustomSideTitle({
     super.key,
-    required this.screenWidth, required this.icon, required this.text,
+    required this.screenWidth, required this.icon, required this.text, this.color,
   });
 
   final double screenWidth;
 final String icon;
 final String text;
+final Color ?color;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,6 +28,7 @@ final String text;
           Text(
             text,
             style: TextStyle(
+              color: color,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w600,
 

@@ -143,7 +143,7 @@ class DetailsScanProductView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: screenWidth * .58,
+                    height: screenWidth * .6,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,

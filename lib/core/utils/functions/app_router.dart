@@ -10,6 +10,8 @@ import 'package:smart_mart/features/scan_code/presentation/view/scan_code_view.d
 import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
 import '../../../Main_screen.dart';
+import '../../../features/category/presentation/views/category_page_view.dart';
+import '../../../features/category/presentation/views/item_category_page_view.dart';
 import '../../../features/payment/presentation/views/add_cart_cards_page.dart';
 import '../../../features/payment/presentation/views/complete_page_view.dart';
 import '../../../features/payment/presentation/views/payment_page_view.dart';
@@ -34,8 +36,8 @@ abstract class AppRouter {
   static const kForgetPasswordPage='/ForgetPasswordPageView' ;
   static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
   static const kCreateNewPasswordpage='/CreateNewPasswordpageView';
-  // static const khome='/HomePageView';
-  static const khome='/';
+  static const khome='/HomePageView';
+  // static const khome='/';
   static const kdetails='/DetailsPageView';
   static const kwishList='/WishlistPageView';
   static const kScanPage='/ScanCodeView';
@@ -43,11 +45,19 @@ abstract class AppRouter {
   static const kaddCartCard='/AddCartCardsPage';
   static const kcompletePayment='/CompletePageView';
   static const kSearch='/SearchPageView';
+  static const kcategory='/CategoryPageView';
+  static const kitemCategory='/ItemCategoryPageView';
    static final router = GoRouter(
 
     routes: [
        ShellRoute(
          routes: [
+           GoRoute(path: kitemCategory,
+           builder:(context,state)=>ItemCategoryPageView()
+           ),
+           GoRoute(path: kcategory,
+           builder: (context,state)=>CategoryPageView()
+            ),
            GoRoute(path: kSearch,
            builder: (context, state)=>SearchPageView()
            ),

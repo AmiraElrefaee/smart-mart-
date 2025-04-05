@@ -60,7 +60,11 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
               final List<Barcode> barcodes = capture.barcodes;
               if (barcodes.isNotEmpty) {
                 final String? result = barcodes.first.rawValue;
+                print('here the scan code 222222222............................. ');
+                print(result);
                 if (result != null && result.isNotEmpty) {
+                  print('here the scan code............................. ');
+                  print(result);
                   setState(() {
                     scanResult = result;
                     isScanning = false;

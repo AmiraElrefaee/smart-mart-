@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smart_mart/const.dart';
 
+import '../../../../../core/utils/functions/Navigate_to_page.dart';
+import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../../core/widgets/custom_title.dart';
+import '../../managers/OTP_sign_up_cubit/otp_sign_up_cubit.dart';
 import 'custom_text_form_OTP.dart';
 
 class OtpViewBody extends StatelessWidget {
@@ -37,6 +41,20 @@ class OtpViewBody extends StatelessWidget {
       ),
     );
 
+    return BlocConsumer<OtpSignUpCubit, OtpSignUpState>(
+      listener: (context, state) {
+        if (state is OtpSignUpSuccess) {
+
+          print("Registration successful, navigating...");
+
+          navigateToPage(AppRouter.khome, context);
+
+        } else if (state is OtpSignUpFailure) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.errorMess)));
+        }
+      },
+  builder: (context, state) {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal:screenWidth*.09),
@@ -109,6 +127,8 @@ class OtpViewBody extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }
 

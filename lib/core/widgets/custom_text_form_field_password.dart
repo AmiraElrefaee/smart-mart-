@@ -29,13 +29,18 @@ bool obscureText=true ;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+
       obscureText:obscureText,
       onChanged:widget.onChanged ,
       onSaved:widget.onSaved ,
       validator: (value){
-        if (value?.isEmpty?? true){
+        if (value == null || value.isEmpty){
           return 'field is require';
-        }else{
+        }
+        else if(value.length<6){
+          return 'should be at least 6 chars';
+        }
+        else{
           return null;
         }
       }
@@ -48,6 +53,7 @@ bool obscureText=true ;
       ),
       // cursorColor: kprimaryColor,
       decoration: InputDecoration(
+
           focusedErrorBorder: buildBorder(
               Color(0xffFFA9AC),
               2.0

@@ -34,10 +34,12 @@ class _SignupViewBodyState extends State<SignupViewBody> {
      double screenWidth= MediaQuery.of(context).size.width;
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
+        navigateToPage(AppRouter.kAddPhoneNumPage, context);
       if (state is RegisterSuccess) {
+
         print("Registration successful, navigating...");
 
-          navigateToPage(AppRouter.kAddPhoneNumPage, context);
+          // navigateToPage(AppRouter.kAddPhoneNumPage, context);
 
       } else if (state is RegisterFailure) {
         ScaffoldMessenger.of(context)
