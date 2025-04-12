@@ -10,6 +10,7 @@ import 'package:smart_mart/features/scan_code/presentation/view/scan_code_view.d
 import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
 import '../../../Main_screen.dart';
+import '../../../features/category/data/models/category_model.dart';
 import '../../../features/category/presentation/views/category_page_view.dart';
 import '../../../features/category/presentation/views/item_category_page_view.dart';
 import '../../../features/payment/presentation/views/add_cart_cards_page.dart';
@@ -36,8 +37,8 @@ abstract class AppRouter {
   static const kForgetPasswordPage='/ForgetPasswordPageView' ;
   static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
   static const kCreateNewPasswordpage='/CreateNewPasswordpageView';
-  static const khome='/HomePageView';
-  // static const khome='/';
+  // static const khome='/HomePageView';
+  static const khome='/';
   static const kdetails='/DetailsPageView';
   static const kwishList='/WishlistPageView';
   static const kScanPage='/ScanCodeView';
@@ -53,33 +54,41 @@ abstract class AppRouter {
        ShellRoute(
          routes: [
            GoRoute(path: kitemCategory,
-           builder:(context,state)=>ItemCategoryPageView()
+           builder:(context,state){
+
+             return ItemCategoryPageView();
+
+           },
+
            ),
            GoRoute(path: kcategory,
-           builder: (context,state)=>CategoryPageView()
+           builder: (context,state){
+
+             return CategoryPageView();
+           }
             ),
            GoRoute(path: kSearch,
-           builder: (context, state)=>SearchPageView()
+           builder: (context, state)=> const SearchPageView()
            ),
            GoRoute(
              path: khome,
-             builder: (context, state) => HomePageView(),
+             builder: (context, state) =>const HomePageView(),
            ),
            GoRoute(
              path: '/favorites',
-             builder: (context, state) => WishlistPageView(),
+             builder: (context, state) =>const WishlistPageView(),
            ),
            GoRoute(
              path: '/profile',
-             builder: (context, state) => WishlistPageView(),
+             builder: (context, state) => const WishlistPageView(),
            ),
            GoRoute(
              path: '/cart',
-             builder: (context, state) => WishlistPageView(),
+             builder: (context, state) =>const  WishlistPageView(),
            ),
            GoRoute(
              path: kScanPage,
-             builder: (context, state) => ScanCodeView(),
+             builder: (context, state) =>const ScanCodeView(),
            ),
            GoRoute(
              path:kdetails,
@@ -90,32 +99,32 @@ abstract class AppRouter {
            ),
          ],
        builder: (context, state, child) {
-  return MainScreen(child: child);},
+             return MainScreen(child: child);},
        ),
       GoRoute(path: kcompletePayment,
-          builder: (context, state )=>CompletePageView()
+          builder: (context, state )=>const CompletePageView()
       ),
       GoRoute(path: kPayment,
-      builder: (context, state )=>PaymentPageView()
+      builder: (context, state )=>const PaymentPageView()
       ),
       GoRoute(path:kaddCartCard ,
-      builder: (context,state)=>AddCartCardsPage()
+      builder: (context,state)=> const AddCartCardsPage()
       ),
       GoRoute(
         path: kScanPage,
-        builder: (context, state) => ScanCodeView(),
+        builder: (context, state) =>const ScanCodeView(),
       ),
       GoRoute(path: khome,
-     builder: (contxet,state)=> HomePageView()
+     builder: (contxet,state)=>const HomePageView()
       ),
       GoRoute(path: kdetails,
-          builder: (contxet,state)=> DetailsPsgeView()
+          builder: (contxet,state)=>const DetailsPsgeView()
       ),
       GoRoute(path: kCreateNewPasswordpage,
-      builder: (context,state)=>CreateNewPasswordpageView()),
+      builder: (context,state)=> const CreateNewPasswordpageView()),
 
       GoRoute(path: kOtpForgetPasswordPage,
-      builder: (context, state )=>OtpForgetPasswordPageView()
+      builder: (context, state )=>  const OtpForgetPasswordPageView()
       ),
 
       GoRoute(path: kForgetPasswordPage,

@@ -6,7 +6,7 @@ import 'package:smart_mart/features/login/domain/entity/login_entity.dart';
 import '../../../../const.dart';
 class LoginRemoteDataSource{
 
-  final url=Uri.parse('${ApiConstants.baseUrl}/api/sessions/refresh');
+  final url=Uri.parse('${ApiConstants.baseUrl}/sessions');
 
   Future<Token> login(String email, String password)async{
     final response = await http.post(
@@ -20,7 +20,7 @@ class LoginRemoteDataSource{
 
     if (responseData['status'] == "success") {
       print('5555522');
-      return Token(token: responseData['data']['token']);
+      return Token(token: responseData['accessToken']);
     } else{
       print('33333322');
       print(responseData["message"]);

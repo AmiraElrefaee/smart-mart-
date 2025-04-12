@@ -14,11 +14,13 @@ class CustomTextFormOTP extends StatelessWidget {
     required this.screenHeight,
     required this.screenWidth,
     required this.defaultPinTheme,
+    required this.onCompleted,
   });
 
   final double screenHeight;
   final double screenWidth;
   final PinTheme defaultPinTheme;
+ final  void Function(String)? onCompleted;
 
   final TextEditingController _pinController = TextEditingController();
 
@@ -44,11 +46,13 @@ class CustomTextFormOTP extends StatelessWidget {
             border: Border.all(color: kColor),
           ),
         ),
-        onCompleted: (pin) {
-          debugPrint("اللي اتكتب: $pin");
-          debugPrint("من الكنترولر: ${_pinController.text}");
-          BlocProvider.of<OtpSignUpCubit>(context).OtpSignUp(OTP: pin);
-        },
+        onCompleted: onCompleted
+
+        //     (pin) {
+        //   debugPrint("اللي اتكتب: $pin");
+        //   debugPrint("من الكنترولر: ${_pinController.text}");
+        //   BlocProvider.of<OtpSignUpCubit>(context).OtpSignUp(OTP: pin);
+        // },
       ),
     );
   }

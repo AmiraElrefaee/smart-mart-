@@ -9,8 +9,7 @@ class OtpSignUpCubit extends Cubit<OtpSignUpState> {
   OtpSignUpCubit(this.otpSignUpRepo) : super(OtpSignUpInitial());
   final OtpSignUpRepo otpSignUpRepo ;
 
-  Future<void> OtpSignUp
-      ({ required String OTP,})
+  Future<void> OtpSignUp({ required String OTP,})
   async{
     emit(OtpSignUpLoading());
     try{
@@ -31,4 +30,21 @@ class OtpSignUpCubit extends Cubit<OtpSignUpState> {
       emit(OtpSignUpFailure(error.toString()));
     }
   }
+
+  Future<void> resendVerificationCode() async {
+    emit(ResendOtpLoading());
+    try {
+      final response = await otpSignUpRepo.resendVerificationCode();
+      if (response["status"] == "success") {
+        emit(ResendOtpSuccess());
+      } else {
+        emit(ResendOtpFailure(response["message"] ?? "Unknown error"));
+      }
+    } catch (error) {
+      print('⚠️ resend error: $error');
+      emit(ResendOtpFailure(error.toString()));
+    }
+  }
+
+
 }

@@ -17,3 +17,9 @@ final class OtpSignUpFailure extends OtpSignUpState {
   OtpSignUpFailure(this.errorMess);
 
 }
+class ResendOtpLoading extends OtpSignUpState {}
+class ResendOtpSuccess extends OtpSignUpState {}
+class ResendOtpFailure extends OtpSignUpState {
+  final String error;
+  ResendOtpFailure(this.error);
+}

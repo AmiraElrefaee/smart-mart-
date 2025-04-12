@@ -45,19 +45,6 @@ class CreateNewPasswordPageViewBody extends StatelessWidget {
                   ),
 
                   FormCreateNewPassword(),
-                  SizedBox(height: screenHeight * .32),
-
-                  CustomBotton(
-                    text: 'Reset Password',
-                    background: kColor,
-                    colorText: Colors.white,
-                    screenHeight: screenHeight,
-                    screenWidth: screenWidth,
-                    onTap: (){},
-                  )
-
-
-
 
                 ],),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smart_mart/core/utils/functions/app_router.dart';
@@ -10,10 +11,21 @@ import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../../core/widgets/custom_title.dart';
+import '../../managers/OTP_sign_up_cubit/otp_sign_up_cubit.dart';
+import '../../managers/forget_password_cubit/foget_password_cubit.dart';
 import 'custom_text_form_OTP.dart';
 
-class OtpForgetPasswordViewBody extends StatelessWidget {
-  const OtpForgetPasswordViewBody({super.key});
+class OtpForgetPasswordViewBody extends StatefulWidget {
+  const OtpForgetPasswordViewBody({super.key,
+
+  });
+
+  @override
+  State<OtpForgetPasswordViewBody> createState() => _OtpForgetPasswordViewBodyState();
+}
+
+class _OtpForgetPasswordViewBodyState extends State<OtpForgetPasswordViewBody> {
+  String ?otp;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +52,18 @@ class OtpForgetPasswordViewBody extends StatelessWidget {
       ),
     );
 
+    return BlocConsumer<FogetPasswordCubit, FogetPasswordState>(
+      listener: (context, state) {
+
+        if ( state is OtpForgetPasswordSuccess){
+
+          print('sucess send your mail');
+        } else if(state is OtpForgetPasswordFailure){
+          navigateToPage(AppRouter.kCreateNewPasswordpage, context);
+          print('send email in forget password vies body have proble : ${state.error}');
+        }
+      },
+  builder: (context, state) {
     return SafeArea(
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -63,7 +87,11 @@ class OtpForgetPasswordViewBody extends StatelessWidget {
                       '',
                 ),
 
-                CustomTextFormOTP(screenHeight: screenHeight,
+                CustomTextFormOTP(
+                    onCompleted: (pin){
+                      otp=pin;
+                    },
+                    screenHeight: screenHeight,
                     screenWidth: screenWidth,
                     defaultPinTheme: defaultPinTheme),
 
@@ -80,7 +108,17 @@ class OtpForgetPasswordViewBody extends StatelessWidget {
                     colorText: Colors.white,
                     screenHeight: screenHeight,
                     screenWidth: screenWidth,
-                      onTap:()=>navigateToPage(AppRouter.kCreateNewPasswordpage,context)
+                      onTap:(){
+                        if (otp != null && otp!.isNotEmpty) {
+                          BlocProvider.of<FogetPasswordCubit>(context).OtpForgetPassword(OTP: otp!);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Please enter the OTP')),
+                          );
+                        }
+
+                    }
+
 
                     // onTap: (){
                     //
@@ -101,6 +139,9 @@ class OtpForgetPasswordViewBody extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: InkWell(
+                        onTap: (){
+                          BlocProvider.of<OtpSignUpCubit>(context).resendVerificationCode();
+                        },
                         child: Text('Resend Code',
                           style: TextStyle(
                               decoration: TextDecoration.underline,
@@ -121,5 +162,7 @@ class OtpForgetPasswordViewBody extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }

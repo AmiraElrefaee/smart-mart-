@@ -7,8 +7,7 @@ import '../../../../const.dart';
 class OtpSignUpRemoteDataSource{
 
   Future<Map<String, dynamic>>OtpSignUP
-      (String OTP)
-  async{
+      (String OTP) async{
     final url=Uri.parse('${ApiConstants.baseUrl}/users/verify');
 
     final response =await http.post(url,
@@ -32,5 +31,22 @@ class OtpSignUpRemoteDataSource{
       throw Exception(responseData["message"] ?? "Unknown error");
     }
 
+  }
+
+  Future<Map<String, dynamic>> resendVerificationCode() async {
+    final url = Uri.parse('${ApiConstants.baseUrl}/users/resend-verification');
+    final response = await http.get(
+      url,
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    print("🔄 Resend Code Response: ${response.body}");
+    final responseData = jsonDecode(response.body);
+
+    if (responseData['status'] == "success") {
+      return responseData;
+    } else {
+      throw Exception(responseData["message"] ?? "Unknown error");
+    }
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smart_mart/features/sign_up/presentation/views/widgets/section_form_forget_password.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
@@ -11,6 +13,7 @@ import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../../core/widgets/custom_side_text.dart';
 import '../../../../../core/widgets/custom_title.dart';
 import '../../../../../core/widgets/custom_text_form_filed.dart';
+import '../../managers/forget_password_cubit/foget_password_cubit.dart';
 import 'custom_form_number.dart';
 
 class ForgetPasswordViewBody extends StatelessWidget {
@@ -20,6 +23,17 @@ class ForgetPasswordViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenHeight= MediaQuery.of(context).size.height;
     double screenWidth= MediaQuery.of(context).size.width;
+    return BlocConsumer<FogetPasswordCubit, FogetPasswordState>(
+  listener: (context, state) {
+
+   if ( state is senEmailSuccess){
+    print('sucess send your mail');
+   } else if(state is senEmailFailure){
+     navigateToPage(AppRouter.kOtpForgetPasswordPage, context);
+     print('send email in forget password vies body have proble : ${state.errorMess}');
+   }
+  },
+  builder: (context, state) {
     return SafeArea(
           child: GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
@@ -48,38 +62,25 @@ class ForgetPasswordViewBody extends StatelessWidget {
                   text: 'Email address',
                 ),
               ),
-              CustomTextFormFiled(
-                hint: 'enter your email address',
-              ),
 
+              sectionFormForgetPassword(screenHeight: screenHeight,
+                  screenWidth: screenWidth),
 
-              Padding(
-                padding:  EdgeInsets.only(top: screenHeight*.05,
-                bottom: screenHeight*.03
-                ),
-                child:  CustomBotton(
-                  text: 'Send code',
-                  colorText: Colors.white,
-                  background:kColor ,
-                  screenHeight:screenHeight ,
-                  screenWidth: screenWidth,
-                    onTap:()=>navigateToPage(AppRouter.kOtpForgetPasswordPage,context)
-                  // onTap: (){
-                  //   GoRouter.of(context).push(AppRouter.kOtpForgetPasswordPage);
-                  // },
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Didn’t Receive the Code ?',
+                  Text('Remember Password ?',
                     style: Styles.Urbanist25.copyWith(color: kcolor3,
                         fontSize: screenHeight*.018),),
 
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: InkWell(
-                      child: Text('Resend Code',
+                      onTap: (){
+                        GoRouter.of(context).pop();
+                        // navigateToPage(AppRouter.kloginPage, context);
+                      },
+                      child: Text(' Log in',
                         style: TextStyle(
                             decoration: TextDecoration.underline,
                             // decorationThickness: 2,
@@ -96,5 +97,8 @@ class ForgetPasswordViewBody extends StatelessWidget {
                   ),
                 ),
           ));
+  },
+);
   }
 }
+

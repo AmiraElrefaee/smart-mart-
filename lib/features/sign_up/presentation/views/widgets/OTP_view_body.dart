@@ -78,7 +78,11 @@ class OtpViewBody extends StatelessWidget {
               ),
             ),
 
-              CustomTextFormOTP(screenHeight: screenHeight,
+              CustomTextFormOTP(
+                  onCompleted: (pin){
+                    BlocProvider.of<OtpSignUpCubit>(context).OtpSignUp(OTP: pin);
+                  },
+                  screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   defaultPinTheme: defaultPinTheme),
 
@@ -92,6 +96,10 @@ class OtpViewBody extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: InkWell(
+                        onTap: (){
+                          BlocProvider.of<OtpSignUpCubit>(context).resendVerificationCode();
+                        }
+                        ,
                         child: Text('Resend Code',
                                         style: TextStyle(
                           decoration: TextDecoration.underline,

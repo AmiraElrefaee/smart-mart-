@@ -14,6 +14,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginLoading());
       try {
         final user = await loginUseCase(mail, pass);
+        // String a=user.token;
         emit(LoginSuccess(user));
 
       } catch (e) {

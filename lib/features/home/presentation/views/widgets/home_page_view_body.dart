@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +20,7 @@ import 'package:smart_mart/features/home/presentation/views/widgets/section_smar
 import 'package:smart_mart/features/home/presentation/views/widgets/section_up_to_offers.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../../category/presentation/managers/category_cubit/category_cubit.dart';
 import '../../../../on_boarding/presentation/views/widgets/section_trigger_points.dart';
 import 'Custom_show_discount_item.dart';
 import 'Custom_show_item.dart';
@@ -42,6 +44,10 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
   void dispose() {
     _pageController.dispose(); // تحرير الذاكرة عند التخلص من الـ Widget
     super.dispose();
+  }
+  void initState() {
+    super.initState();
+    context.read<CategoryCubit>().fetchCategories();
   }
 
   @override

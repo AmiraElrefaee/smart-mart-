@@ -19,7 +19,7 @@ async{
   "password" : pass,
   "passwordConfirmation" : copass,
       "email" : mail,
-      "phoneNumber" : "01557216874"
+      "phoneNumber" : "01557216851"
   })
   );
 

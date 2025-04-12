@@ -1,14 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_mart/features/sign_up/presentation/views/widgets/OTP_forget_password_view_body.dart';
+
+import '../../../../core/utils/service_locator.dart';
+import '../../data/repo_imple/forget_password_repo_imple.dart';
+import '../managers/forget_password_cubit/foget_password_cubit.dart';
 
 class OtpForgetPasswordPageView extends StatelessWidget {
   const OtpForgetPasswordPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OtpForgetPasswordViewBody() ,
+    return BlocProvider(
+      create: (context) => FogetPasswordCubit(getIt.get<ForgetPasswordRepoImple>()),
+      child: Scaffold(
+        body: OtpForgetPasswordViewBody(),
+      ),
     );
   }
 }
