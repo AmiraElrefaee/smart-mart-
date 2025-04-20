@@ -31,9 +31,9 @@ class LoginViewBody extends StatelessWidget {
   listener: (context, state) {
     if (state is LoginSuccess) {
       print("login successful, navigating...");
-
       navigateToPage(AppRouter.khome, context);
-
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('login success')));
     } else if (state is LoginFailure) {
 
       ScaffoldMessenger.of(context)

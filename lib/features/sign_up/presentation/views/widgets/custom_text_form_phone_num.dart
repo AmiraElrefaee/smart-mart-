@@ -21,7 +21,11 @@ class CustomTextFormPhoneNum extends StatelessWidget {
       validator: (value){
         if (value?.isEmpty?? true){
           return 'field is require';
-        }else{
+        }
+        else if (value is num ){
+          return 'phone number is require';
+        }
+        else{
           return null;
         }
       },

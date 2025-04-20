@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -12,13 +13,19 @@ import '../../features/login/data/api_service/login_remote_data_source.dart';
 import '../../features/login/data/repo_imple/login_repo_imple.dart';
 import '../../features/login/domain/repo/login_repo.dart';
 import '../../features/login/domain/use_case/login_use_case.dart';
+import '../../features/scan_code/data/api_service/scanned_item_remote_data_source.dart';
+import '../../features/scan_code/data/repo_imple/repo_imple_sacnned_item.dart';
+import '../../features/sign_up/data/api_service/OTP_register_remote_data_source_dio.dart';
 import '../../features/sign_up/data/api_service/OTP_sign_up_remote_data_source.dart';
+import '../../features/sign_up/data/api_service/forget_password_remote_data_so9urce_dio.dart';
 import '../../features/sign_up/data/api_service/forget_password_remote_data_source.dart';
+import '../../features/sign_up/data/api_service/register_remote_data_source_dio.dart';
 import '../../features/sign_up/data/api_service/sign_up_remote_data_source.dart';
 import '../../features/sign_up/data/repo_imple/OTP_sign_up_repo_imple.dart';
 import '../../features/sign_up/data/repo_imple/forget_password_repo_imple.dart';
 import '../../features/sign_up/data/repo_imple/register_repo_imple.dart';
 import '../../features/sign_up/domain/repo/register_repo.dart';
+import '../network/api_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -29,7 +36,14 @@ void setupLocator() {
 //   getIt.registerLazySingleton<RegisterRmoteDataSource>(() => RegisterRemoteDataSourceImpl());
 // hgvkldskldklsdk
   // ✅ تسجيل Repository
+getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
+    ()=>ScannedItemRemoteDataSourceImple(FirebaseFirestore.instance)
+);
+  getIt.registerLazySingleton<ScannedItemRepoImple>(
+      ()=>ScannedItemRepoImple(getIt<ScannedItemRemoteDataSourceImple>())
+  );
 
+//-------------------------------------------------------------
 
   getIt.registerLazySingleton<CategoryLocalDataSourceImple>(
       ()=>CategoryLocalDataSourceImple(Hive.box<CategoryModel>('category'))
@@ -49,11 +63,14 @@ void setupLocator() {
   );
 
 //-----------------------------------------------------------------------
-  getIt.registerLazySingleton<OtpForgetPasswordRemoteDataSource>(
-      ()=>OtpForgetPasswordRemoteDataSource()
+  getIt.registerLazySingleton<ForegtPasswordRemoteDataSourceDio>(
+      ()=>ForegtPasswordRemoteDataSourceDio(getIt<ApiService>())
   );
+  // getIt.registerLazySingleton<OtpForgetPasswordRemoteDataSource>(
+  //         ()=>OtpForgetPasswordRemoteDataSource()
+  // );
   getIt.registerLazySingleton<ForgetPasswordRepoImple>(
-      ()=>ForgetPasswordRepoImple(getIt<OtpForgetPasswordRemoteDataSource>()),
+      ()=>ForgetPasswordRepoImple(getIt<ForegtPasswordRemoteDataSourceDio>()),
   );
 
   //--------------------------------------
@@ -65,18 +82,38 @@ void setupLocator() {
   getIt.registerLazySingleton<OtpSignUpRemoteDataSource>(
         () => OtpSignUpRemoteDataSource(),
   );
-  getIt.registerLazySingleton<OtpSignUpRepoImple>(
-        () => OtpSignUpRepoImple(getIt<OtpSignUpRemoteDataSource>()),
+  getIt.registerLazySingleton<OtpRegisterRemoteDataSourceDio>(
+      ()=>OtpRegisterRemoteDataSourceDio(getIt<ApiService>())
   );
 
+
+  getIt.registerLazySingleton<OtpSignUpRepoImple>(
+        () => OtpSignUpRepoImple(getIt<OtpRegisterRemoteDataSourceDio>()),
+  );
+
+  // getIt.registerLazySingleton<OtpSignUpRepoImple>(
+  //       () => OtpSignUpRepoImple(getIt<OtpSignUpRemoteDataSource>()),
+  // );
+
 //----------------------------------------------------
+
+  getIt.registerLazySingleton<ApiService>(
+      ()=>ApiService()
+  );
 
   getIt.registerLazySingleton<RegisterRmoteDataSource>(
         () => RegisterRmoteDataSource(),
   );
-  getIt.registerLazySingleton<RegisterRepo>(
-        () => RegisterRepoImple(getIt<RegisterRmoteDataSource>()),
+  getIt.registerLazySingleton<RegisterRemoteDataSourceDio>(
+        () => RegisterRemoteDataSourceDio(getIt<ApiService>()),
   );
+
+  getIt.registerLazySingleton<RegisterRepo>(
+        () => RegisterRepoImple(getIt<RegisterRemoteDataSourceDio>()),
+  );
+  // getIt.registerLazySingleton<RegisterRepo>(
+  //       () => RegisterRepoImple(getIt<RegisterRmoteDataSource>()),
+  // );
 
   getIt.registerLazySingleton<RegisterUseCase>(
         () => RegisterUseCase(getIt<RegisterRepo>()),

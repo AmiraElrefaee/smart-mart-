@@ -14,11 +14,13 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String lname,
     required String mail,
     required String pass,
-    required String copass})
+    required String copass,
+  required num phone
+  })
   async{
  emit(RegisterLoading());
 try{
-  final response = await registerUseCase(fname, lname, mail, pass, copass);
+  final response = await registerUseCase(fname, lname, mail, pass, copass,phone);
   print('📌 Decoded Response: $response');
 
   if (response["status"] == "success") {

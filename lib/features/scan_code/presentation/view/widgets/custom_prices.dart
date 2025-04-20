@@ -8,7 +8,7 @@ class customPrices extends StatelessWidget {
   });
   final String title ;
   final String kindMoney;
-  final int  price;
+  final num  price;
   @override
   Widget build(BuildContext context) {
     return Row(

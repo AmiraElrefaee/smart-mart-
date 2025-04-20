@@ -37,8 +37,8 @@ abstract class AppRouter {
   static const kForgetPasswordPage='/ForgetPasswordPageView' ;
   static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
   static const kCreateNewPasswordpage='/CreateNewPasswordpageView';
-  // static const khome='/HomePageView';
-  static const khome='/';
+  static const khome='/HomePageView';
+  // static const khome='/';
   static const kdetails='/DetailsPageView';
   static const kwishList='/WishlistPageView';
   static const kScanPage='/ScanCodeView';

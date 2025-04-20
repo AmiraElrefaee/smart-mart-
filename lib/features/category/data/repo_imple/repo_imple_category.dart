@@ -18,6 +18,7 @@ import '../models/category_model.dart';
       final List<CategoryModel> data = await categoryRemoteDateSource.getRemoteCategories();
       await categoryLocalDataSource.CacheCategories(data);
       return await categoryLocalDataSource.GetCacheCategories();
+      // print(data[0].image);
       // return data;
     }
     catch(e){

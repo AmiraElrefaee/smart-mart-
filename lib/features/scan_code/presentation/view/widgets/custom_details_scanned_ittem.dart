@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../domain2/entity/entity_scanned_item.dart';
 import 'custom_add_or_minus.dart';
 import 'custom_photo_scanned_item.dart';
 
@@ -10,8 +11,11 @@ class customDetailsSCannedItem extends StatelessWidget {
     super.key,
     required this.screenHeight,
     required this.screenWidth,
+    required this.products,
+    required this.index
   });
-
+ final  int index;
+  final List<Product> products;
   final double screenHeight;
   final double screenWidth;
 
@@ -21,18 +25,22 @@ class customDetailsSCannedItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomPhotoScannedItem(screenHeight: screenHeight*.11, screenWidth: screenWidth*.18),
+        CustomPhotoScannedItem(
+          products: products,
+            index: index,
+            screenHeight: screenHeight*.11,
+            screenWidth: screenWidth*.18),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Text('Vitrac Strawberry Jam ',
+            Text(products[index].id,
               style: Styles.NexaBold14.copyWith(
                   fontWeight: FontWeight.w500
               ),
 
             ),
-            Text(' 850 gm',
+            Text('${products[index].weight}  gm',
               style: Styles.NexaBold14.copyWith(
                   fontWeight: FontWeight.w500
               ),),
@@ -40,7 +48,7 @@ class customDetailsSCannedItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('EGP 64.95',
+                Text('EGP ${products[index].price}',
                   style: TextStyle(
                       fontFamily: 'Urbanist'
                       ,fontSize: 16,
@@ -51,7 +59,7 @@ class customDetailsSCannedItem extends StatelessWidget {
                 SizedBox(
                   width: 5,
                 ),
-                Text('EGP 64.95',
+                Text('EGP ${products[index].price}',
 
                   style: TextStyle(
                     decoration: TextDecoration.lineThrough,
@@ -67,11 +75,6 @@ class customDetailsSCannedItem extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            // Container(
-            //   width: 140, // عرض الخط
-            //   height: 1, // طول الخط
-            //   color: Color(0xffDADADA), // لون الخط
-            // ),
             SizedBox(
               height: 5,
             ),

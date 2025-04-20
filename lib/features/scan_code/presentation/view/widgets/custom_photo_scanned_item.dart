@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../../domain2/entity/entity_scanned_item.dart';
+
 class CustomPhotoScannedItem extends StatelessWidget {
   const CustomPhotoScannedItem({
     super.key,
     required this.screenHeight,
-    required this.screenWidth,
+    required this.screenWidth, required this.index, required this.products,
   });
 
   final double screenHeight;
   final double screenWidth;
-
+  final  int index;
+  final List<Product> products;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +24,7 @@ class CustomPhotoScannedItem extends StatelessWidget {
               color: Color(0xffDADADA)
           )
       ),
-      child: Image.asset('assets/items/image 15.png',
+      child:Image.network(products[index].image,
         height: screenHeight,
         width: screenWidth,
       ),

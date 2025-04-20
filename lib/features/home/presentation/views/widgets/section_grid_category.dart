@@ -113,6 +113,7 @@ class SectionGridCategory extends StatelessWidget {
                 extra: state.categories[snapshot].name,  // استخدم title من الـ category
               );
             },
+
             child: Container(
               decoration: BoxDecoration(
                 color: Color(0xffF8F8F8),
@@ -121,10 +122,18 @@ class SectionGridCategory extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.network(state.categories[snapshot].image,
+          CachedNetworkImage(
 
-                  height:screenWidth * .21 ,
-                  ),
+          imageUrl: state.categories[snapshot].image,
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+          height: screenWidth * .21,
+          ),
+          //
+          // Image.network(state.categories[snapshot].image,
+          //
+          //         height:screenWidth * .21 ,
+          //         ),
                   // SizedBox(
                   //   height: screenWidth * .21,
                   //   child: CachedNetworkImage(imageUrl:state.categories[snapshot].image,

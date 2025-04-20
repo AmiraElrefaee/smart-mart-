@@ -56,11 +56,11 @@ class _OtpForgetPasswordViewBodyState extends State<OtpForgetPasswordViewBody> {
       listener: (context, state) {
 
         if ( state is OtpForgetPasswordSuccess){
-
-          print('sucess send your mail');
-        } else if(state is OtpForgetPasswordFailure){
           navigateToPage(AppRouter.kCreateNewPasswordpage, context);
-          print('send email in forget password vies body have proble : ${state.error}');
+          print('sucess send your otp');
+        } else if(state is OtpForgetPasswordFailure){
+
+          print('OtpForgetPasswordViewBody have proble : ${state.error}');
         }
       },
   builder: (context, state) {
@@ -110,6 +110,7 @@ class _OtpForgetPasswordViewBodyState extends State<OtpForgetPasswordViewBody> {
                     screenWidth: screenWidth,
                       onTap:(){
                         if (otp != null && otp!.isNotEmpty) {
+                          print('the otp is not null');
                           BlocProvider.of<FogetPasswordCubit>(context).OtpForgetPassword(OTP: otp!);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -140,7 +141,7 @@ class _OtpForgetPasswordViewBodyState extends State<OtpForgetPasswordViewBody> {
                       padding: const EdgeInsets.only(left: 8.0),
                       child: InkWell(
                         onTap: (){
-                          BlocProvider.of<OtpSignUpCubit>(context).resendVerificationCode();
+                          BlocProvider.of<FogetPasswordCubit>(context).reseOtpForgetPassword();
                         },
                         child: Text('Resend Code',
                           style: TextStyle(

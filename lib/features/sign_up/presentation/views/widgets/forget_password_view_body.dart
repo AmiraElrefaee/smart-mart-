@@ -27,9 +27,10 @@ class ForgetPasswordViewBody extends StatelessWidget {
   listener: (context, state) {
 
    if ( state is senEmailSuccess){
+     navigateToPage(AppRouter.kOtpForgetPasswordPage, context);
     print('sucess send your mail');
    } else if(state is senEmailFailure){
-     navigateToPage(AppRouter.kOtpForgetPasswordPage, context);
+
      print('send email in forget password vies body have proble : ${state.errorMess}');
    }
   },

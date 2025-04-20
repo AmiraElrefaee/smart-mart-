@@ -13,10 +13,13 @@ import '../../../../../const.dart';
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../../core/widgets/custom_botton.dart';
+import '../../../../../core/widgets/custom_side_text.dart';
 import '../../../../../core/widgets/custom_text_form_field_password.dart';
 import '../../../../../core/widgets/custom_text_form_filed.dart';
 import '../../../domain/entity/register_entity.dart';
 import '../../managers/register_cubit/register_cubit.dart';
+import 'custom_form_number.dart';
+import 'custom_text_form_phone_num.dart';
 
 
 class CustonFormSignup extends StatefulWidget {
@@ -34,6 +37,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String ?fname, lname, pass, copass,mail;
+  num ?phone;
    // RegisterEntity user;
 
   Widget build(BuildContext context) {
@@ -86,6 +90,15 @@ class _addNoteFormState extends State<CustonFormSignup> {
             ),
           ),
 
+          SideTitleSection(text: 'Phone number',),
+          CustomTextFormPhoneNum(
+            onChanged: ( value){
+              phone=value as num;
+              },
+          ),
+          // CustomFormNumber(
+          //   on
+          // ),
           SideTitleSection(text: 'Password',),
 
           Padding(
@@ -135,6 +148,7 @@ class _addNoteFormState extends State<CustonFormSignup> {
                         mail: mail!,
                         pass: pass!,
                         copass: copass!,
+                        phone: phone!
                       );
                     }
                     // context.read<RegisterCubit>()
@@ -151,40 +165,12 @@ class _addNoteFormState extends State<CustonFormSignup> {
               }
           ),
 
-          // BlocBuilder<AddNoteCubit, AddNoteState>(
-          //   builder: (context, state) {
-          //     return CustomBottom(
-          //       isLoading: state is AddNoteLoading ? true : false,
-          //       onTap: () {
-          //         if (formKey.currentState!.validate()) {
-          //           formKey.currentState!.save();
-          //           saveNote(context);
-          //
-          //         } else {
-          //           autovalidateMode = AutovalidateMode.always;
-          //           setState(() {
-          //
-          //           });
-          //         }
-          //       },
-          //     );
-          //   },
-          // ),
 
         ],
       ),
     );
   }
 
-// void saveNote(BuildContext context) {
-//   DateTime now=DateTime.now();
-//   String formattedDay=DateFormat('yyy-MM-dd').format(now);
-//   var notModel = NoteModel(title: title!,
-//       subTitle: subTitle!,
-//       date: formattedDay,
-//       color: Colors.brown.value);
-//   BlocProvider.of<AddNoteCubit>(context).addNote(notModel);
-// }
 }
 
 

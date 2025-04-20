@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:smart_mart/features/scan_code/presentation/view/widgets/scetion_my_darggle_sheet.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section-title_app_bar.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_box_message.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_draggle_total_num.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/square_camera.dart';
 
+import '../../managers/cubit_scanned_item/scanned_item_cubit.dart';
 import '../details_sacn_product.dart';
 
 class ScanCodeViewBody extends StatefulWidget {
@@ -24,6 +27,8 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
   void initState() {
     super.initState();
     startScanning();
+    // context.read<ScannedItemCubit>().fetchProduct();
+
   }
 
   @override

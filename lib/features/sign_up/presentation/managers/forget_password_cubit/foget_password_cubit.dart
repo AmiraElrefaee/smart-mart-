@@ -14,7 +14,7 @@ class FogetPasswordCubit extends Cubit<FogetPasswordState> {
       final response = await forgetPasswordRepo.OtpForgetPassword(OTP);
       print('📌 Decoded Response: $response');
 
-      if (response["status"] == "success") {
+      if (response["message"] == "Code verified successfully") {
         print('✅ Success! Emitting send otp to your mail ...');
         emit(OtpForgetPasswordSuccess());
       } else {
@@ -24,7 +24,7 @@ class FogetPasswordCubit extends Cubit<FogetPasswordState> {
     }
     catch(error){
 
-      print('⚠️ here cubit error: $error');
+      print('⚠️ here cubit error OtpForgetPasswordFailure: $error');
       emit(OtpForgetPasswordFailure(error.toString()));
     }
   }
@@ -71,7 +71,7 @@ class FogetPasswordCubit extends Cubit<FogetPasswordState> {
     }
   }
 
-  Future<void> resendOtpForgetPassword() async {
+  Future<void> reseOtpForgetPassword() async {
     emit(ResendOtpLoading());
     try {
       final response = await forgetPasswordRepo.resendOtpForgetPassword();
