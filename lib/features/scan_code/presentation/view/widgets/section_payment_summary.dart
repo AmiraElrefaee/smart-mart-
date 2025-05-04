@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_show_scanned_item.dart';
 
-import '../../../domain2/entity/entity_scanned_item.dart';
+
+import '../../../../../core/domain/entities/scanned_product_model.dart';
 import 'custom_line.dart';
 import 'custom_prices.dart';
 
 class SectionPaymentSummary extends StatelessWidget {
   const SectionPaymentSummary({
     super.key,
-    required this.screenWidth, required this.products,
+    required this.screenWidth,
+    required this.products,
   });
 
   final double screenWidth;
@@ -63,7 +65,7 @@ class SectionPaymentSummary extends StatelessWidget {
           child: customPrices(
             title: 'Total',
             kindMoney: 'EGP',
-            price: Total()   ??0 ,
+            price: Total() ?? 0 ,
           ),
 
         )

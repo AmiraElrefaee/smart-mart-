@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../../category/data/models/sub_category_model.dart';
 import '../../../../details_item/presentation/views/widgets/section_description_and_higlight.dart';
 import '../../../../details_item/presentation/views/widgets/section_open_link.dart';
 import '../../../../details_item/presentation/views/widgets/section_prices.dart';
@@ -31,13 +32,15 @@ class DetailsScanProductView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SectionShowProductPhoto(screenWidth: screenWidth),
+                  SectionShowProductPhoto(screenWidth: screenWidth, photo: '',),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SectionOpenLink(),
+                        SectionOpenLink(
+                          brand: '',
+                        ),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           margin: EdgeInsets.only(bottom: 10),
@@ -68,12 +71,18 @@ class DetailsScanProductView extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: SectionPrices(),
+                          child: SectionPrices(
+                            price: 0,
+                            discount: 0,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  SectionDEscriptionAndHighlight(screenWidth: screenWidth),
+                  SectionDEscriptionAndHighlight(screenWidth: screenWidth,
+                  Description: '',
+                    highlights: '',
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Text(
@@ -150,8 +159,26 @@ class DetailsScanProductView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(left: 15),
-                          child: CustomShowItem(screenWidth: screenWidth),
-                        );
+                          child: CustomShowItem(screenWidth: screenWidth,
+                        item: BestSeller(
+                        id: '1',
+                        title: 'Sample Item',
+                        price: 100.0,
+                        brand: 'Sample Brand',
+                        description: 'Sample Description',
+                        highlights: 'Sample Highlights',
+                        barcode: '123456789',
+                        stock: 10,
+                        itemWeight: '500g',
+                        subCategoryId: 'sub1',
+                        categoryId: 'cat1',
+                        sold: 50,
+                        image: 'sample_image_url',
+                        rating: 4.5,
+                        discount: 10,
+                        createdAt: '2025-04-26',
+                        ),
+                        ));
                       },
                     ),
                   ),

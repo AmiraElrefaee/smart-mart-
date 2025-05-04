@@ -23,17 +23,6 @@ class _CategoryPageViewBodyState extends State<CategoryPageViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    // استقبل البيانات المرسلة عبر state.extra
-    // final state = GoRouter.of(context).state;
-    //
-    // if (state!.extra == null) {
-    //   // التعامل مع الحالة عندما لا تكون هناك بيانات extra
-    //   return Center(child: Text('No categories available.'));
-    // }
-    //
-    // // التأكد من تحويل البيانات إلى النوع المناسب
-    // final int legnth = state?.extra != null ? state!.extra as int : 6;
-
 
     double screenWidth = MediaQuery.of(context).size.width;
 

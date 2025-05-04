@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../const.dart';
+import '../../../../../core/domain/entities/scanned_product_model.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../domain2/entity/entity_scanned_item.dart';
+
 import 'custom_add_or_minus.dart';
 import 'custom_photo_scanned_item.dart';
 
@@ -11,11 +12,11 @@ class customDetailsSCannedItem extends StatelessWidget {
     super.key,
     required this.screenHeight,
     required this.screenWidth,
-    required this.products,
-    required this.index
+
+    required this.index, required this.products
   });
  final  int index;
-  final List<Product> products;
+  final  List<Product>  products;
   final double screenHeight;
   final double screenWidth;
 
@@ -26,7 +27,7 @@ class customDetailsSCannedItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomPhotoScannedItem(
-          products: products,
+          image: products[index].imageUrl,
             index: index,
             screenHeight: screenHeight*.11,
             screenWidth: screenWidth*.18),
@@ -34,13 +35,18 @@ class customDetailsSCannedItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Text(products[index].id,
+            Text('${products[index].title}'
+              // products[index].id
+              ,
               style: Styles.NexaBold14.copyWith(
                   fontWeight: FontWeight.w500
               ),
 
             ),
-            Text('${products[index].weight}  gm',
+            Text(
+                '${products[index].itemWeight}  gm'
+
+              ,
               style: Styles.NexaBold14.copyWith(
                   fontWeight: FontWeight.w500
               ),),
@@ -48,7 +54,9 @@ class customDetailsSCannedItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('EGP ${products[index].price}',
+                Text('EG ${products[index].price}'
+
+                  ,
                   style: TextStyle(
                       fontFamily: 'Urbanist'
                       ,fontSize: 16,
@@ -59,7 +67,8 @@ class customDetailsSCannedItem extends StatelessWidget {
                 SizedBox(
                   width: 5,
                 ),
-                Text('EGP ${products[index].price}',
+                Text('EGP ${products[index].price}'
+                  ,
 
                   style: TextStyle(
                     decoration: TextDecoration.lineThrough,
@@ -86,6 +95,7 @@ class customDetailsSCannedItem extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.only(top: screenWidth*.05),
           child: CustomAddOrMinusBotton(
+            number: 1,
             screenHeight:32,
             screenWidth: screenWidth*.21,
           ),

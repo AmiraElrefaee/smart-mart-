@@ -7,14 +7,20 @@ import 'package:smart_mart/features/sign_up/domain/use_case/register_use_case.da
 
 import '../../features/category/data/api_service/category_local_data_source.dart';
 import '../../features/category/data/api_service/category_remote_data_source.dart';
+import '../../features/category/data/api_service/sub_category_by_id_remote_data_source.dart';
 import '../../features/category/data/models/category_model.dart';
+import '../../features/category/data/repo_imple/RepoSubCategoryImple.dart';
 import '../../features/category/data/repo_imple/repo_imple_category.dart';
 import '../../features/login/data/api_service/login_remote_data_source.dart';
+import '../../features/login/data/api_service/refresh_token_remote_data_source_dio.dart';
 import '../../features/login/data/repo_imple/login_repo_imple.dart';
+import '../../features/login/data/repo_imple/refresh_token_repo_imple.dart';
 import '../../features/login/domain/repo/login_repo.dart';
 import '../../features/login/domain/use_case/login_use_case.dart';
+import '../../features/login/presentation/managers/refresh_token_cubit/refresh_token_cubit.dart';
 import '../../features/scan_code/data/api_service/scanned_item_remote_data_source.dart';
 import '../../features/scan_code/data/repo_imple/repo_imple_sacnned_item.dart';
+import '../../features/scan_code/presentation/managers/     scanned_product_socket/scanned_product_socket_cubit.dart';
 import '../../features/sign_up/data/api_service/OTP_register_remote_data_source_dio.dart';
 import '../../features/sign_up/data/api_service/OTP_sign_up_remote_data_source.dart';
 import '../../features/sign_up/data/api_service/forget_password_remote_data_so9urce_dio.dart';
@@ -26,6 +32,7 @@ import '../../features/sign_up/data/repo_imple/forget_password_repo_imple.dart';
 import '../../features/sign_up/data/repo_imple/register_repo_imple.dart';
 import '../../features/sign_up/domain/repo/register_repo.dart';
 import '../network/api_service.dart';
+import '../network/socket_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -36,6 +43,29 @@ void setupLocator() {
 //   getIt.registerLazySingleton<RegisterRmoteDataSource>(() => RegisterRemoteDataSourceImpl());
 // hgvkldskldklsdk
   // ✅ تسجيل Repository
+
+// sacn item socket
+
+  getIt.registerLazySingleton<SocketService>(() => SocketService());
+  getIt.registerLazySingleton<ScannedProductSocketCubit>(
+        () => ScannedProductSocketCubit(),
+  );
+  // getIt.registerLazySingleton<ScannedProductSocketCubit>(
+  //       () => ScannedProductSocketCubit(getIt<SocketService>()),
+  // );
+
+//------------------------------------------------------
+//subCategory
+  getIt.registerLazySingleton<SubCategoryByIdRemoteDataSourceImple>(
+          ()=>SubCategoryByIdRemoteDataSourceImple()
+  );
+  getIt.registerLazySingleton<SubCategoryRepositoryImpl>(
+          ()=>SubCategoryRepositoryImpl(
+            remoteDataSource: getIt<SubCategoryByIdRemoteDataSourceImple>()
+          )
+  );
+  //--------------------------------------------
+  //scaned item fire base
 getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
     ()=>ScannedItemRemoteDataSourceImple(FirebaseFirestore.instance)
 );
@@ -44,7 +74,7 @@ getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
   );
 
 //-------------------------------------------------------------
-
+// category
   getIt.registerLazySingleton<CategoryLocalDataSourceImple>(
       ()=>CategoryLocalDataSourceImple(Hive.box<CategoryModel>('category'))
   );
@@ -63,6 +93,7 @@ getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
   );
 
 //-----------------------------------------------------------------------
+  //forget password
   getIt.registerLazySingleton<ForegtPasswordRemoteDataSourceDio>(
       ()=>ForegtPasswordRemoteDataSourceDio(getIt<ApiService>())
   );
@@ -74,11 +105,13 @@ getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
   );
 
   //--------------------------------------
+  //scanner
   getIt.registerLazySingleton<MobileScannerController>(
         () => MobileScannerController(),
   );
 
 //----------------------------------------
+  // otp sign up
   getIt.registerLazySingleton<OtpSignUpRemoteDataSource>(
         () => OtpSignUpRemoteDataSource(),
   );
@@ -96,6 +129,11 @@ getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
   // );
 
 //----------------------------------------------------
+
+//sign up
+//   getIt.registerLazySingleton<RefreshTokenCubit>(
+//         () => RefreshTokenCubit(getIt()), // أو Repository حسب انتي بتعملي إيه
+//   );
 
   getIt.registerLazySingleton<ApiService>(
       ()=>ApiService()
@@ -120,14 +158,25 @@ getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
   );
 
   //--------------------------
+//login
   getIt.registerLazySingleton<LoginRemoteDataSource>(
-        () => LoginRemoteDataSource(),
+        () => LoginRemoteDataSource(getIt<ApiService>()),
   );
   getIt.registerLazySingleton<loginRepo>(
         () => loginRepoImple(getIt<LoginRemoteDataSource>()),
   );
   getIt.registerLazySingleton<LoginUseCase>(
         () => LoginUseCase(getIt<loginRepo>()),
+  );
+  //-------------------------------------------------------
+  //refresh token
+
+  getIt.registerLazySingleton<RefreshTokenRemoteDataSourceDio>(
+          ()=>RefreshTokenRemoteDataSourceDio(getIt<ApiService>())
+  );
+
+  getIt.registerLazySingleton<RefreshTokenRepositoryImpl>(
+        ()=>RefreshTokenRepositoryImpl(getIt<RefreshTokenRemoteDataSourceDio>()),
   );
   // ✅ تسجيل Use Case وتمرير الـ Repository له
 

@@ -5,7 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../../const.dart';
 
 class SectionOpenLink extends StatelessWidget {
-  const SectionOpenLink({super.key});
+  const SectionOpenLink({super.key, required this.brand});
+  final String brand;
   // Future<void> _launchURL() async {
   //   final Uri uri = Uri.parse("https://www.carrefouregypt.com/mafegy/en/c/50164");
   //
@@ -27,7 +28,7 @@ class SectionOpenLink extends StatelessWidget {
   ),
   ),
   TextButton(onPressed: (){}
-  , child: Text('El Doha',
+  , child: Text(brand,
   style: TextStyle(
   color: kColor,
   decoration: TextDecoration.underline,

@@ -7,10 +7,13 @@ class CategoryEntity{
   final String image;
 
   final String createdAt;
+  final String backGroundImage;
 
   CategoryEntity({
     required this.id,
     required this.name,
     required this.image,
-    required this.createdAt});
+    required this.createdAt,
+  required this.backGroundImage
+  });
 }

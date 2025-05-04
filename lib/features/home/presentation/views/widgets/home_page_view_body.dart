@@ -9,8 +9,7 @@ import 'package:smart_mart/core/utils/functions/Navigate_to_page.dart';
 import 'package:smart_mart/core/utils/functions/app_router.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/sectionBakeryAndPastry.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_best_sale.dart';
-import 'package:smart_mart/features/home/presentation/views/widgets/section_best_sale_photo.dart';
-import 'package:smart_mart/features/home/presentation/views/widgets/section_discount.dart';
+
 import 'package:smart_mart/features/home/presentation/views/widgets/custom_side_title.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_fresh_food.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_grid_category.dart';
@@ -21,16 +20,14 @@ import 'package:smart_mart/features/home/presentation/views/widgets/section_up_t
 
 import '../../../../../core/utils/styles.dart';
 import '../../../../category/presentation/managers/category_cubit/category_cubit.dart';
-import '../../../../on_boarding/presentation/views/widgets/section_trigger_points.dart';
-import 'Custom_show_discount_item.dart';
-import 'Custom_show_item.dart';
-import 'Section_ramadan_offers_photo.dart';
+
 import 'custom_app_bar.dart';
 import 'custom_botton_category_food.dart';
 import 'custom_search_bar.dart';
 
 class HomePageViewBody extends StatefulWidget {
-  const HomePageViewBody({super.key});
+  const HomePageViewBody({super.key,});
+  // final Map<String , dynamic> token ;
 
   @override
   State<HomePageViewBody> createState() => _HomePageViewBodyState();
@@ -61,15 +58,20 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
           Column(
             children: [
               Padding(
-                padding:  EdgeInsets.only(top: 34,
-                left: screenWidth * .05,
+                padding: EdgeInsets.only(
+                  top: 34,
+                  left: screenWidth * .05,
                   right: screenWidth * .05,
                 ),
-                child: CustomAppBar(screenWidth: screenWidth,
-
-
+                child: Builder(
+                  builder: (context) => CustomAppBar(
+                    screenWidth: screenWidth,
+                    scaffoldContext: context,
+                    // token: widget.token,// هنبعته علشان يفتح الـ drawer
+                  ),
                 ),
               ),
+
               Padding(
                 padding:  EdgeInsets.only(top: 11,
                   left: screenWidth * .05,

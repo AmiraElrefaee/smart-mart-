@@ -8,10 +8,13 @@ class SectionDEscriptionAndHighlight extends StatefulWidget {
   const SectionDEscriptionAndHighlight({
     super.key,
     required this.screenWidth,
+    required this.Description,
+    required this.highlights,
   });
 
   final double screenWidth;
-
+  final String Description;
+  final String highlights;
   @override
   State<SectionDEscriptionAndHighlight> createState() => _SectionDEscriptionAndHighlightState();
 }
@@ -42,10 +45,7 @@ class _SectionDEscriptionAndHighlightState extends State<SectionDEscriptionAndHi
             ),
           ),
 
-          Text('Prepare a filling dish with the Pasta.'
-              ' The pasta packs a great taste and satisfies your hunger pangs.'
-              ' It gets ready in'
-              ' minutes and makes a great addition to your everyday meal.',
+          Text(widget.Description,
             style: Styles.Urbanist13.copyWith(
                 fontWeight: FontWeight.w600,
                 color:kcolor3
@@ -70,21 +70,18 @@ class _SectionDEscriptionAndHighlightState extends State<SectionDEscriptionAndHi
             ),
           ),
 
-          ListView.builder(
-              shrinkWrap: true,
-              itemCount: showMore?6:4,
-              itemBuilder: (context,index){
 
-                return  Padding(
+               Padding(
                   padding: const EdgeInsets.only(left: 8.0),
-                  child: Text('.  Offers a sumptuous and layered flavor',
+                  child: Text(widget.highlights,
+                    maxLines: showMore ? null : 4,
                     style: Styles.Urbanist13.copyWith(
                         fontWeight: FontWeight.w600,
                         color:kcolor3
                     ),
                   ),
-                );
-              }),
+                ),
+
 
           Padding(
             padding: const EdgeInsets.only(top: 10),

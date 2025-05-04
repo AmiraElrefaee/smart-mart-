@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,11 +6,11 @@ import 'package:flutter_svg/svg.dart';
 class SectionShowProductPhoto extends StatelessWidget {
   const SectionShowProductPhoto({
     super.key,
-    required this.screenWidth,
+    required this.screenWidth, required this.photo,
   });
 
   final double screenWidth;
-
+  final String photo;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -25,10 +26,21 @@ class SectionShowProductPhoto extends StatelessWidget {
               color: Color(0xffF8F8F8),
               borderRadius: BorderRadius.circular(8)
           ),
-          child:
-          Image.asset('assets/items/image 47.png',
-            // height: screenWidth*.55,
+          child: CachedNetworkImage(
+            imageUrl: photo.startsWith('http') ? photo : 'https://th.bing.com/th/id/OIP.eKE8nrMRCK3bdvd62kWJ_wHaEK?w=306&h=180&c=7&r=0&o=5&pid=1.7',
+            fit: BoxFit.fill,
+            placeholder: (context, url) => Container(
+              color: Colors.grey.shade300,
+              child: const Center(child: CircularProgressIndicator()),
+            ),
+            errorWidget: (context, url, error) => Container(
+              color: Colors.grey.shade300,
+              child: const Center(child: Icon(Icons.error)),
+            ),
           ),
+          // Image.asset('assets/items/image 47.png',
+          //   // height: screenWidth*.55,
+          // ),
         ),
 
         Positioned(

@@ -1,11 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_mart/features/category/presentation/managers/Sub_category_cubit/sub_category_cubit.dart';
 import 'package:smart_mart/features/category/presentation/views/widgets/section_best_sale_category.dart';
 import 'package:smart_mart/features/category/presentation/views/widgets/section_bottons.dart';
+import 'package:smart_mart/features/category/presentation/views/widgets/section_details_bottons.dart';
 
 import '../../../../../const.dart';
 import '../../../../home/presentation/views/widgets/custom_grid_best_sale.dart';
+import '../../../data/models/sub_category_model.dart';
 
 class SectionListDetailsCategory extends StatefulWidget {
   const SectionListDetailsCategory({
@@ -43,62 +48,50 @@ class _SectionListDetailsCategoryState extends State<SectionListDetailsCategory>
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<SubCategoryCubit, SubCategoryState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    if(state is SubCategorySucess ){
+      final mid = (state.subCategories.length / 2).ceil();
+      final topList = state.subCategories.take(mid).toList();
+      final bottomList = state.subCategories.skip(mid).toList(); // الباقي
     return Padding(
       padding: const EdgeInsets.only(left: 15, top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildCategoryList(widget.DetailCategoryTop,
-              selectedIndexTop, _onTopItemTapped),
-
+          _buildCategoryList(topList,
+              selectedIndexTop, _onTopItemTapped,
+          false
+          ),
           SizedBox(height: 5),
           // المسافة بين القائمتين
-          _buildCategoryList(widget.DetailCategoryBottom,
-              selectedIndexBottom, _onBottomItemTapped),
+          _buildCategoryList(bottomList,
+              selectedIndexBottom, _onBottomItemTapped,
+          true
+          ),
 
           Builder(
             builder: (context) {
               if(selectedIndexBottom== null&& selectedIndexTop==null)
-           {   return SectionBestSaleCategory
+           {
+
+             return SectionBestSaleCategory
                 (screenWidth: widget.screenWidth,
-              );}
+               bestSale: state.bestSellers,
+             );
+
+
+
+           }
 
               else{
-               return Padding(
-                 padding: const EdgeInsets.symmetric(horizontal: 20,
-                 vertical: 20
-                 ),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     selectedIndexBottom== null?
-                     Text(widget.DetailCategoryTop[selectedIndexTop!]['title']!,
-                     style: TextStyle(
-                       fontSize: 22,
-                       fontWeight: FontWeight.w600
-                     ),
-
-                     )
-                         :Text(widget.DetailCategoryBottom[selectedIndexBottom!]['title']!,
-                       style: TextStyle(
-                           fontSize: 22,
-                           fontWeight: FontWeight.w600
-                       ),
-                     ),
-                     SectionBottons(),
-                     SizedBox(height: 20,),
-                     CustomGridBestSale(
-                       ViewAll: true,
-                       screenWidth: widget.screenWidth,
-                       scroll: false,
-                     ),
-
-                     SizedBox(height: 100,)
-
-
-
-                 ],),
-               );
+               return SectionDetailsBottons(
+                   selectedIndexBottom: selectedIndexBottom,
+                   widget: widget,
+                   selectedIndexTop: selectedIndexTop);
               }
             }
           )
@@ -106,13 +99,23 @@ class _SectionListDetailsCategoryState extends State<SectionListDetailsCategory>
       ),
     );
   }
+  else {
+   return Center(child: Text('laoding'));
+    }
+  }
 
-  Widget _buildCategoryList(List<Map<String, String>> categoryList,
-      int? selectedIndex, Function(int) onTap) {
+);
+  }
+
+  Widget _buildCategoryList(List<SubCategoryModel> categoryList,
+      int? selectedIndex, Function(int) onTap,
+      bool reverse
+      ) {
     return SizedBox(
       width: widget.screenWidth,
       height: widget.screenWidth * .17,
       child: ListView.builder(
+        reverse: reverse,
         itemCount: categoryList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
@@ -133,14 +136,24 @@ class _SectionListDetailsCategoryState extends State<SectionListDetailsCategory>
               ),
               child: Row(
                 children: [
-                  Image.asset(
-                    categoryList[index]['photo']!,
+                  SizedBox(
                     height: widget.screenWidth * .12,
-                    fit: BoxFit.fill,
+                    child: CachedNetworkImage(
+                      imageUrl:categoryList[index].image,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) => Container(
+                        color: Colors.grey.shade300,
+                        child: const Center(child: CircularProgressIndicator()),
+                      ),
+                      errorWidget: (context, url, error) => Container(
+                        color: Colors.grey.shade300,
+                        child: const Center(child: Icon(Icons.error)),
+                      ),
+                    ),
                   ),
                   SizedBox(width: 10),
                   Text(
-                    categoryList[index]['title']!,
+                    categoryList[index].name,
                     style: TextStyle(
                       color: selectedItem ? kColor : kcolor4,
                       fontSize: 15,
@@ -157,5 +170,4 @@ class _SectionListDetailsCategoryState extends State<SectionListDetailsCategory>
     );
   }
 }
-
 

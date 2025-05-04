@@ -4,11 +4,13 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:path_provider/path_provider.dart';  // استيراد الحزمة الخاصة بمسار التخزين
 
 import '../../const.dart';
+import '../../features/login/presentation/managers/refresh_token_cubit/refresh_token_cubit.dart';
+import '../../features/login/presentation/managers/refresh_token_cubit/refresh_token_state.dart';
 
 class ApiService {
   late Dio dio;
   late CookieJar cookieJar;
-
+  // final RefreshTokenCubit refreshTokenCubit;
   ApiService() {
     _initialize();
   }
@@ -38,6 +40,37 @@ class ApiService {
         options.headers['Authorization'] = 'Bearer $token';
         return handler.next(options);
       },
+        // onError: (DioError e, handler) async {
+        //   if (e.response?.statusCode == 401) {
+        //     // 1. تطلبي من الكيوبت إنه يعمل refresh للتوكن
+        //     await refreshTokenCubit.refreshAccessToken();
+        //
+        //     // 2. تجيبي التوكن الجديد من الكيوبت بدل ما تدوري عليه في Hive
+        //     final currentState = refreshTokenCubit.state;
+        //     final newToken = currentState is RefreshTokenSuccess
+        //         ? currentState.newAccessToken
+        //         : null;
+        //
+        //     if (newToken != null) {
+        //       // 3. تعدلي على الريكوست القديم وتحطي فيه التوكن الجديد
+        //       final requestOptions = e.requestOptions;
+        //       requestOptions.headers['Authorization'] = 'Bearer $newToken';
+        //
+        //       // 4. تعيدي إرسال الريكوست بالتوكن الجديد
+        //       final clonedRequest = await dio.fetch(requestOptions);
+        //       return handler.resolve(clonedRequest);
+        //     } else {
+        //       // لو معرفتش تجيبي التوكن لأي سبب، كمل عادي بالخطأ
+        //       return handler.next(e);
+        //     }
+        //   } else {
+        //     // لو الخطأ مش 401 كمل عادي
+        //     return handler.next(e);
+        //   }
+        // }
+
+
+
     ));
 
 

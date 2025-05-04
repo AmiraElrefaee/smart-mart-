@@ -5,6 +5,7 @@ import 'package:smart_mart/features/search/presentation/views/widgets/search_pag
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../category/data/models/sub_category_model.dart';
 import '../../../../home/data/models/categories_item.dart';
 import '../../../../home/presentation/views/widgets/Custom_show_item.dart';
 import 'custom_side_title_and_bottons.dart';
@@ -95,7 +96,26 @@ class SectionBody extends StatelessWidget {
               itemBuilder: (context,index) {
                 return Padding(
                   padding: const EdgeInsets.only(left: 15),
-                  child: CustomShowItem(screenWidth: screenWidth),
+                  child: CustomShowItem(screenWidth: screenWidth,
+                    item: BestSeller(
+                      id: '1',
+                      title: 'Sample Item',
+                      price: 100.0,
+                      brand: 'Sample Brand',
+                      description: 'Sample Description',
+                      highlights: 'Sample Highlights',
+                      barcode: '123456789',
+                      stock: 10,
+                      itemWeight: '500g',
+                      subCategoryId: 'sub1',
+                      categoryId: 'cat1',
+                      sold: 50,
+                      image: 'sample_image_url',
+                      rating: 4.5,
+                      discount: 10,
+                      createdAt: '2025-04-26',
+                    ),
+                  ),
                 );
               }
           ),

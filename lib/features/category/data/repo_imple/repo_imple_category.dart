@@ -17,12 +17,12 @@ import '../models/category_model.dart';
       print('repo imple done');
       final List<CategoryModel> data = await categoryRemoteDateSource.getRemoteCategories();
       await categoryLocalDataSource.CacheCategories(data);
-      return await categoryLocalDataSource.GetCacheCategories();
+      // return await categoryLocalDataSource.GetCacheCategories();
       // print(data[0].image);
-      // return data;
+      return data;
     }
     catch(e){
-      print('repo imple hass error ');
+      print('repo RepoCategoryImple hass error ${e.toString()}');
       return await categoryLocalDataSource.GetCacheCategories();
     }
 

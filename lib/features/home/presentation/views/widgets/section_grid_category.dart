@@ -8,6 +8,8 @@ import 'package:smart_mart/core/utils/functions/app_router.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../category/data/models/category_model.dart';
+import '../../../../category/presentation/managers/Sub_category_cubit/sub_category_cubit.dart';
 import '../../../../category/presentation/managers/category_cubit/category_cubit.dart';
 import '../../../data/models/categories_item.dart';
 import 'custom_side_title.dart';
@@ -69,6 +71,7 @@ class SectionGridCategory extends StatelessWidget {
                   if (state.categories.isEmpty) {
                     print('No categories available.');
                   } else {
+
                     GoRouter.of(context).push(
                       AppRouter.kcategory,
                       // extra: state.categories.length ??0,
@@ -105,12 +108,20 @@ class SectionGridCategory extends StatelessWidget {
         ),
         itemCount: numItems,  // استخدام طول الـ categories
         itemBuilder: (context, snapshot) {
-          final category = state.categories[snapshot];  // استخدام الـ category من state
+          final CategoryModel category = state.categories[snapshot];  // استخدام الـ category من state
           return InkWell(
             onTap: () {
+
               GoRouter.of(context).push(
                 AppRouter.kitemCategory,
-                extra: state.categories[snapshot].name,  // استخدم title من الـ category
+                extra: {
+                  'id': category.id,
+                  'name': category.name,
+                  'image': category.image,
+                },
+
+
+                // extra: state.categories[snapshot].name,  // استخدم title من الـ category
               );
             },
 
@@ -134,15 +145,6 @@ class SectionGridCategory extends StatelessWidget {
           //
           //         height:screenWidth * .21 ,
           //         ),
-                  // SizedBox(
-                  //   height: screenWidth * .21,
-                  //   child: CachedNetworkImage(imageUrl:state.categories[snapshot].image,
-                  //     // placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                  //     errorWidget: (context, url, error) => Icon(Icons.error_outline,
-                  //     color: Colors.black,size: screenWidth * .21,
-                  //     ),
-                  //   ),
-                  // ),
 
                   Text(
                     state.categories[snapshot].name,  // استخدم الـ title من الـ category

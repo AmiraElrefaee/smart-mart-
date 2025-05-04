@@ -2,78 +2,47 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_mart/core/utils/service_locator.dart';
-import 'package:smart_mart/features/category/data/models/category_model.dart';
 import 'package:smart_mart/features/category/presentation/managers/category_cubit/category_cubit.dart';
+import 'package:smart_mart/features/category/presentation/managers/Sub_category_cubit/sub_category_cubit.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/home_page_view_body.dart';
-import 'package:smart_mart/features/details_item/presentation/views/widgets/details_page_view_body.dart';
-import 'package:smart_mart/core/widgets/custom_bottom_bar.dart';
-import 'package:smart_mart/core/widgets/custom_floating_action_botton.dart';
-
+import 'package:smart_mart/features/home/presentation/views/widgets/section_drawer_home.dart';
+import '../../../../const.dart';
+import '../../../category/data/repo_imple/RepoSubCategoryImple.dart';
 import '../../../category/data/repo_imple/repo_imple_category.dart';
+import '../../../login/domain/use_case/login_use_case.dart';
+import '../../../login/presentation/managers/login_cubit/login_cubit.dart';
 import '../../../scan_code/presentation/view/scan_code_view.dart';
 import '../../../wish_list/wish_list_ view.dart';
 
-class HomePageView extends StatefulWidget {
+class HomePageView extends StatelessWidget {
   const HomePageView({super.key});
-
-  @override
-  _HomePageViewState createState() => _HomePageViewState();
-}
-
-class _HomePageViewState extends State<HomePageView> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _pages = [
-    const HomePageViewBody(),
-    const WishlistPageView(),
-    const WishlistPageView(),
-    const WishlistPageView(),
-    // const ScanCodeView(),
-    // Add more pages here
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-
+// final Map<String , dynamic> token ;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CategoryCubit(getIt.get<RepoCategoryImple>()),
-      child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: HomePageViewBody()
+    // print('from home view ${token}');
 
-        // Stack(
-        //   children: [
-        //     /// شاشة الهوم تحت كل العناصر
-        //     IndexedStack(
-        //       index: _selectedIndex,
-        //       children: _pages,
-        //     ),
-        //
-        //     /// البار السفلي
-        //     Align(
-        //       alignment: Alignment.bottomCenter,
-        //       child: CustomBottomBar(
-        //         selectedIndex: _selectedIndex,
-        //         onItemTapped: _onItemTapped,
-        //       ),
-        //     ),
-        //
-        //     /// الفلوتينج بوتون فوق البار السفلي
-        //     Positioned(
-        //       bottom: 30, // رفعه فوق البار السفلي
-        //       left: MediaQuery.of(context).size.width / 2 - 40, // توسيطه
-        //       child:  CustomFloatingActionButton(
-        //         onItemTapped: _onItemTapped,
-        //       ),
-        //     ),
-        //   ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CategoryCubit>(
+          create: (context) => CategoryCubit(getIt.get<RepoCategoryImple>()),
+        ),
+        BlocProvider<SubCategoryCubit>(
+          create: (context) =>
+              SubCategoryCubit(repoSubCategory: getIt.get<SubCategoryRepositoryImpl>()),
+        ),
+        // BlocProvider.value(value: context.read<LoginCubit>())
+
+        // BlocProvider<LoginCubit>(
+        //   create: (context) =>
+        //       LoginCubit(getIt.get<LoginUseCase>()),
         // ),
+      ],
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        drawer: SectionDrawerHome(),
+        body: HomePageViewBody(
+          // token: token,
+        ),
       ),
     );
   }

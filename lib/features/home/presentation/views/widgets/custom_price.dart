@@ -8,17 +8,17 @@ import '../../../../../core/utils/styles.dart';
 class CustomPrice extends StatelessWidget {
   const CustomPrice({
     super.key,
-    required this.screenWidth,
+    required this.screenWidth, required this.price,
   });
 
   final double screenWidth;
-
+  final num price ;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('84',
+        Text('$price',
           style: Styles.Urbanist25.copyWith(
             color: kColor,
             fontWeight: FontWeight.w700,

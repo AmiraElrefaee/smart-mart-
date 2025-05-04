@@ -21,6 +21,7 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
       name: fields[1] as String,
       image: fields[2] as String,
       createdAt: fields[3] as String,
+      backGroundImage:  fields[4] as String,
     );
   }
 
@@ -35,7 +36,10 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
       ..writeByte(2)
       ..write(obj.image)
       ..writeByte(3)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+       ..writeByte(5)
+       ..write(obj.backGroundImage);
+
   }
 
   @override

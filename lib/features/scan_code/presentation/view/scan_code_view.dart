@@ -11,6 +11,7 @@ import '../../../../core/utils/service_locator.dart';
 import '../../../../core/widgets/custom_bottom_bar.dart';
 import '../../../../core/widgets/custom_floating_action_botton.dart';
 import '../../data/repo_imple/repo_imple_sacnned_item.dart';
+import '../managers/     scanned_product_socket/scanned_product_socket_cubit.dart';
 import '../managers/cubit_scanned_item/scanned_item_cubit.dart';
 
 class ScanCodeView extends StatelessWidget {

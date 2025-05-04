@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
@@ -21,6 +22,7 @@ class CustomShowItemOutOfStock extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
+
         navigateToPage(AppRouter.kdetails, context);
       },
       child: Stack(
@@ -67,7 +69,9 @@ class CustomShowItemOutOfStock extends StatelessWidget {
                 height: 5,
               ),
 
-              CustomPrice(screenWidth: screenWidth),
+              CustomPrice(screenWidth: screenWidth,
+              price: 0,
+              ),
               SizedBox(height: 10,)
 
             ],),

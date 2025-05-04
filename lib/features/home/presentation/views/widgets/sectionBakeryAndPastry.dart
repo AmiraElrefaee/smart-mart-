@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../category/data/models/sub_category_model.dart';
 import 'Custom_show_item.dart';
 import 'custom_botton_category_food.dart';
 import 'custom_show_item_out_of_stock.dart';
@@ -141,7 +142,26 @@ class SectionBakeryAndPastry extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 15),
                       child: index==0?
                       CustomShowItemOutOfStock(screenWidth: screenWidth,):
-                      CustomShowItem(screenWidth: screenWidth),
+                      CustomShowItem(screenWidth: screenWidth,
+                        item: BestSeller(
+                          id: '1',
+                          title: 'Sample Item',
+                          price: 100.0,
+                          brand: 'Sample Brand',
+                          description: 'Sample Description',
+                          highlights: 'Sample Highlights',
+                          barcode: '123456789',
+                          stock: 10,
+                          itemWeight: '500g',
+                          subCategoryId: 'sub1',
+                          categoryId: 'cat1',
+                          sold: 50,
+                          image: 'sample_image_url',
+                          rating: 4.5,
+                          discount: 10,
+                          createdAt: '2025-04-26',
+                        ),
+                      ),
                     );
                   }
               ),

@@ -1,31 +1,34 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:smart_mart/core/network/api_service.dart';
 import 'package:smart_mart/features/login/domain/entity/login_entity.dart';
 
-import '../../../../const.dart';
-class LoginRemoteDataSource{
+class LoginRemoteDataSource {
+  final ApiService apiService;
 
-  final url=Uri.parse('${ApiConstants.baseUrl}/sessions');
+  LoginRemoteDataSource(this.apiService);
 
-  Future<Token> login(String email, String password)async{
-    final response = await http.post(
-        url,
-      body: json.encode({'email': email, 'password': password}),
-      headers: {'Content-Type': 'application/json'},
-    );
-    print("✅ Raw Response Body: ${response.body}");
+  Future<Token> login(String email, String password) async {
+    try {
+      final response = await apiService.dio.post(
+        '/sessions',
+        data: {
+          'email': email,
+          'password': password,
+        },
+      );
 
-    final responseData = jsonDecode(response.body); // تحويل إلى JSON
+      print("✅ in LoginRemoteDataSourceDio Login Response: ${response.data}");
 
-    if (responseData['status'] == "success") {
-      print('5555522');
-      return Token(token: responseData['accessToken']);
-    } else{
-      print('33333322');
-      print(responseData["message"]);
-      throw Exception(responseData["message"] ?? "Unknown error");
+      final responseData = response.data; // خلاص مش محتاج jsonDecode مع Dio
+
+      if (responseData['status'] == "success") {
+        return Token(token: responseData['accessToken']);
+      } else {
+        print('⚠️ Login failed: ${responseData["message"]}');
+        throw Exception(responseData["message"] ?? "Unknown error");
+      }
+    } catch (e) {
+      print("❌ Error in LoginRemoteDataSourceDio login: $e");
+      rethrow;
     }
   }
-
 }

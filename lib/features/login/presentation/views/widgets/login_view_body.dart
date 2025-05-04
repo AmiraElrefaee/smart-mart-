@@ -8,6 +8,7 @@ import 'package:smart_mart/features/login/presentation/views/widgets/section_goo
 import 'package:smart_mart/features/login/presentation/views/widgets/custom_question_botton.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/separate_line_section.dart';
 
+import '../../../../../core/network/socket_service.dart';
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../on_boarding/presentation/views/widgets/custom_background_images.dart';
@@ -31,7 +32,14 @@ class LoginViewBody extends StatelessWidget {
   listener: (context, state) {
     if (state is LoginSuccess) {
       print("login successful, navigating...");
-      navigateToPage(AppRouter.khome, context);
+      SocketService().connect();
+      GoRouter.of(context).go(
+        AppRouter.khome,
+        extra:{
+          'toke':state.decodedToken ??{}
+        }
+      );
+
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('login success')));
     } else if (state is LoginFailure) {

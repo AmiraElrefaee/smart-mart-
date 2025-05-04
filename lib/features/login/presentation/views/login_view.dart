@@ -12,11 +12,14 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginCubit(getIt.get<LoginUseCase>()),
-      child: Scaffold(
+    return
+      // BlocProvider(
+      // create: (context) => LoginCubit(getIt.get<LoginUseCase>()),
+      // child:
+
+      Scaffold(
           body: LoginViewBody()
-      ),
-    );
+      );
+    // );
   }
 }

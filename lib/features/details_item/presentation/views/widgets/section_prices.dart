@@ -5,15 +5,16 @@ import '../../../../../core/utils/styles.dart';
 
 class SectionPrices extends StatelessWidget {
   const SectionPrices({
-    super.key,
+    super.key, required this.price, required this.discount,
   });
-
+final num price;
+final num discount;
   @override
   Widget build(BuildContext context) {
     return Row(
 
       children: [
-        Text('84',
+        Text('$price',
           style: Styles.Urbanist25.copyWith(
               color: kColor,
               fontWeight: FontWeight.w700,

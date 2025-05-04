@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_mart/core/domain/entities/item_model.dart';
 import 'package:smart_mart/features/details_item/presentation/views/widgets/section_arrow_back.dart';
 import 'package:smart_mart/features/details_item/presentation/views/widgets/section_description_and_higlight.dart';
 import 'package:smart_mart/features/details_item/presentation/views/widgets/section_open_link.dart';
@@ -11,18 +13,30 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../category/data/models/sub_category_model.dart';
 import '../../../../home/presentation/views/widgets/Custom_show_item.dart';
 import '../../../../home/presentation/views/widgets/custom_price.dart';
 
 class DetailsPageViewBody extends StatelessWidget {
-  const DetailsPageViewBody({super.key});
+  const DetailsPageViewBody({super.key, required this.item});
 
-
-
-
+final ItemModel item;
 
   @override
   Widget build(BuildContext context) {
+    // final state = GoRouterState.of(context);
+    // final item = state.extra;
+
+    if (item == null || item is! ItemModel) {
+      return Scaffold(
+        body: Center(
+          child: Text(
+            'حدث خطأ أثناء تحميل بيانات المنتج',
+            style: TextStyle(color: Colors.red, fontSize: 18),
+          ),
+        ),
+      );
+    }
     final double screenWidth=MediaQuery.of(context).size.width;
     return SafeArea(
       child: Padding(
@@ -46,14 +60,18 @@ class DetailsPageViewBody extends StatelessWidget {
                 ],
               ),
             ),
-              SectionShowProductPhoto(screenWidth: screenWidth),
+              SectionShowProductPhoto(screenWidth: screenWidth,
+              photo: item.image,
+              ),
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SectionOpenLink(),
+                SectionOpenLink(
+                  brand: item.brand,
+                ),
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   margin:  EdgeInsets.only(bottom: 10),
@@ -63,14 +81,14 @@ class DetailsPageViewBody extends StatelessWidget {
                   ),
                   child: Text('Pasta',
                     style:Styles.Urbanist16,)),
-              Text('Eldoha Easy Pasta Creamy Pesto Sauce Pasta ',
+              Text(item.title,
                 style: Styles.Urbanist16.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: screenWidth*.04,
                     color: Colors.black
                 ),
 
-              ), Text('( 185gm )',
+              ), Text('( ${item.itemWeight}gm )',
                 style:Styles.Urbanist16.copyWith(
                   color: Color(0xff484C52),
                   fontWeight: FontWeight.w600,
@@ -78,12 +96,19 @@ class DetailsPageViewBody extends StatelessWidget {
                 ),),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: SectionPrices(),
+                child: SectionPrices(
+                  price: item.price,
+                  discount: item.discount,
+                ),
               ),
             ],),
           ),
 
-            SectionDEscriptionAndHighlight(screenWidth: screenWidth),
+            SectionDEscriptionAndHighlight(screenWidth: screenWidth,
+              Description: item.description,
+              highlights: item.highlights,
+
+            ),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text('Similar Products',
@@ -160,7 +185,28 @@ class DetailsPageViewBody extends StatelessWidget {
                     itemBuilder: (context,index) {
                       return Padding(
                         padding: const EdgeInsets.only(left: 15),
-                        child: CustomShowItem(screenWidth: screenWidth),
+                        child: CustomShowItem(screenWidth: screenWidth,item: BestSeller(
+                          id: '1',
+                          title: 'Sample Item',
+                          price: 100.0,
+                          brand: 'Sample Brand',
+                          description: 'Sample Description',
+                          highlights: 'Sample Highlights',
+                          barcode: '123456789',
+                          stock: 10,
+                          itemWeight: '500g',
+                          subCategoryId: 'sub1',
+                          categoryId: 'cat1',
+                          sold: 50,
+                          image: 'sample_image_url',
+                          rating: 4.5,
+                          discount: 10,
+                          createdAt: '2025-04-26',
+                        ),
+
+
+
+                        ),
                       );
                     }
                 ),

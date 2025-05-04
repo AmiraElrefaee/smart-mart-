@@ -22,10 +22,10 @@ class SectionAddMore extends StatelessWidget {
           ),
         ),
 
-        CustomAddOrMinusBotton(
-          screenHeight:40,
-          screenWidth: screenWidth*.19,
-        )
+        // CustomAddOrMinusBotton(
+        //   screenHeight:40,
+        //   screenWidth: screenWidth*.19,
+        // )
 
       ],);
   }

@@ -5,10 +5,11 @@ import '../../../../../const.dart';
 
 class CustomAddOrMinusBotton extends StatefulWidget {
   const CustomAddOrMinusBotton({
-    super.key, required this.screenWidth, required this.screenHeight,
+    super.key, required this.screenWidth, required this.screenHeight, required this.number,
   });
 final double screenWidth;
 final double screenHeight;
+final num  number;
   @override
   State<CustomAddOrMinusBotton> createState() => _CustomAddOrMinusBottonState();
 }
@@ -19,7 +20,7 @@ class _CustomAddOrMinusBottonState extends State<CustomAddOrMinusBotton> {
   Widget build(BuildContext context) {
     return
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          // padding: EdgeInsets.symmetric(horizontal: 1),
           width:widget. screenWidth,
           height:widget. screenHeight ,
           alignment: Alignment.center,
@@ -27,44 +28,11 @@ class _CustomAddOrMinusBottonState extends State<CustomAddOrMinusBotton> {
               color: Color(0xffF5F5F5),
               borderRadius: BorderRadius.circular(10)
           ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: InkWell(onTap: (){
-              if(num>0) setState(() {
-                num--;
-              });
-
-            }
-                , child: Icon(Icons.minimize,
-                  size: widget.screenWidth*.2,
-                  color: Color(0xff484C52),
-                )),
-          ),
-          Text('$num',
-            style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w600
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: InkWell(
-                onTap: (){
-                  setState(() {
-                    num++;
-                  });
-
-                }
-                , child: Icon(Icons.add,
-                  color: kColor,
-              size: widget.screenWidth*.2,
-                )),
-          ),
-
-        ],
+      child: Text(' X${widget.number}',
+        style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600
+        ),
       ),
     );
   }

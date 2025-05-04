@@ -1,21 +1,30 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../const.dart';
 import '../../../domain/entity/login_entity.dart';
 import '../../../domain/use_case/login_use_case.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.loginUseCase) : super(LoginInitial());
   final LoginUseCase loginUseCase;
+  Map<String, dynamic>? _decodedToken;
+  Map<String, dynamic>? get decodedToken => _decodedToken;
   Future<void>login({required String mail ,required String pass} )async{
 
       emit(LoginLoading());
       try {
         final user = await loginUseCase(mail, pass);
+         _decodedToken = JwtDecoder.decode(user.token);
+        // ApiConstants.firstName =_decodedToken!['firstName'];
+
+        String userId = decodedToken!['_id']; // هنا طلعنا ال id
+        print('the token info : $decodedToken');
         // String a=user.token;
-        emit(LoginSuccess(user));
+        emit(LoginSuccess(_decodedToken!));
 
       } catch (e) {
         print(e.toString());

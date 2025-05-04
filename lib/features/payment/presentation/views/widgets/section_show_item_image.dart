@@ -25,7 +25,7 @@ class sectionShowItemImage extends StatelessWidget {
             return Padding(
               padding:  EdgeInsets.only(right:screenWidth*.015),
               child: CustomPhotoScannedItem(
-                products: [],
+                image: '',
                 index: 0,
                 screenWidth: screenWidth*.15,
                 screenHeight: screenHeight*.06,

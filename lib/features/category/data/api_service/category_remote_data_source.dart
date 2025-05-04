@@ -17,7 +17,7 @@ class CategoryRemoteDateSourceImple implements CategoryRemoteDateSource{
 final response =await http.get(Uri.parse('${ApiConstants.baseUrl}/category'));
 if (response.statusCode==200){
   print('done  in CategoryRemoteDateSourceImple');
-  List data =jsonDecode(response.body)['data'];
+  List data = jsonDecode(response.body)['data'];
   return data.map((e)=>CategoryModel.fromJson(e)).toList();
 } else {
   print(' not done  in CategoryRemoteDateSourceImple');
