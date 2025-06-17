@@ -5,9 +5,11 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_mart/features/category/data/models/category_model.dart';
 import 'const.dart';
+import 'core/network/api_service.dart';
 import 'core/network/socket_service.dart';
 import 'core/utils/functions/app_router.dart';
 import 'core/utils/service_locator.dart';
+import 'features/login/data/api_service/login_remote_data_source.dart';
 import 'features/login/data/repo_imple/refresh_token_repo_imple.dart';
 import 'features/login/domain/use_case/login_use_case.dart';
 import 'features/login/presentation/managers/login_cubit/login_cubit.dart';
@@ -25,6 +27,9 @@ void main() async{
   await Hive.deleteBoxFromDisk('category'); // اسم البوكس هو 'category'
 
   await Hive.openBox<CategoryModel>('category');
+  await Hive.openBox('authBox');
+  final apiService = await ApiService.create();
+  final loginRemoteDataSource = LoginRemoteDataSource(apiService);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform, // تهيئة Firebase
   );

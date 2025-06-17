@@ -45,13 +45,13 @@ class SectionPaymentSummary extends StatelessWidget {
         customPrices(
           title: 'Subtotal',
           kindMoney: 'EGP',
-          price: 300,
+          price: Total(),
         ),
         SizedBox(height: 15,),
         customPrices(
           title: 'Discount',
           kindMoney: '-EGP',
-          price: 40,
+          price: 0,
         ),
 
 

@@ -25,6 +25,11 @@ class _SucessPageViewBodyState extends State<SucessPageViewBody> {
   // }
   @override
   void initState() {
+    // void initState() {
+    //   super.initState();
+      // تأكدي من أن الكيوبت مُهيأ بشكل صحيح
+      // context.read<ScannedProductSocketCubit>();
+    // }
     super.initState();
     // context.read<ScannedProductSocketCubit>();
     _controller = VideoPlayerController.asset(
@@ -35,7 +40,7 @@ class _SucessPageViewBodyState extends State<SucessPageViewBody> {
       _controller.play();
 
       // ✨ الانتقال بعد ثانيتين
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(Duration(seconds: 3), () {
         context.go(AppRouter.kAddToCart);
         // navigateToPage(AppRouter.kAddToCart, context);
       });
@@ -67,11 +72,11 @@ class _SucessPageViewBodyState extends State<SucessPageViewBody> {
               // : CircularProgressIndicator(),
         ),
 
-        Text('Payment Successful !',
+        Text('Connect Successful !',
           style: TextStyle(
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w700,
-              fontSize: 25
+              fontSize: 20
           ),
         ),
         SizedBox(height: 10,),
@@ -82,7 +87,7 @@ class _SucessPageViewBodyState extends State<SucessPageViewBody> {
               style: TextStyle(
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w600,
-                  fontSize: 20,
+                  fontSize: 15,
                   color: Color(0xff484C52)
               ),
             ),
@@ -98,7 +103,7 @@ class _SucessPageViewBodyState extends State<SucessPageViewBody> {
               style: TextStyle(
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w600,
-                  fontSize: 20,
+                  fontSize: 15,
                   color: Color(0xff484C52)
               ),
             ),
@@ -109,7 +114,7 @@ class _SucessPageViewBodyState extends State<SucessPageViewBody> {
           style: TextStyle(
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w600,
-              fontSize: 20,
+              fontSize: 15,
               color: Color(0xff484C52)
           ),
         ),

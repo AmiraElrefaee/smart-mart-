@@ -44,6 +44,7 @@ import '../../../features/wish_list/wish_list_ view.dart';
   static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
   static const kCreateNewPasswordpage='/CreateNewPasswordpageView';
     static const khome='/HomePageView';
+
   // static const khome='/';
   static const kdetails='/DetailsPageView';
   static const kwishList='/WishlistPageView';

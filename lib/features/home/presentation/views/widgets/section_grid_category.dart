@@ -150,7 +150,7 @@ class SectionGridCategory extends StatelessWidget {
                     state.categories[snapshot].name,  // استخدم الـ title من الـ category
                     textAlign: TextAlign.center,
                     style: Styles.NexaBold14.copyWith(
-                      fontSize: screenWidth * .03,
+                      fontSize: screenWidth * .02,
                       color: kColor,
                     ),
                   ),

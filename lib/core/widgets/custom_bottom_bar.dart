@@ -33,7 +33,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -123,7 +123,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
     final Color iconColor = isSelected ? kColor : const Color(0xff484C52);
     final textStyle = TextStyle(
       color: iconColor,
-      fontSize: 15,
+      fontSize: 10,
       fontWeight: FontWeight.w500,
     );
 

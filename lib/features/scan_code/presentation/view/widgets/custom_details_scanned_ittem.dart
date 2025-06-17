@@ -22,12 +22,13 @@ class customDetailsSCannedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(' in ${products.length} ✅✅✅✅✅✅✅');
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomPhotoScannedItem(
-          image: products[index].imageUrl,
+          image: products[index].itemWeight,
             index: index,
             screenHeight: screenHeight*.11,
             screenWidth: screenWidth*.18),
@@ -39,7 +40,8 @@ class customDetailsSCannedItem extends StatelessWidget {
               // products[index].id
               ,
               style: Styles.NexaBold14.copyWith(
-                  fontWeight: FontWeight.w500
+                  fontWeight: FontWeight.w500,
+                fontSize: 10
               ),
 
             ),
@@ -48,7 +50,8 @@ class customDetailsSCannedItem extends StatelessWidget {
 
               ,
               style: Styles.NexaBold14.copyWith(
-                  fontWeight: FontWeight.w500
+                  fontWeight: FontWeight.w500,
+
               ),),
 
             Row(
@@ -95,9 +98,9 @@ class customDetailsSCannedItem extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.only(top: screenWidth*.05),
           child: CustomAddOrMinusBotton(
-            number: 1,
+            number: products[index].quantity,
             screenHeight:32,
-            screenWidth: screenWidth*.21,
+            screenWidth: screenWidth*.13,
           ),
         )
 

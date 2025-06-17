@@ -36,7 +36,7 @@ import '../network/socket_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void setupLocator() {
+void setupLocator() async{
 
   // getIt.registerLazySingleton<RegisterUseCase>
   //   (() => RegisterUseCase(RegisterRepo()));
@@ -135,10 +135,11 @@ getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
 //         () => RefreshTokenCubit(getIt()), // أو Repository حسب انتي بتعملي إيه
 //   );
 
-  getIt.registerLazySingleton<ApiService>(
-      ()=>ApiService()
-  );
-
+  // getIt.registerLazySingleton<ApiService>(
+  //     ()=>ApiService()
+  // );
+  getIt.registerSingletonAsync<ApiService>(() async => await ApiService.create());
+  await getIt.allReady();
   getIt.registerLazySingleton<RegisterRmoteDataSource>(
         () => RegisterRmoteDataSource(),
   );

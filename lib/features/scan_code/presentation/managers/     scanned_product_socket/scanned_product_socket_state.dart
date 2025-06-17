@@ -8,9 +8,10 @@ class ScannedProductsLoading extends ScannedProductSocketState {}
 
 class ScannedProductsLoaded extends ScannedProductSocketState {
 
-  final Product  products;
+  final List < Product>  products;
+  final GlobalKey<AnimatedListState> listKey;
 
-  ScannedProductsLoaded(this.products);
+  ScannedProductsLoaded(this.products, this.listKey);
 }
 class ScannedCartSucess extends ScannedProductSocketState {
 

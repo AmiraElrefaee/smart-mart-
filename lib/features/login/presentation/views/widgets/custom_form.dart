@@ -106,7 +106,7 @@ class _addNoteFormState extends State<CustomForm> {
                 });
               }
               },
-            screenHeight:widget. screenHeight*.7,
+            screenHeight:widget. screenHeight*.2,
             screenWidth: widget.screenWidth,
             background: kColor,
             colorText: Colors.white,

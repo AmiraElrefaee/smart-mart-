@@ -71,8 +71,8 @@ class LoginViewBody extends StatelessWidget {
 
                      CustomTitle(
                        sizeBox: 0,
-                       fontTitle: .041*MediaQuery.of(context).size.height,
-                       fontSubTitle:.02*MediaQuery.of(context).size.height,
+                       fontTitle: .03*MediaQuery.of(context).size.height,
+                       fontSubTitle:.015*MediaQuery.of(context).size.height,
                        title: 'Welcome Back',
                        subTitle: 'Let’s get started and go shopping',
 

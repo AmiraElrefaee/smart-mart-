@@ -38,9 +38,9 @@ final ItemModel item;
       },
       child: Container(
         width:screenWidth*.5,
-        height:screenWidth*.45 ,
+        height:screenWidth*.4 ,
         // screenWidth*.03 ,
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -88,13 +88,15 @@ final ItemModel item;
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Styles.NexaBold14.copyWith(
-                fontWeight: FontWeight.w500
+                fontWeight: FontWeight.w500,
+              fontSize: 8
             ),
 
           ),
           Text(' (${item.itemWeight} gm)',
               style: Styles.NexaBold14.copyWith(
                   fontWeight: FontWeight.w500,
+                  fontSize: 10,
                   color: Color(0xff484C52)
               )),
           SizedBox(

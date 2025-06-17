@@ -22,7 +22,7 @@ class CustomShowDiscountItem extends StatelessWidget {
           // width:screenWidth*.42,
           // height:screenWidth*.55 ,
           padding: EdgeInsets.only(top:screenWidth*.04,
-          bottom:screenWidth*.03,
+          // bottom:screenWidth*.01,
             right: screenWidth*.02,
             left: screenWidth*.02
           ),
@@ -45,7 +45,8 @@ class CustomShowDiscountItem extends StatelessWidget {
               padding:  EdgeInsets.only(top: screenWidth*.01),
               child: Text('JAGUAR Premium Creations - Layers Sour Cream & Onion',
                 style: Styles.NexaBold14.copyWith(
-                    fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w500,
+                  fontSize: 10
                 ),
 
               ),
@@ -77,6 +78,7 @@ class CustomShowDiscountItem extends StatelessWidget {
                       style: Styles.Urbanist25.copyWith(
                         color: kColor,
                         fontWeight: FontWeight.w700,
+                        fontSize: 15
                       ),
                     ),
                     Padding(
@@ -84,7 +86,7 @@ class CustomShowDiscountItem extends StatelessWidget {
                       child: Column(children: [
                         Text('.00 ',
                           style: Styles.Urbanist16.copyWith(
-                            fontSize: 12,
+                            fontSize: 10,
                             color: kColor,
                             fontWeight: FontWeight.w500,
                           ),
@@ -109,7 +111,7 @@ class CustomShowDiscountItem extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding:  EdgeInsets.only(left:screenWidth*.07 ),
+                  padding:  EdgeInsets.only(left:screenWidth*.05 ),
                   child: InkWell(onTap: (){}
                       , child:SvgPicture.asset('assets/icons/Vector (4).svg',
                       height: screenWidth*.04,
@@ -139,7 +141,7 @@ class CustomShowDiscountItem extends StatelessWidget {
                 ),
                 child: Text('19% off',
                 style: Styles.Urbanist13.copyWith(
-                  fontSize: 14,
+                  fontSize: 10,
                   fontWeight: FontWeight.w700,
                   color: Color(0xff484C52)
                 ),

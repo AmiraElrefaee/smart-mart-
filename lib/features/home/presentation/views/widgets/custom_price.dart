@@ -21,13 +21,14 @@ class CustomPrice extends StatelessWidget {
         Text('$price',
           style: Styles.Urbanist25.copyWith(
             color: kColor,
+            fontSize: 12,
             fontWeight: FontWeight.w700,
           ),
         ),
         Column(children: [
           Text('.00',
             style: Styles.Urbanist16.copyWith(
-              fontSize: 12,
+              fontSize: 10,
               color: kColor,
               fontWeight: FontWeight.w500,
             ),
@@ -41,6 +42,7 @@ class CustomPrice extends StatelessWidget {
 
         Text('  EGP 90,20  ',
           style: Styles.Urbanist12.copyWith(
+            fontSize: 10,
               decoration: TextDecoration.lineThrough,
               color: Color(0xffA5A5A5)
           ),),
@@ -56,7 +58,7 @@ class CustomPrice extends StatelessWidget {
           padding:  EdgeInsets.only(left: screenWidth*.03),
           child: InkWell(onTap: (){}
               , child:SvgPicture.asset('assets/icons/Vector (4).svg',
-                height: screenWidth*.04,
+                height: screenWidth*.025,
               )
 
           ),

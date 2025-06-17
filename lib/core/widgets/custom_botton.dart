@@ -34,7 +34,7 @@ final void Function()? onTap;
           ),
           child: Text(text, style:
           Styles.Urbanist20.copyWith(color: colorText,
-          fontSize:MediaQuery.of(context).size.height*.023,
+          fontSize:MediaQuery.of(context).size.height*.018,
           ),)),
     );
   }

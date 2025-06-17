@@ -20,20 +20,21 @@ class MainMassege extends StatelessWidget {
         Center(child: SvgPicture.asset('assets/icons/Vector (12).svg',
           width: screenWidth*.13,
         )),
+        SizedBox(height: 10,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Scan the',
               style: TextStyle(
                 fontFamily: 'Urbanis',
-                fontSize: screenWidth*.05,
+                fontSize: screenWidth*.04,
                 fontWeight: FontWeight.w600,
                 color: Color(0xff263238),
               ),
             ),Text(' barcode',
               style: TextStyle(
                 fontFamily: 'Urbanis',
-                fontSize: screenWidth*.05,
+                fontSize: screenWidth*.04,
                 fontWeight: FontWeight.w600,
                 color: kColor,
               ),
@@ -44,7 +45,7 @@ class MainMassege extends StatelessWidget {
         Text('to add the product to your cart.',
             style: TextStyle(
               fontFamily: 'Urbanis',
-              fontSize: screenWidth*.05,
+              fontSize: screenWidth*.03,
               fontWeight: FontWeight.w600,
               color: Color(0xff263238),
             )),

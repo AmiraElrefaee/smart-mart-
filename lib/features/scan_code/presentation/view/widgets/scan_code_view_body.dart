@@ -37,9 +37,9 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
   void initState() {
     super.initState();
     print("initState: Starting camera");
-    if (!SocketService().isConnected) {
-      SocketService().connect();
-    }
+    // if (!SocketService().isConnected) {
+    //   SocketService().connect();
+    // }
     if (!isCameraRunning) {
       cameraController.start().then((_) {
         setState(() {
@@ -102,65 +102,64 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
 
     return BlocListener<ScannedProductSocketCubit, ScannedProductSocketState>(
   listener: (context, state) {
-  if (state is ScannedCartSucess){
-    print(' the connet tooooo basket sucesssss');
-    context.go(AppRouter.ksucessConnectToCart);
-    context.read<ScannedProductSocketCubit>();
-  }
+   if (state is ScannedCartSucess){
+     context.go(AppRouter.ksucessConnectToCart);
+     context.read<ScannedProductSocketCubit>();
+      cameraController.stop();
+   }
   },
   child: Stack(
-      alignment: Alignment.center,
-      children: [
-        MobileScanner(
-          controller: cameraController,
-          onDetect: (capture) async {
-            if (!isScanning) return;
+        alignment: Alignment.center,
+        children: [
+          MobileScanner(
+            controller: cameraController,
+            onDetect: (capture) async {
+              if (!isScanning) return;
 
-            final List<Barcode> barcodes = capture.barcodes;
-            if (barcodes.isNotEmpty) {
-              final String? result = barcodes.first.rawValue;
-              if (result != null && result.isNotEmpty) {
-                setState(() {
-                  scanResult = result;
-                  isScanning = false;
-                });
-
-                final loginCubit = context.read<LoginCubit>();
-                final String? userId = loginCubit.decodedToken?['_id'];
-
-                if (userId != null) {
-                  SocketService().emitScanCart(cartId: result, userId: userId);
-
+              final List<Barcode> barcodes = capture.barcodes;
+              if (barcodes.isNotEmpty) {
+                final String? result = barcodes.first.rawValue;
+                if (result != null && result.isNotEmpty) {
                   setState(() {
-                    scanSubmitted = true;
-                    scanResult = null; // Reset scanResult
+                    scanResult = result;
+                    isScanning = false;
                   });
 
-                  await cameraController.stop();
-                  setState(() {
-                    isCameraRunning = false;
-                  });
-                  // context.go(AppRouter.ksucessConnectToCart);
-                  // context.push(AppRouter.ksucessConnectToCart);
-                  // navigateToPage(AppRouter.ksucessConnectToCart, context);
-                } else {
-                  print("⚠️ User ID not found. Make sure login is successful.");
+                  final loginCubit = context.read<LoginCubit>();
+                  final String? userId = loginCubit.decodedToken?['_id'];
+
+                  if (userId != null) {
+                    SocketService().emitScanCart(cartId: result, userId: userId);
+
+                    setState(() {
+                      scanSubmitted = true;
+                      scanResult = null; // Reset scanResult
+                    });
+
+                    setState(() {
+                      isCameraRunning = false;
+                    });
+                    // context.go(AppRouter.ksucessConnectToCart);
+                    // context.push(AppRouter.ksucessConnectToCart);
+                    // navigateToPage(AppRouter.ksucessConnectToCart, context);
+                  } else {
+                    print("⚠️ User ID not found. Make sure login is successful.");
+                  }
                 }
               }
-            }
-          },
-        ),
-        SectionBoxMassege(
-          screenHeight: screenHeight,
-          screenWidth: screenWidth,
-          // scanResult: scanResult, // Commented out as per your code
-        ),
-        const SaquareCamera(),
-        // MyDraggableSheet(
-        //   cameraController: cameraController,
-        // ),
-      ],
-    ),
+            },
+          ),
+          SectionBoxMassege(
+            screenHeight: screenHeight,
+            screenWidth: screenWidth,
+            // scanResult: scanResult, // Commented out as per your code
+          ),
+          const SaquareCamera(),
+          // MyDraggableSheet(
+          //   cameraController: cameraController,
+          // ),
+        ],
+      ),
 );
   }
 

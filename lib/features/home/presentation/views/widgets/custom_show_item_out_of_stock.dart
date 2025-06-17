@@ -43,19 +43,21 @@ class CustomShowItemOutOfStock extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Image.asset('assets/items/image (1).png',
-                  height: screenWidth*.25,
+                  height: screenWidth*.2,
                 ),
               ),
               Text('Cadbury Hot Chocolate',
                 style: Styles.NexaBold14.copyWith(
-                    fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w500,
+                  fontSize: 12
                 ),
 
               ),
               Text('3 in1 (300 gm)',
                   style: Styles.NexaBold14.copyWith(
                       fontWeight: FontWeight.w500,
-                      color: Color(0xff484C52)
+                      color: Color(0xff484C52),
+                    fontSize: 10
                   )),
               SizedBox(
                 height: 10,
@@ -98,14 +100,14 @@ class CustomShowItemOutOfStock extends StatelessWidget {
                   children: [
                     Text('Out of',
                       style: Styles.Urbanist13.copyWith(
-                          fontSize: 12,
+                          fontSize: 8,
                           fontWeight: FontWeight.w600,
                           color: Colors.white
                       ),
                     ),
                     Text('Stock',
                       style: Styles.Urbanist13.copyWith(
-                          fontSize: 12,
+                          fontSize: 8,
                           fontWeight: FontWeight.w600,
                           color: Colors.white
                       ),

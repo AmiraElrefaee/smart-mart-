@@ -1,84 +1,84 @@
+// core/network/api_service.dart
 import 'package:dio/dio.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:path_provider/path_provider.dart';  // استيراد الحزمة الخاصة بمسار التخزين
+import 'package:path_provider/path_provider.dart';
+import 'package:smart_mart/core/network/token_storage.dart';
 
 import '../../const.dart';
-import '../../features/login/presentation/managers/refresh_token_cubit/refresh_token_cubit.dart';
-import '../../features/login/presentation/managers/refresh_token_cubit/refresh_token_state.dart';
+
 
 class ApiService {
   late Dio dio;
   late CookieJar cookieJar;
-  // final RefreshTokenCubit refreshTokenCubit;
-  ApiService() {
-    _initialize();
+  ApiService._();
+  // ApiService() {
+  //   _initialize();
+  // }
+  static Future<ApiService> create() async {
+    final instance = ApiService._();
+    await instance._initialize();
+    return instance;
   }
 
-  // دالة لتهيئة Dio و CookieJar
   Future<void> _initialize() async {
     dio = Dio(BaseOptions(baseUrl: ApiConstants.baseUrl));
 
-    // انتظار إنشاء PersistCookieJar قبل المتابعة
     cookieJar = await createPersistCookieJar();
     dio.interceptors.add(CookieManager(cookieJar));
-    // إضافة CookieManager لإدارة الكوكيز
-    dio.interceptors.add(
-      LogInterceptor(
-        requestBody: true,
-        responseBody: true,
-        requestHeader: true,
-        logPrint: (object) {
-          print('🛰️ $object');
-        },
-      ),
-    );
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) async {
-        // مثلاً تجيبي التوكن من Hive أو SharedPreferences
-        final token = 'your-token-here';
-        options.headers['Authorization'] = 'Bearer $token';
-        return handler.next(options);
+
+    dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      responseBody: true,
+      requestHeader: true,
+      logPrint: (object) {
+        print('🛰️ $object');
       },
-        // onError: (DioError e, handler) async {
-        //   if (e.response?.statusCode == 401) {
-        //     // 1. تطلبي من الكيوبت إنه يعمل refresh للتوكن
-        //     await refreshTokenCubit.refreshAccessToken();
-        //
-        //     // 2. تجيبي التوكن الجديد من الكيوبت بدل ما تدوري عليه في Hive
-        //     final currentState = refreshTokenCubit.state;
-        //     final newToken = currentState is RefreshTokenSuccess
-        //         ? currentState.newAccessToken
-        //         : null;
-        //
-        //     if (newToken != null) {
-        //       // 3. تعدلي على الريكوست القديم وتحطي فيه التوكن الجديد
-        //       final requestOptions = e.requestOptions;
-        //       requestOptions.headers['Authorization'] = 'Bearer $newToken';
-        //
-        //       // 4. تعيدي إرسال الريكوست بالتوكن الجديد
-        //       final clonedRequest = await dio.fetch(requestOptions);
-        //       return handler.resolve(clonedRequest);
-        //     } else {
-        //       // لو معرفتش تجيبي التوكن لأي سبب، كمل عادي بالخطأ
-        //       return handler.next(e);
-        //     }
-        //   } else {
-        //     // لو الخطأ مش 401 كمل عادي
-        //     return handler.next(e);
-        //   }
-        // }
-
-
-
     ));
 
 
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final token = await TokenStorage.getAccessToken();
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options);
+        },
+
+
+        onError: (e, handler) async {
+          if (e.response?.statusCode == 401) {
+            final refreshToken = await TokenStorage.getRefreshToken();
+            if (refreshToken != null) {
+              try {
+                final refreshResponse = await dio.post('/sessions/refresh');
+                final newAccessToken = refreshResponse.data['data']['accessToken'];
+                await TokenStorage.saveTokens(newAccessToken, refreshToken);
+
+                // إعادة تنفيذ الريكوست القديم بالتوكن الجديد
+                final requestOptions = e.requestOptions;
+                requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
+                final clonedResponse = await dio.fetch(requestOptions);
+                return handler.resolve(clonedResponse);
+              } catch (e) {
+                print('🔴 فشل تجديد التوكن: $e');
+              }
+            }
+          } else {
+            print(e.response?.statusCode);
+          }
+
+          return handler.next(e);
+        },
+      ),
+
+    );
   }
 }
 
-// إنشاء PersistCookieJar
 Future<CookieJar> createPersistCookieJar() async {
-  final dir = await getApplicationDocumentsDirectory();  // الحصول على مسار المستندات
-  return PersistCookieJar(storage: FileStorage('${dir.path}/.cookies/'));  // استخدام المسار لحفظ الكوكيز
+  final dir = await getApplicationDocumentsDirectory();
+  return PersistCookieJar(storage: FileStorage('${dir.path}/.cookies/'));
 }

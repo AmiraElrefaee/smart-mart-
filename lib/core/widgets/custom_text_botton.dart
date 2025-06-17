@@ -15,7 +15,7 @@ final String text;
       onTap: onTap,
       child: Text(
         text,
-        style:  TextStyle(fontSize: MediaQuery.of(context).size.height*.017,
+        style:  TextStyle(fontSize: MediaQuery.of(context).size.height*.014,
             fontWeight: FontWeight.w400,
             color: kColor
         ),

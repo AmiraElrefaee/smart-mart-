@@ -19,14 +19,11 @@ final String bottonText;
       children: [
         CustomSideText(text: mainQest,),
 
-        Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: CustomTextBottom(
-            onTap:onTap,
+        CustomTextBottom(
+          onTap:onTap,
 
 
-            text: bottonText,
-          ),
+          text: bottonText,
         ),
       ],);
   }

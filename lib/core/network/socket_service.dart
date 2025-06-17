@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:smart_mart/core/network/token_storage.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 import '../../const.dart';
@@ -23,18 +25,36 @@ class SocketService {
   SocketService._internal();
   bool _isConnected = false;
   bool get isConnected => _isConnected;
-  void connect() {
-    socket = IO.io( "https://faint-ilyse-iot-based-smart-retail-system-897f175c.koyeb.app", <String, dynamic>{
-      'transports': ['websocket'],
-      'autoConnect': false,
-      // 'secure': true,
-    });
+  void connect() async {
+    final token = await TokenStorage.getAccessToken();
+    print('🔁🔁🔁 ❌❌the token is $token');
+
+    // socket = IO.io("https://faint-ilyse-iot-based-smart-retail-system-897f175c.koyeb.app", <String, dynamic>{
+    //   // 'transports': ['websocket'],
+    //   'auth': {
+    //     'token': token, // Add Bearer prefix
+    //   },
+    //   // 'connectTimeout': 10000,
+    // });
+    socket = IO.io(
+      'https://faint-ilyse-iot-based-smart-retail-system-897f175c.koyeb.app',
+      IO.OptionBuilder()
+          .setTransports(['websocket']) // مهم جدًا
+          .enableAutoConnect() // يفضل تفعيله
+          .setAuth({'token': token}) // إرسال التوكن حسب الباك
+          .build(),
+    );
 
     socket.connect();
 
     socket.onConnect((_) {
       print('✅ Connected to Socket Server');
       _isConnected = true;
+    });
+    socket.onConnectError((data) async {
+      print('🔁 Connect Error: $data');
+      print('🔁  🔁🔁🔁🔁🔁🔁🔁🔁Try refreshing token...');
+      // await _tryRefreshTokenAndReconnect();
     });
 
     socket.onDisconnect((_) {
@@ -45,6 +65,9 @@ class SocketService {
     socket.onError((data) {
       print('❗ Socket Error: $data');
     });
+    //---------------------
+
+    //----------
     socket.on('products-update', (data) {
       print('📥📥📥📥📥📥 Received data type: ${data.runtimeType}');
       print('📥📥📥📥📥📥 Received products-update: $data');
@@ -52,7 +75,9 @@ class SocketService {
         final productJson = data['product'];
         if (productJson == null) throw 'product field is null';
         print('📥📥📥📥📥📥 Received products-update: $productJson');
+
         final product = Product.fromJson(productJson);
+        print('📥📥📥📥📥📥 Received products-update222222: ${product.itemWeight}');
         onProductsReceived?.call(product);
         print('✅✅✅✅✅✅✅ Parsed product: ${product.title}');
       } catch (e) {
@@ -79,6 +104,8 @@ class SocketService {
         ));
       }
     });
+
+
     socket.on('cart-connected', (data) {
       print('🛒🟢 Cart Connected Event Received: $data');
       final success = data['success'];
@@ -91,20 +118,51 @@ class SocketService {
       print('🛒 Cart QR: $cartQrCode, Success: $success, Message: $message');
       // هنا ممكن تخزني cartQrCode أو تعرضي رسالة للمستخدم حسب السيناريو
     });
-
-
-
   }
 
+
+
+//------------refresh token ------------------
+  Future<void> _tryRefreshTokenAndReconnect() async {
+    final refreshToken = await TokenStorage.getRefreshToken();
+    if (refreshToken != null) {
+      try {
+        final dio = Dio(BaseOptions(baseUrl: ApiConstants.baseUrl));
+        final response = await dio.post('/sessions/refresh');
+        final newAccessToken = response.data['data']['accessToken'];
+        await TokenStorage.saveTokens(newAccessToken, refreshToken);
+        await socket.connect();
+        print('🟢🟢🟢🟢🟢🟢 sucess  to refresh token: ');
+        // إعادة الاتصال بالسوكيت بعد التجديد
+      } catch (e) {
+        print('❌❌❌❌ Failed to refresh token: $e');
+      }
+    }
+  }
+
+//----------------------- emit ----------------------
   void emitScanCart({required String cartId, required String userId}) {
     socket.emit('scan-cart-qr', {
-      'cartQrCode': "8798",
+      'cartQrCode': "8799",
       'userId':userId,
     });
     print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted scan-cart event: cartId=$cartId, userId=$userId');
   }
 
-
+  void emitDisconnected() {
+    // socket.emit('scan-cart-qr', {
+    //   'cartQrCode': "8799",
+    //   'userId':userId,
+    // });
+    print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted disconnected: ');
+  }
+  void emitCheckout() {
+    // socket.emit('scan-cart-qr', {
+    //   'cartQrCode': "8799",
+    //   'userId':userId,
+    // });
+    print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted Checkout event: ');
+  }
 
 
   void disconnect() {
