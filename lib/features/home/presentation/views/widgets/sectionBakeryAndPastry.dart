@@ -1,16 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../category/data/models/sub_category_model.dart';
+import '../../../data/models/category_items.dart';
 import 'Custom_show_item.dart';
-import 'custom_botton_category_food.dart';
 import 'custom_show_item_out_of_stock.dart';
-import 'home_page_view_body.dart';
 
-class SectionBakeryAndPastry extends StatelessWidget {
+class SectionBakeryAndPastry extends StatefulWidget {
   const SectionBakeryAndPastry({
     super.key,
     required this.screenWidth,
@@ -19,151 +17,170 @@ class SectionBakeryAndPastry extends StatelessWidget {
   final double screenWidth;
 
   @override
+  State<SectionBakeryAndPastry> createState() => _SectionBakeryAndPastryState();
+}
+
+class _SectionBakeryAndPastryState extends State<SectionBakeryAndPastry> {
+  String? selectedCategory; // العنصر المختار
+
+  final List<CategoryItem> items = [
+    CategoryItem('Croissants & Pate', 'assets/items/pngwing.com (24) 1.png'),
+    CategoryItem('Bread', 'assets/items/pngwing.com (23) 1.png'),
+    CategoryItem('Rice', 'assets/items/pngwing.com (25) 1.png'),
+    CategoryItem('Dessert', 'assets/items/pngwing.com (26) 1 (1).png'),
+    CategoryItem('Biscuits & crackers', 'assets/items/pngwing.com (27) 1.png'),
+    CategoryItem('More', 'assets/icons/more.png'),
+  ];
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: screenWidth,
-      height: screenWidth*1.5,
+      width: widget.screenWidth,
+      height: widget.screenWidth * 1.7,
       child: Stack(
-        // fit : StackFit.passthrough,
         children: [
+          /// الخلفية
           Positioned.fill(
             top: 0,
             left: 0,
             right: 0,
-            bottom:screenWidth*.23,
-            child: SvgPicture.asset('assets/back_grounds/Group 37.svg',
+            bottom: widget.screenWidth * .23,
+            child: SvgPicture.asset(
+              'assets/back_grounds/Group 37.svg',
               fit: BoxFit.fitWidth,
-              width: screenWidth,
-              // height: 50,
+              width: widget.screenWidth,
             ),
           ),
+
+          /// Bakery Title
           Positioned(
-            top: screenWidth*.19,
-            left: screenWidth*.17,
-            child: Text('Bakery',
+            top: widget.screenWidth * .3,
+            left: widget.screenWidth * .23,
+            child: Text(
+              'Bakery',
               style: Styles.Urbanist32.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 35,
-                  color: Colors.white
-              ),),
+                fontWeight: FontWeight.w700,
+                fontSize: 35,
+                color: Colors.white,
+              ),
+            ),
           ),
+
+          /// & Pastry Title
           Positioned(
-            top: screenWidth*.27,
-            left: screenWidth*.26,
-            child: Text('& Pastry',
+            top: widget.screenWidth * .39,
+            left: widget.screenWidth * .29,
+            child: Text(
+              '& Pastry',
               style: Styles.Urbanist32.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 35,
-                  color: Colors.white
-              ),),
-          ),
-          Positioned(
-              top: screenWidth*.44,
-
-              child:
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-
-                  children: [
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/pngwing.com (24) 1.png',
-                      text: ' Croissants & Pate',
-                      color: kColor,
-
-                    ),
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/pngwing.com (23) 1.png',
-                      text: ' Bread',
-                      color: Colors.black,
-
-                    ),
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/pngwing.com (25) 1.png',
-                      text: ' Rice',
-                      color: Colors.black,
-
-                    ),
-
-
-                  ],
-                ),
-              )
-          ),
-          Positioned(
-              top: screenWidth*.57,
-              // left: screenWidth*.05,
-              child:
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-
-                  children: [
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/pngwing.com (26) 1 (1).png',
-                      text: ' Dessert',
-                      color: Colors.black,
-
-                    ),
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/pngwing.com (27) 1.png',
-                      text: ' Biscuits & crackers',
-                      color: Colors.black,
-
-                    ),
-                    CustomBottomMore(screenWidth: screenWidth,)
-
-
-                  ],
-                ),
-              )
-          ),
-          Positioned(
-            top: screenWidth*.75,
-            left: screenWidth*.09,
-            child: Text('Best Products',
-              style: Styles.Urbanist20.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 25,
-                  color: Colors.white
-
-              ),),
+                fontWeight: FontWeight.w700,
+                fontSize: 35,
+                color: Colors.white,
+              ),
+            ),
           ),
 
-          Positioned.fill(
-            top: screenWidth*.9,
-            child: SizedBox(
-              // height: screenWidth*.4,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (context,index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: index==0?
-                      CustomShowItemOutOfStock(screenWidth: screenWidth,):
-                      CustomShowItem(screenWidth: screenWidth,
-                        item: BestSeller(
-                          id: '1',
-                          title: 'Sample Item',
-                          price: 100.0,
-                          brand: 'Sample Brand',
-                          description: 'Sample Description',
-                          highlights: 'Sample Highlights',
-                          barcode: '123456789',
-                          stock: 10,
-                          itemWeight: '500g',
-                          subCategoryId: 'sub1',
-                          categoryId: 'cat1',
-                          sold: 50,
-                          image: 'sample_image_url',
-                          rating: 4.5,
-                          discount: 10,
-                          createdAt: '2025-04-26',
-                        ),
+          /// عناصر الفئة - باستخدام Wrap بدلاً من Positioned
+          Padding(
+            padding: EdgeInsets.only(top: widget.screenWidth * .54, left: 10, right: 10),
+            child: Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              alignment: WrapAlignment.start,
+              children: items.map((item) {
+                final isSelected = selectedCategory == item.label;
+
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = isSelected ? null : item.label;
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: widget.screenWidth * 0.02, vertical: widget.screenWidth * 0.015),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: isSelected ? kColor : Colors.transparent,
+                        // width: 2,
                       ),
-                    );
-                  }
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        item.isSvg
+                            ? SvgPicture.asset(item.imagePath,height: widget.screenWidth * 0.03)
+                            : Image.asset(item.imagePath, height: widget.screenWidth * 0.065),
+                        const SizedBox(width: 5),
+                        Text(
+                          item.label,
+                          style: TextStyle(
+                            fontSize:widget.screenWidth * 0.033 ,
+                            fontWeight: FontWeight.w600,
+                            color: isSelected ? Colors.red : Colors.black,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+
+          /// Best Products Text
+          Positioned(
+            top: widget.screenWidth * .78,
+            left: widget.screenWidth * .09,
+            child: Text(
+              'Best Products',
+              style: Styles.Urbanist20.copyWith(
+                fontWeight: FontWeight.w700,
+                fontSize: 25,
+                color: Colors.white,
+              ),
+            ),
+          ),
+
+          /// List of Best Products
+          Positioned(
+            top: widget.screenWidth * .9,
+            child: SizedBox(
+              height: widget.screenWidth * 0.63, // 👈 حددنا الارتفاع هنا
+              width: widget.screenWidth,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: index == 0
+                        ? CustomShowItemOutOfStock(screenWidth: widget.screenWidth)
+                        : CustomShowItem(
+                      screenWidth: widget.screenWidth,
+                      item: BestSeller(
+                        state: 'available',
+                        id: '1',
+                        title: 'Sample Item',
+                        price: 100,
+                        brand: 'Sample Brand',
+                        description: 'Sample Description',
+                        highlights: 'Sample Highlights',
+                        barcode: '123456789',
+                        stock: 10,
+                        itemWeight: '500g',
+                        subCategoryId: 'sub1',
+                        categoryId: 'cat1',
+                        sold: 50,
+                        image: 'sample_image_url',
+                        rating: 4.5,
+                        discount: 10,
+                        createdAt: '2025-04-26',
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -172,4 +189,3 @@ class SectionBakeryAndPastry extends StatelessWidget {
     );
   }
 }
-

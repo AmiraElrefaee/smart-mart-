@@ -54,10 +54,15 @@ class ScannedProductSocketCubit extends Cubit<ScannedProductSocketState> {
       print('✅✅✅✅✅✅✅✅✅✅ the product in cubitttt ${product.price}');
     };
 
-    SocketService().onCartConnected = (String cartQrCode, String message) {
+    SocketService().onCartConnected = ( String message) {
       print('✅✅✅✅✅✅✅✅✅✅ connect to cart  $message');
       // إضافة المنتج لليست
       emit(ScannedCartSucess(message)); // إرسال المنتج الجديد فقط
+    };
+    SocketService().onScanningStop = ( String message) {
+      print('✅✅✅✅✅✅✅✅✅✅ connect to cart  $message');
+      // إضافة المنتج لليست
+      emit(ScannedProductsStopped(message)); // إرسال المنتج الجديد فقط
     };
 
     SocketService().onErrorReceived = (ErrorModel error) {

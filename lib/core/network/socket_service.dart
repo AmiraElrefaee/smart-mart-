@@ -12,7 +12,8 @@ class SocketService {
   late IO.Socket socket;
   Function(Product)? onProductsReceived;
   Function(ErrorModel)? onErrorReceived;
-  Function(String cartQrCode, String message)? onCartConnected;
+  Function( String message)? onCartConnected;
+  Function( String message)? onScanningStop;
 
 
   final List<Product> _products = [];
@@ -37,7 +38,7 @@ class SocketService {
     //   // 'connectTimeout': 10000,
     // });
     socket = IO.io(
-      'https://faint-ilyse-iot-based-smart-retail-system-897f175c.koyeb.app',
+      'https://faint-ilyse-iot-based-smart-retail-system-897f175c.koyeb.app'+'/cart',
       IO.OptionBuilder()
           .setTransports(['websocket']) // مهم جدًا
           .enableAutoConnect() // يفضل تفعيله
@@ -54,17 +55,25 @@ class SocketService {
     socket.onConnectError((data) async {
       print('🔁 Connect Error: $data');
       print('🔁  🔁🔁🔁🔁🔁🔁🔁🔁Try refreshing token...');
+      if (data['message']==' Invalid token'){
+        _tryRefreshTokenAndReconnect();
+      };
       // await _tryRefreshTokenAndReconnect();
     });
 
     socket.onDisconnect((_) {
       print('❌ Disconnected from Socket Server');
       _isConnected =false;
+
+
     });
 
-    socket.onError((data) {
-      print('❗ Socket Error: $data');
-    });
+    // socket.onError((data) {
+    //   print('❗ Socket Error: $data');
+    //   if (data['message']=='Invalid token'){
+    //     _tryRefreshTokenAndReconnect();
+    //   };
+    // });
     //---------------------
 
     //----------
@@ -87,6 +96,9 @@ class SocketService {
 
     socket.on('error', (data) {
       print('❌❌❌❌❌❌❌❌❌ Socket Error Received: $data');
+      if (data['message']==' Invalid token'){
+        _tryRefreshTokenAndReconnect();
+      };
       if (data is Map && data.containsKey('code') && data.containsKey('message')) {
         final errorCode = data['code'];
         final errorMessage = data['message'];
@@ -112,13 +124,45 @@ class SocketService {
       final cartQrCode = data['cartQrCode'];
       final message = data['message'];
       if (success == true && cartQrCode != null && message != null) {
-        onCartConnected?.call(cartQrCode, message);
+        // onCartConnected?.call(cartQrCode, message);
       }
 
       print('🛒 Cart QR: $cartQrCode, Success: $success, Message: $message');
       // هنا ممكن تخزني cartQrCode أو تعرضي رسالة للمستخدم حسب السيناريو
     });
+
+
+  socket.on('cart-data-set', (data) {
+  print('🛒🟢 Ccart-data-set Event Received: $data');
+  final success = data['success'];
+  final cartQrCode = data['cartQrCode'];
+  final message = data['message'];
+  if (success == true ||data.success) {
+  onCartConnected?.call(message);
   }
+
+  print('🛒 Cart QR: $cartQrCode, Success: $success, Message: $message');
+  // هنا ممكن تخزني cartQrCode أو تعرضي رسالة للمستخدم حسب السيناريو
+  });
+
+
+
+    socket.on('scanning-stopped', (data) {
+      print('🛒🟢 scanning-stopped Event Received: $data');
+      final success = data['success'];
+      final cartQrCode = data['cartQrCode'];
+      final message = data['message'];
+      if (success == true ||data.success) {
+        onScanningStop?.call(message);
+
+      }
+
+      print('🛒🛒🛒🛒🛒🛒🛒  scanning stoped by you ');
+      // هنا ممكن تخزني cartQrCode أو تعرضي رسالة للمستخدم حسب السيناريو
+    });
+
+
+}
 
 
 
@@ -142,27 +186,31 @@ class SocketService {
 
 //----------------------- emit ----------------------
   void emitScanCart({required String cartId, required String userId}) {
-    socket.emit('scan-cart-qr', {
+    socket.emit('set-cart-data', {
       'cartQrCode': "8799",
-      'userId':userId,
+
     });
     print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted scan-cart event: cartId=$cartId, userId=$userId');
   }
+  void emitStopCartScanning() {
+    socket.emit('stop-cart-scanning');
+    print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ stop scan event emited');
+  }
 
-  void emitDisconnected() {
+  // void emitDisconnected() {
     // socket.emit('scan-cart-qr', {
     //   'cartQrCode': "8799",
     //   'userId':userId,
     // });
-    print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted disconnected: ');
-  }
-  void emitCheckout() {
+  //   print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted disconnected: ');
+  // }
+  // void emitCheckout() {
     // socket.emit('scan-cart-qr', {
     //   'cartQrCode': "8799",
     //   'userId':userId,
     // });
-    print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted Checkout event: ');
-  }
+  //   print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted Checkout event: ');
+  // }
 
 
   void disconnect() {

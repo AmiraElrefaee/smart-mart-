@@ -112,7 +112,7 @@ class SectionShowAddedProduct extends StatelessWidget {
               screenHeight: screenHeight,
               screenWidth: screenWidth,
               onTap: () {
-                SocketService().emitCheckout();
+                // SocketService().emitCheckout();
                 context.push(AppRouter.kPayment);
               },
             ),

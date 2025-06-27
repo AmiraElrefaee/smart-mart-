@@ -218,11 +218,11 @@ Future<void> showCustomDisconnectDialog(BuildContext context, double screenWidth
                 ),
               ),
               onPressed: () {
-                SocketService().emitDisconnected();
-                Navigator.pop(context);
-                context.go(AppRouter.kScanPage);
+                SocketService().emitStopCartScanning();
+                // Navigator.pop(context);
+                // context.go(AppRouter.kScanPage);
 
-                print('Disconnected');
+                print('stop scan emitted');
               },
               child: Text(
                 'Yes, Disconnect',

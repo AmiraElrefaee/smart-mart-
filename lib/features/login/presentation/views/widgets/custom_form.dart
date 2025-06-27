@@ -128,7 +128,7 @@ class _addNoteFormState extends State<CustomForm> {
 
           SectionGoogleBotton(
             screenHeight:  widget.screenHeight,
-            screenWidth: widget. screenWidth,
+            screenWidth: widget. screenWidth,onTap: (){},
           ),
 
 

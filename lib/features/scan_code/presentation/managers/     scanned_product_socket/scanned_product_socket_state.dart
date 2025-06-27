@@ -29,3 +29,8 @@ class ScannedProductsError extends ScannedProductSocketState {
 
   ScannedProductsError(this.message);
 }
+class ScannedProductsStopped extends ScannedProductSocketState {
+  final String message;
+
+  ScannedProductsStopped(this.message);
+}

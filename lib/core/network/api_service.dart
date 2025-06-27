@@ -49,28 +49,29 @@ class ApiService {
 
 
         onError: (e, handler) async {
-          if (e.response?.statusCode == 401) {
-            final refreshToken = await TokenStorage.getRefreshToken();
-            if (refreshToken != null) {
-              try {
-                final refreshResponse = await dio.post('/sessions/refresh');
-                final newAccessToken = refreshResponse.data['data']['accessToken'];
-                await TokenStorage.saveTokens(newAccessToken, refreshToken);
-
-                // إعادة تنفيذ الريكوست القديم بالتوكن الجديد
-                final requestOptions = e.requestOptions;
-                requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
-                final clonedResponse = await dio.fetch(requestOptions);
-                return handler.resolve(clonedResponse);
-              } catch (e) {
-                print('🔴 فشل تجديد التوكن: $e');
-              }
-            }
-          } else {
-            print(e.response?.statusCode);
-          }
-
           return handler.next(e);
+          // if (e.response?.statusCode == 401) {
+          //   // final refreshToken = await TokenStorage.getRefreshToken();
+          //   if (refreshToken != null) {
+          //     // try {
+          //     //   final refreshResponse = await dio.post('/sessions/refresh');
+          //     //   final newAccessToken = refreshResponse.data['data']['accessToken'];
+          //     //   await TokenStorage.saveTokens(newAccessToken, refreshToken);
+          //     //
+          //     //   // إعادة تنفيذ الريكوست القديم بالتوكن الجديد
+          //     //   final requestOptions = e.requestOptions;
+          //     //   requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
+          //     //   final clonedResponse = await dio.fetch(requestOptions);
+          //     //   return handler.resolve(clonedResponse);
+          //     // } catch (e) {
+          //     //   print('🔴 فشل تجديد التوكن: $e');
+          //     // }
+          //   }
+          // } else {
+          //   print(e.response?.statusCode);
+          // }
+          //
+          // return handler.next(e);
         },
       ),
 

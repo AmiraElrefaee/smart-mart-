@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_mart/features/category/data/models/category_model.dart';
@@ -17,6 +18,9 @@ import 'features/login/presentation/managers/refresh_token_cubit/refresh_token_c
 import 'features/scan_code/presentation/managers/     scanned_product_socket/scanned_product_socket_cubit.dart';
 import 'features/scan_code/presentation/managers/socket_error_cubit/socket_error_cubit.dart';
 import 'features/splash/presentation/views/splash_view.dart';
+import 'features/whishList/data/repo_imple/whish_list_repo_imple.dart';
+import 'features/whishList/presentation/managers/show_whish_list_cibit/show_whish_list_cubit.dart';
+import 'features/whishList/presentation/managers/whish_list_cubit/whish_list_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -33,7 +37,8 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform, // تهيئة Firebase
   );
-  setupLocator();
+
+  await setupLocator();
   runApp(
     MultiBlocProvider(
       providers: [
@@ -41,15 +46,21 @@ void main() async{
         BlocProvider<LoginCubit>(
           create: (context) => LoginCubit(getIt.get<LoginUseCase>()),
         ),
-        BlocProvider<RefreshTokenCubit>(
-          create: (context) => RefreshTokenCubit(getIt.get<RefreshTokenRepositoryImpl>()),
-        ),
+        // BlocProvider<RefreshTokenCubit>(
+        //   create: (context) => RefreshTokenCubit(getIt.get<RefreshTokenRepositoryImpl>()),
+        // ),
         BlocProvider<ScannedProductSocketCubit>(
           create: (context) => ScannedProductSocketCubit(),
         ),
         //SocketErrorCubit
         BlocProvider<SocketErrorCubit>(
           create: (context) => SocketErrorCubit(),
+        ),
+        BlocProvider<WhishListCubit>(
+          create: (context) => WhishListCubit(getIt.get<WishlistRepoImpl>()),
+        ),
+        BlocProvider<ShowWhishListCubit>(
+          create: (context) => ShowWhishListCubit(getIt.get<WishlistRepoImpl>()),
         ),
         // يمكن إضافة أي providers أخرى هنا
       ],
@@ -64,15 +75,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      color: Colors.white,
-      routerConfig: AppRouter.router,
-      // navigatorObservers: [routeObserver],
-      debugShowCheckedModeBanner: false,
-      // home: const SplashView(),
+    return ScreenUtilInit(
+        designSize: const Size(393, 858), // ده مقاس تصميمك الأصلي (مثلاً من Figma)
+        minTextAdapt: true,
+        splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp.router(
+          theme: ThemeData(
+            scaffoldBackgroundColor: Colors.white,
+          ),
+          color: Colors.white,
+          routerConfig: AppRouter.router,
+          // navigatorObservers: [routeObserver],
+          debugShowCheckedModeBanner: false,
+          // home: const SplashView(),
+        );
+      }
     );
   }
 }

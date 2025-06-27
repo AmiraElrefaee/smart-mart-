@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
+import '../../../../../core/network/api_service.dart';
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../../core/utils/styles.dart';
@@ -13,6 +14,8 @@ import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../login/presentation/views/widgets/custom_question_botton.dart';
 import '../../../../../core/widgets/custom_title.dart';
 import '../../../../login/presentation/views/widgets/section_google_botton.dart';
+import '../../../data/api_service/register_remote_data_source_dio.dart';
+import '../../../data/api_service/sign_up_with_google_remote_data_source.dart';
 import '../../../domain/entity/register_entity.dart';
 import '../../managers/register_cubit/register_cubit.dart';
 import '../add_phone_num_view.dart';
@@ -90,6 +93,33 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               SectionGoogleBotton(
                 screenHeight: screenHeight,
                 screenWidth: screenWidth,
+                onTap: ()async {
+                  print('✅✅✅✅✅✅');
+              try {
+              final apiService = await ApiService.create();
+              final registerRemote = RegisterRemoteDataSourceDio(apiService);
+              final googleAuthHandler = GoogleAuthHandler(registerRemote);
+
+              final response = await googleAuthHandler.signUpWithGoogle();
+
+              if (response['status'] == 'success') {
+                // ✅ لو التسجيل تم بنجاح، نروح على صفحة OTP
+
+                print(' sign up with google success ✅✅✅✅✅✅✅✅✅✅✅');
+                navigateToPage(AppRouter.kAddPhoneNumPage, context);
+              } else {
+                print(' sign up with google faild ❌❌❌❌❌❌❌❌${response["message"]}');
+              ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('❌ التسجيل بجوجل فشل: ${response["message"]}')),
+              );
+              }
+              } catch (e) {
+                print(' sign up with google faild ❌❌❌❌❌❌❌❌${e}');
+              ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('❌ حصل خطأ أثناء تسجيل الدخول بجوجل: $e')),
+              );
+              }
+              },
               ),
               Padding(
                 padding:  EdgeInsets.symmetric(vertical: screenHeight*.02),

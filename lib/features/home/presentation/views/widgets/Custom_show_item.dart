@@ -17,11 +17,7 @@ class CustomShowItem extends StatelessWidget {
   const CustomShowItem({
     super.key,
     required this.screenWidth,
-required this.item
-
-  }
-
-  );
+required this.item});
 
   final double screenWidth;
 
@@ -38,7 +34,7 @@ final ItemModel item;
       },
       child: Container(
         width:screenWidth*.5,
-        height:screenWidth*.4 ,
+        height:screenWidth*.5 ,
         // screenWidth*.03 ,
         padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
@@ -89,14 +85,15 @@ final ItemModel item;
             overflow: TextOverflow.ellipsis,
             style: Styles.NexaBold14.copyWith(
                 fontWeight: FontWeight.w500,
-              fontSize: 8
+              fontSize:  screenWidth*.04
             ),
 
           ),
           Text(' (${item.itemWeight} gm)',
               style: Styles.NexaBold14.copyWith(
                   fontWeight: FontWeight.w500,
-                  fontSize: 10,
+
+                  fontSize: screenWidth*.03,
                   color: Color(0xff484C52)
               )),
           SizedBox(
@@ -113,6 +110,7 @@ final ItemModel item;
 
           CustomPrice(screenWidth: screenWidth,
           price: item.price,
+            itemId: item.id,
           ),
           SizedBox(height: 10,)
 

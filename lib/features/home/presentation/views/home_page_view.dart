@@ -12,7 +12,7 @@ import '../../../category/data/repo_imple/repo_imple_category.dart';
 import '../../../login/domain/use_case/login_use_case.dart';
 import '../../../login/presentation/managers/login_cubit/login_cubit.dart';
 import '../../../scan_code/presentation/view/scan_code_view.dart';
-import '../../../wish_list/wish_list_ view.dart';
+
 
 class HomePageView extends StatelessWidget {
   const HomePageView({super.key});

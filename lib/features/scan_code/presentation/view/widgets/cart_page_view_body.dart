@@ -34,7 +34,9 @@ class _CartPageViewBodyState extends State<CartPageViewBody> {
 
     return BlocConsumer<ScannedProductSocketCubit, ScannedProductSocketState>(
       listener: (context, state) {
-
+        if (state is ScannedProductsStopped ){
+          context.go(AppRouter.kScanPage);
+        }
       },
       builder: (context, state) {
         if (state is ScannedProductsLoading) {
@@ -46,20 +48,17 @@ class _CartPageViewBodyState extends State<CartPageViewBody> {
             child: Center(child: Text('Error: ${state.message}')),
           );
         } else if (state is ScannedProductsLoaded ){
-          print('✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅');
-          print(' ✅✅✅✅✅✅✅  ✅✅✅✅✅✅✅  ${state.products.length}');
 
+          print('  ${state.products.length}');
           return
-            // _products.isEmpty
-            //   ? const SectionNothingInCart()
-            //   :
             SectionShowAddedProduct(
             screenHeight: screenHeight,
             listKey: state.listKey,
             products: state.products,
             screenWidth: screenWidth,
           );
-        } else{
+        }
+        else{
           return  SectionNothingInCart();
         }
       }

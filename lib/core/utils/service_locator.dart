@@ -31,12 +31,14 @@ import '../../features/sign_up/data/repo_imple/OTP_sign_up_repo_imple.dart';
 import '../../features/sign_up/data/repo_imple/forget_password_repo_imple.dart';
 import '../../features/sign_up/data/repo_imple/register_repo_imple.dart';
 import '../../features/sign_up/domain/repo/register_repo.dart';
+import '../../features/whishList/data/api_service/whish_list_remote_data_source.dart';
+import '../../features/whishList/data/repo_imple/whish_list_repo_imple.dart';
 import '../network/api_service.dart';
 import '../network/socket_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void setupLocator() async{
+Future <void> setupLocator() async{
 
   // getIt.registerLazySingleton<RegisterUseCase>
   //   (() => RegisterUseCase(RegisterRepo()));
@@ -139,7 +141,7 @@ getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
   //     ()=>ApiService()
   // );
   getIt.registerSingletonAsync<ApiService>(() async => await ApiService.create());
-  await getIt.allReady();
+
   getIt.registerLazySingleton<RegisterRmoteDataSource>(
         () => RegisterRmoteDataSource(),
   );
@@ -181,4 +183,15 @@ getIt.registerLazySingleton<ScannedItemRemoteDataSourceImple>(
   );
   // ✅ تسجيل Use Case وتمرير الـ Repository له
 
+  //---------------------------------------------------------
+  //whish list
+  getIt.registerLazySingleton<WishlistRepoImpl>(
+      ()=>WishlistRepoImpl(getIt<WishlistRemoteDataSource>())
+  );
+getIt.registerLazySingleton<WishlistRemoteDataSource>(
+    ()=>WishlistRemoteDataSource(getIt<ApiService>())
+);
+
+
+  await getIt.allReady();
 }

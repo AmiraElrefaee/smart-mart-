@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'core/utils/functions/app_router.dart';
 import 'core/widgets/custom_bottom_bar.dart';
+import 'features/home/presentation/views/widgets/section_drawer_home.dart';
 import 'features/scan_code/presentation/view/widgets/section_draggle_total_num.dart';
 
 class MainScreen extends StatefulWidget {
@@ -24,6 +25,8 @@ class _MainScreenState extends State<MainScreen> {
 
 
     return Scaffold(
+      // drawer: SectionDrawerHome(),
+
       resizeToAvoidBottomInset: false,
       body:
       Stack(

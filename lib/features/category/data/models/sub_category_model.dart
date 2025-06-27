@@ -62,6 +62,7 @@ class ParentCategory {
 
 class BestSeller implements ItemModel {
   final String id;
+  final String _state;
   final String _title; // Changed from title to _title
   final num _price; // Changed from price to _price
   final String _brand; // Changed from brand to _brand
@@ -81,6 +82,7 @@ class BestSeller implements ItemModel {
   BestSeller({
     required this.id,
     required String title,
+    required String state,
     required num price,
     required String brand,
     required String description,
@@ -96,6 +98,7 @@ class BestSeller implements ItemModel {
     required num discount,
     required String createdAt,
   })  : _title = title,
+        _state=state,
         _price = price,
         _brand = brand,
         _description = description,
@@ -113,6 +116,7 @@ class BestSeller implements ItemModel {
 
   factory BestSeller.fromJson(Map<String, dynamic> json) {
     return BestSeller(
+      state: json['state']?? 'null',
       id: json['_id'] ?? 'null',
       title: json['title'] ?? 'null',
       price: json['price'] ?? 0,
@@ -176,4 +180,6 @@ class BestSeller implements ItemModel {
 
   @override
   String get createdAt => _createdAt; // Using private variable _createdAt
+  @override
+  String get state => _state;
 }

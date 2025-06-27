@@ -161,6 +161,7 @@ class DetailsScanProductView extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 15),
                           child: CustomShowItem(screenWidth: screenWidth,
                         item: BestSeller(
+                          state: 'available',
                         id: '1',
                         title: 'Sample Item',
                         price: 100.0,

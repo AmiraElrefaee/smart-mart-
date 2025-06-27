@@ -30,7 +30,9 @@ import '../../../features/sign_up/presentation/views/create_new_password_page_vi
 import '../../../features/sign_up/presentation/views/forget_password_page_view.dart';
 import '../../../features/sign_up/presentation/views/sign_up_view.dart';
 import '../../../features/splash/presentation/views/splash_view.dart';
-import '../../../features/wish_list/wish_list_ view.dart';
+import '../../../features/whishList/presentation/whis_list_view.dart';
+
+
 
 
 
@@ -57,6 +59,7 @@ import '../../../features/wish_list/wish_list_ view.dart';
   static const kitemCategory='/ItemCategoryPageView';
   static const ksucessConnectToCart='/SucessPageView';
   static const kAddToCart='/CartPageView';
+  static const kwhishList='/favorites';
    static final router = GoRouter(
 
     routes: [
@@ -95,16 +98,16 @@ import '../../../features/wish_list/wish_list_ view.dart';
              },
            ),
            GoRoute(
-             path: '/favorites',
-             builder: (context, state) =>const WishlistPageView(),
+             path: kwhishList,
+             builder: (context, state) =>const WhisListView(),
            ),
            GoRoute(
              path: '/profile',
-             builder: (context, state) => const WishlistPageView(),
+             builder: (context, state) => const WhisListView(),
            ),
            GoRoute(
              path: '/cart',
-             builder: (context, state) =>const  WishlistPageView(),
+             builder: (context, state) =>const  WhisListView(),
            ),
            GoRoute(
              path: kScanPage,

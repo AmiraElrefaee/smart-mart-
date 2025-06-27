@@ -155,9 +155,7 @@ class _ScanCodeViewBodyState extends State<ScanCodeViewBody> {
             // scanResult: scanResult, // Commented out as per your code
           ),
           const SaquareCamera(),
-          // MyDraggableSheet(
-          //   cameraController: cameraController,
-          // ),
+
         ],
       ),
 );

@@ -6,13 +6,15 @@ import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
 
 class SectionGoogleBotton extends StatelessWidget {
-  const SectionGoogleBotton({super.key, required this.screenHeight, required this.screenWidth,});
+  const SectionGoogleBotton({super.key, required this.screenHeight, required this.screenWidth
+    ,required this.onTap,});
   final double screenHeight;
   final double screenWidth;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap:onTap,
       child: Container(
           alignment: Alignment.center,
           height:MediaQuery.of(context).size.height * .055,

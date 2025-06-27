@@ -21,6 +21,8 @@ import 'package:smart_mart/features/home/presentation/views/widgets/section_up_t
 import '../../../../../core/utils/styles.dart';
 import '../../../../category/presentation/managers/category_cubit/category_cubit.dart';
 
+import '../../../../whishList/presentation/managers/show_whish_list_cibit/show_whish_list_cubit.dart';
+import '../../../../whishList/presentation/managers/whish_list_cubit/whish_list_cubit.dart';
 import 'custom_app_bar.dart';
 import 'custom_botton_category_food.dart';
 import 'custom_search_bar.dart';
@@ -45,7 +47,11 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
   void initState() {
     super.initState();
     context.read<CategoryCubit>().fetchCategories();
+
+    context.read<WhishListCubit>().ShowWhishList();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,70 +61,54 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
     return SafeArea(
       child: ListView(
         children: [
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 34,
-                  left: screenWidth * .05,
-                  right: screenWidth * .05,
-                ),
-                child: Builder(
-                  builder: (context) => CustomAppBar(
-                    screenWidth: screenWidth,
-                    scaffoldContext: context,
-                    // token: widget.token,// هنبعته علشان يفتح الـ drawer
-                  ),
-                ),
-              ),
-
-              Padding(
-                padding:  EdgeInsets.only(top: 11,
-                  left: screenWidth * .05,
-                  right: screenWidth * .05,
-                ),
-                child: CustomSearchBar(
-                  readOnly: true,
-                  screenWidth: screenWidth,
-                onTap: (){
-                  GoRouter.of(context).push(AppRouter.kSearch);
-                  // navigateToPage(AppRouter.kSearch, context);
-                },
-                ),
-              ),
-              SectionUpToOffers(screenWidth: screenWidth),
-
-
-              CustomSideTitle(
+          Padding(
+            padding: EdgeInsets.only(
+              top: 34,
+              left: screenWidth * .05,
+              right: screenWidth * .05,
+            ),
+            child:
+                  CustomAppBar(
                 screenWidth: screenWidth,
-              text: ' Offers',
-                icon: 'assets/icons/Vector (3).svg',
-              ),
-              SectionScrolableOffers(screenWidth: screenWidth),
-              SizedBox(
-                height: 20,
+                scaffoldContext: context,
+                // token: widget.token,// هنبعته علشان يفتح الـ drawer
               ),
 
-           SectionGridCategory(screenWidth: screenWidth,
-           SideTitle: 'Categories',
-           numItems: 9,
-           ),
-
-
-
-              SectonShowItemLisView(screenWidth: screenWidth),
-
-              SizedBox(height: 30,),
-
-               SectionBestSale(screenWidth: screenWidth),
-
-
-            ],
+            // ),
           ),
-
+          Padding(
+            padding:  EdgeInsets.only(top: 11,
+              left: screenWidth * .05,
+              right: screenWidth * .05,
+            ),
+            child: CustomSearchBar(
+              readOnly: true,
+              screenWidth: screenWidth,
+            onTap: (){
+              GoRouter.of(context).push(AppRouter.kSearch);
+              // navigateToPage(AppRouter.kSearch, context);
+            },
+            ),
+          ),
+          SectionUpToOffers(screenWidth: screenWidth),
+          CustomSideTitle(
+            screenWidth: screenWidth,
+          text: ' Offers',
+            icon: 'assets/icons/Vector (3).svg',
+          ),
+          SectionScrolableOffers(screenWidth: screenWidth),
+          SizedBox(
+            height: 20,
+          ),
+          SectionGridCategory(screenWidth: screenWidth,
+                     SideTitle: 'Categories',
+                     numItems: 9,),
+          SectonShowItemLisView(screenWidth: screenWidth),
+          SizedBox(height: 30,),
+          SectionBestSale(screenWidth: screenWidth),
           SizedBox(height: 20,),
           SectionBakeryAndPastry(screenWidth: screenWidth),
-    Padding(
+          Padding(
       padding:  const EdgeInsets.only(left: 20,
       top: 20,),
       child: Text('Don t shop without a list',
@@ -128,8 +118,8 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
       ),
       ),
     ),
-    SectionSmartShopStartAtHome(screenWidth: screenWidth),
-    SectionFreshFood(screenWidth: screenWidth),
+           SectionSmartShopStartAtHome(screenWidth: screenWidth),
+          SectionFreshFood(screenWidth: screenWidth),
 
           SizedBox(height: 150,)
 

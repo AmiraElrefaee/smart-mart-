@@ -5,10 +5,11 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../category/data/models/sub_category_model.dart';
+import '../../../data/models/category_items.dart';
 import 'Custom_show_item.dart';
 import 'custom_botton_category_food.dart';
 
-class SectionFreshFood extends StatelessWidget {
+class SectionFreshFood extends StatefulWidget {
   const SectionFreshFood({
     super.key,
     required this.screenWidth,
@@ -17,10 +18,28 @@ class SectionFreshFood extends StatelessWidget {
   final double screenWidth;
 
   @override
+  State<SectionFreshFood> createState() => _SectionFreshFoodState();
+}
+
+class _SectionFreshFoodState extends State<SectionFreshFood> {
+  String? selectedCategory; // العنصر المختار
+
+  final List<CategoryItem> items = [
+    CategoryItem('Milk', 'assets/items/image 49.png'),
+    CategoryItem('Cheese & Labneh', 'assets/items/image (3).png'),
+    CategoryItem('Cold cuts', 'assets/items/image (2).png'),
+    CategoryItem('Yoghurt', 'assets/items/image (4).png'),
+
+    CategoryItem('Meat', 'assets/items/image (5).png'),
+    CategoryItem('More', 'assets/icons/more.png'),
+  ];
+
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: screenWidth,
-      height: screenWidth*1.5,
+      width: widget.screenWidth,
+      height: widget.screenWidth*1.5,
       child: Stack(
         // fit : StackFit.passthrough,
         children: [
@@ -28,16 +47,16 @@ class SectionFreshFood extends StatelessWidget {
             top: 0,
             left: 0,
             right: 0,
-            bottom:screenWidth*.23,
+            bottom:widget.screenWidth*.23,
             child: SvgPicture.asset('assets/back_grounds/Group 35.svg',
               fit: BoxFit.cover,
-              width: screenWidth,
+              width: widget.screenWidth,
               // height: 50,
             ),
           ),
           Positioned(
-            top: screenWidth*.23,
-            left: screenWidth*.24,
+            top: widget.screenWidth*.22,
+            left: widget.screenWidth*.24,
             child: Text('FRESH',
               style: Styles.Urbanist32.copyWith(
                   fontWeight: FontWeight.w700,
@@ -46,8 +65,8 @@ class SectionFreshFood extends StatelessWidget {
               ),),
           ),
           Positioned(
-            top: screenWidth*.3,
-            left: screenWidth*.35,
+            top: widget.screenWidth*.32,
+            left: widget.screenWidth*.35,
             child: Text(' FOOD',
               style: Styles.Urbanist32.copyWith(
                   fontWeight: FontWeight.w700,
@@ -57,82 +76,130 @@ class SectionFreshFood extends StatelessWidget {
           ),
 
           Positioned(
-              top: screenWidth*.19,
-              left: screenWidth*.58,
+              top: widget.screenWidth*.19,
+              left: widget.screenWidth*.58,
               child: SvgPicture.asset('assets/back_grounds/Group 38.svg',
-                height: screenWidth*.2,
+                height: widget.screenWidth*.2,
               )),
-          Positioned(
-              top: screenWidth*.44,
-              // left: screenWidth*.05,
-              child:
-              Padding(
-                padding: const EdgeInsets.only(right: 10,
-                left: 8
-                ),
-                child: Row(
+          Padding(
+            padding: EdgeInsets.only(top: widget.screenWidth * .47, left: 10, right: 10),
+            child: Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              alignment: WrapAlignment.start,
+              children: items.map((item) {
+                final isSelected = selectedCategory == item.label;
 
-                  children: [
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/image 49.png',
-                      text: ' Milk',
-                      color: kColor,
-
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = isSelected ? null : item.label;
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: widget.screenWidth * 0.02, vertical: widget.screenWidth * 0.015),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: isSelected ? kColor : Colors.transparent,
+                        // width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/image (3).png',
-                      text: ' Cheese & Labneh',
-                      color: Colors.black,
-
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        item.isSvg
+                            ? SvgPicture.asset(item.imagePath, height: widget.screenWidth * 0.07)
+                            : Image.asset(item.imagePath, height: widget.screenWidth * 0.068),
+                        const SizedBox(width: 5),
+                        Text(
+                          item.label,
+                          style: TextStyle(
+                            fontSize:widget.screenWidth * 0.035 ,
+                            fontWeight: FontWeight.w600,
+                            color: isSelected ? Colors.red : Colors.black,
+                          ),
+                        )
+                      ],
                     ),
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/image (2).png',
-                      text: ' Cold cuts',
-                      color: Colors.black,
-
-                    ),
-
-
-                  ],
-                ),
-              )
+                  ),
+                );
+              }).toList(),
+            ),
           ),
 
+          // Positioned(
+          //     top: widget.screenWidth*.44,
+          //     // left: screenWidth*.05,
+          //     child:
+          //     Padding(
+          //       padding: const EdgeInsets.only(right: 10,
+          //       left: 8
+          //       ),
+          //       child: Row(
+          //
+          //         children: [
+          //           CustomBottomCategoryFood(screenWidth: widget.screenWidth
+          //             , Photo: 'assets/items/image 49.png',
+          //             text: ' Milk',
+          //             color: kColor,
+          //
+          //           ),
+          //           CustomBottomCategoryFood(screenWidth: widget.screenWidth
+          //             , Photo: 'assets/items/image (3).png',
+          //             text: ' Cheese & Labneh',
+          //             color: Colors.black,
+          //
+          //           ),
+          //           CustomBottomCategoryFood(screenWidth: widget.screenWidth
+          //             , Photo: 'assets/items/image (2).png',
+          //             text: ' Cold cuts',
+          //             color: Colors.black,
+          //
+          //           ),
+          //
+          //
+          //         ],
+          //       ),
+          //     )
+          // ),
+          //
+          //
+          // Positioned(
+          //     top: widget.screenWidth*.57,
+          //     // left: screenWidth*.05,
+          //     child:
+          //     Padding(
+          //       padding: const EdgeInsets.only(left: 8),
+          //       child: Row(
+          //
+          //         children: [
+          //           CustomBottomCategoryFood(screenWidth: widget.screenWidth
+          //             , Photo: 'assets/items/image (4).png',
+          //             text: ' Yoghurt',
+          //             color: Colors.black,
+          //
+          //           ),
+          //           CustomBottomCategoryFood(screenWidth: widget.screenWidth
+          //             , Photo: 'assets/items/image (5).png',
+          //             text: ' Meat',
+          //             color: Colors.black,
+          //
+          //           ),
+          //           CustomBottomMore(screenWidth: widget.screenWidth)
+          //
+          //
+          //
+          //         ],
+          //       ),
+          //     )
+          // ),
+
 
           Positioned(
-              top: screenWidth*.57,
-              // left: screenWidth*.05,
-              child:
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Row(
-
-                  children: [
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/image (4).png',
-                      text: ' Yoghurt',
-                      color: Colors.black,
-
-                    ),
-                    CustomBottomCategoryFood(screenWidth: screenWidth
-                      , Photo: 'assets/items/image (5).png',
-                      text: ' Meat',
-                      color: Colors.black,
-
-                    ),
-                    CustomBottomMore(screenWidth: screenWidth)
-
-
-
-                  ],
-                ),
-              )
-          ),
-
-
-          Positioned(
-            top: screenWidth*.75,
-            left: screenWidth*.09,
+            top: widget.screenWidth*.75,
+            left: widget.screenWidth*.09,
             child: Text('Best Products',
               style: Styles.Urbanist20.copyWith(
                   fontWeight: FontWeight.w700,
@@ -143,7 +210,7 @@ class SectionFreshFood extends StatelessWidget {
           ),
 
           Positioned.fill(
-            top: screenWidth*.9,
+            top: widget.screenWidth*.9,
             child: SizedBox(
               // height: screenWidth*.4,
               child: ListView.builder(
@@ -152,8 +219,9 @@ class SectionFreshFood extends StatelessWidget {
                   itemBuilder: (context,index) {
                     return Padding(
                       padding: const EdgeInsets.only(left: 15),
-                      child: CustomShowItem(screenWidth: screenWidth,
+                      child: CustomShowItem(screenWidth: widget.screenWidth,
                        item: BestSeller(
+                         state: 'available',
                         id: '1',
                         title: 'Sample Item',
                         price: 100.0,

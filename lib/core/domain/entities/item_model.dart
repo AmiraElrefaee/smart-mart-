@@ -9,4 +9,6 @@ abstract class ItemModel {
   String get brand;
   num get rating;
   String get createdAt;
+  String get id;
+  String get state;
 }
