@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_mart/features/category/data/models/sub_category_model.dart';
 
+import '../../../../home/presentation/views/widgets/Custom_show_discount_item.dart';
 import '../../../../home/presentation/views/widgets/Custom_show_item.dart';
 
 class SectionBestSaleCategory extends StatelessWidget {
@@ -36,9 +38,16 @@ class SectionBestSaleCategory extends StatelessWidget {
               itemBuilder: (context,index) {
                 return Padding(
                   padding: const EdgeInsets.only(left: 15),
-                  child: CustomShowItem(screenWidth: screenWidth,
-                    item: bestSale[index]
-                  ),
+                  child: CustomShowDiscountItem(
+                    screenWidth: screenWidth,
+                    product:bestSale[index] ,
+                    width: 167.w,
+                    hight: 215.h,
+                  )
+
+                  // CustomShowItem(screenWidth: screenWidth,
+                  //   item: bestSale[index]
+                  // ),
                 );
               }
           ),

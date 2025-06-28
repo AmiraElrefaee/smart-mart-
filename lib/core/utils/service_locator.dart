@@ -11,6 +11,8 @@ import '../../features/category/data/api_service/sub_category_by_id_remote_data_
 import '../../features/category/data/models/category_model.dart';
 import '../../features/category/data/repo_imple/RepoSubCategoryImple.dart';
 import '../../features/category/data/repo_imple/repo_imple_category.dart';
+import '../../features/home/data/api_service/fetch_product_remote_data_source.dart';
+import '../../features/home/data/repo_imple/repo_imple_product.dart';
 import '../../features/login/data/api_service/login_remote_data_source.dart';
 import '../../features/login/data/api_service/refresh_token_remote_data_source_dio.dart';
 import '../../features/login/data/repo_imple/login_repo_imple.dart';
@@ -192,6 +194,13 @@ getIt.registerLazySingleton<WishlistRemoteDataSource>(
     ()=>WishlistRemoteDataSource(getIt<ApiService>())
 );
 
-
+//----------------------------------------------------
+//fetch product
+  getIt.registerLazySingleton<FetchProductRemoteDataSourceImple>(
+          ()=>FetchProductRemoteDataSourceImple()
+  );
+  getIt.registerLazySingleton<RepoImpleProduct>(
+      ()=>RepoImpleProduct(getIt<FetchProductRemoteDataSourceImple>())
+  );
   await getIt.allReady();
 }

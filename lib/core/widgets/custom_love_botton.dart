@@ -10,9 +10,11 @@ class customLoveBotton extends StatelessWidget {
   const customLoveBotton({
     super.key,
     required this.screenWidth,
-    required this.itemId, required this.width,
+    required this.itemId,
+    required this.width,
     required this.hight,
-    required this.isLoved,this.onTap
+    required this.isLoved,
+    this.onTap
 
   });
 

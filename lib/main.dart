@@ -10,6 +10,8 @@ import 'core/network/api_service.dart';
 import 'core/network/socket_service.dart';
 import 'core/utils/functions/app_router.dart';
 import 'core/utils/service_locator.dart';
+import 'features/home/data/repo_imple/repo_imple_product.dart';
+import 'features/home/presentation/managers/fetch_product_cubit/fetch_product_cubit.dart';
 import 'features/login/data/api_service/login_remote_data_source.dart';
 import 'features/login/data/repo_imple/refresh_token_repo_imple.dart';
 import 'features/login/domain/use_case/login_use_case.dart';
@@ -61,6 +63,9 @@ void main() async{
         ),
         BlocProvider<ShowWhishListCubit>(
           create: (context) => ShowWhishListCubit(getIt.get<WishlistRepoImpl>()),
+        ),
+        BlocProvider<FetchProductCubit>(
+          create: (context) => FetchProductCubit(getIt.get<RepoImpleProduct>())..fetchProducts(),
         ),
         // يمكن إضافة أي providers أخرى هنا
       ],

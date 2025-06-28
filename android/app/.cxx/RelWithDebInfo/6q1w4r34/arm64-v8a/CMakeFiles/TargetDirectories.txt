@@ -1,0 +1,2 @@
+D:/smart_mart/android/app/.cxx/RelWithDebInfo/6q1w4r34/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/smart_mart/android/app/.cxx/RelWithDebInfo/6q1w4r34/arm64-v8a/CMakeFiles/rebuild_cache.dir

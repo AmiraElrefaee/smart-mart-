@@ -36,12 +36,6 @@ class _SectionBestSaleState extends State<SectionBestSale> {
               icon: 'assets/icons/mdi_cart-sale.svg',
             ),
 
-
-
-            Column(children: [
-
-
-            ],),
             InkWell(
               onTap: (){
                 setState(() {

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:smart_mart/core/utils/functions/app_router.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_bottons.dart';
 import 'package:smart_mart/features/login/presentation/views/widgets/section_google_botton.dart';
@@ -10,8 +12,12 @@ import 'package:smart_mart/features/login/presentation/views/widgets/separate_li
 import 'package:smart_mart/core/widgets/side_title_section.dart';
 
 import '../../../../../const.dart';
+import '../../../../../core/network/api_service.dart';
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
 import '../../../../../core/widgets/custom_botton.dart';
+import '../../../../sign_up/data/api_service/sign_up_with_google_remote_data_source.dart';
+import '../../../data/api_service/login_remote_data_source.dart';
+import '../../../data/api_service/login_with_google_remote_data_source.dart';
 import '../../managers/login_cubit/login_cubit.dart';
 import 'custom_check_box.dart';
 import '../../../../../core/widgets/custom_side_text.dart';
@@ -128,7 +134,34 @@ class _addNoteFormState extends State<CustomForm> {
 
           SectionGoogleBotton(
             screenHeight:  widget.screenHeight,
-            screenWidth: widget. screenWidth,onTap: (){},
+            screenWidth: widget. screenWidth,
+            onTap: ()async {
+              print('✅✅✅✅✅✅');
+              try {
+                final apiService = await ApiService.create();
+                final loginRemote = LoginRemoteDataSource(apiService);
+                final googleAuthHandler = GoogleAuthHandlerLogin(loginRemote);
+
+                final response = await googleAuthHandler.signUpWithGoogle();
+              final  _decodedToken = JwtDecoder.decode(response.token);
+                if (_decodedToken['status'] == 'success') {
+                  // ✅ لو التسجيل تم بنجاح، نروح على صفحة OTP
+
+                  print(' login with google success ✅✅✅✅✅✅✅✅✅✅✅');
+                  context.go(AppRouter.khome);
+                } else {
+                  print(' login with google faild ❌❌❌❌❌❌❌❌${_decodedToken["message"]}');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('❌ التسجيل بجوجل فشل: ${_decodedToken["message"]}')),
+                  );
+                }
+              } catch (e) {
+                print(' login with google faild ❌❌❌❌❌❌❌❌${e}');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('❌ حصل خطأ أثناء تسجيل الدخول بجوجل: $e')),
+                );
+              }
+            },
           ),
 
 
