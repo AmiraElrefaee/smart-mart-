@@ -10,6 +10,7 @@ import 'package:smart_mart/features/home/presentation/views/home_page_view.dart'
 import 'package:smart_mart/features/login/presentation/views/login_view.dart';
 import 'package:smart_mart/features/on_boarding/presentation/views/onBoarding_view.dart';
 import 'package:smart_mart/features/profile/presentation/views/profile_page_view.dart';
+import 'package:smart_mart/features/profile/presentation/views/widgets/payment_history_page_view.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/scan_code_view.dart';
 import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
@@ -21,6 +22,7 @@ import '../../../features/login/presentation/managers/login_cubit/login_cubit.da
 import '../../../features/payment/presentation/views/add_cart_cards_page.dart';
 import '../../../features/payment/presentation/views/complete_page_view.dart';
 import '../../../features/payment/presentation/views/payment_page_view.dart';
+import '../../../features/profile/presentation/views/payment_history_page.dart';
 import '../../../features/scan_code/presentation/view/cart_page_view.dart';
 import '../../../features/scan_code/presentation/view/sucess_page_view.dart';
 import '../../../features/search/presentation/views/scan_Qr_code_product_view.dart';
@@ -65,6 +67,7 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
   static const ksucessConnectToCart='/SucessPageView';
   static const kAddToCart='/CartPageView';
   static const kwhishList='/favorites';
+  static const kpaymentHistoy='/PaymentHistoryPage';
    static final router = GoRouter(
 
     routes: [
@@ -81,17 +84,17 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
                id: id ,
              );
 
-           },
+           },),
 
-           ),
            GoRoute(path: kcategory,
            builder: (context,state){
              // final data = state.extra as ItemModel ;
-             return CategoryPageView(
+             return CategoryPageView();}),
 
-             );
-           }
-            ),
+           GoRoute(path: kpaymentHistoy,
+               builder: (context,state){
+                 // final data = state.extra as ItemModel ;
+                 return PaymentHistoryPage();}),
            GoRoute(path: kSearch,
            builder: (context, state)=> const SearchPageView()
            ),

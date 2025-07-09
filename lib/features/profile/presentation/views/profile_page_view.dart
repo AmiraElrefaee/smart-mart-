@@ -7,6 +7,6 @@ class ProfilePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: ProfilePageViewBody(),);
+    return SafeArea(child: Scaffold(body: ProfilePageViewBody(),));
   }
 }

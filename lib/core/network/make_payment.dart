@@ -89,7 +89,11 @@ Future<void> makePayment({required String totalamount, required num amount }) as
     try {
       await Stripe.instance.presentPaymentSheet();
       print("✅ Payment done successfully");
-      SocketService().emitClearData();
+
+        SocketService().emitStopCartScanning();
+        SocketService().emitClearData();
+
+
     } on StripeException catch (e) {
       print("❌ Stripe Exception: ${e.error.localizedMessage}");
     } catch (e) {

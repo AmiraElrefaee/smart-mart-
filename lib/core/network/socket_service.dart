@@ -158,7 +158,7 @@ class SocketService {
       final cartQrCode = data['cartQrCode'];
       final message = data['message'];
       if (success == true ||data.success) {
-        onScanningStop?.call(message);
+        onPaymentSucess?.call(message);
 
       }
 
@@ -166,7 +166,7 @@ class SocketService {
       // هنا ممكن تخزني cartQrCode أو تعرضي رسالة للمستخدم حسب السيناريو
     });
     socket.on('payment_success', (data) {
-      print('🛒🟢 scanning-stopped Event Received: $data');
+      print('🛒🟢 on payment_success Event Received: $data');
       final success = data['success'];
       final cartQrCode = data['cartQrCode'];
       final message = data['message'];
