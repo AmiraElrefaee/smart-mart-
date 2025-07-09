@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../const.dart';
+import '../../../../../core/utils/functions/app_router.dart';
+import '../../../../../core/widgets/custom_botton.dart';
 import 'cart_page_view_body.dart';
 import 'custom_app_bar.dart';
 
@@ -31,6 +36,17 @@ class SectionNothingInCart extends StatelessWidget {
           ),
         ),
         const Spacer(flex: 2),
+        // CustomBotton(
+        //   text: 'Check out',
+        //   background: kColor,
+        //   colorText: Colors.white,
+        //   screenHeight:MediaQuery.of(context).size.height,
+        //   screenWidth: MediaQuery.of(context).size.width,
+        //   onTap: () {
+        //     // SocketService().emitCheckout();
+        //     context.push(AppRouter.kPayment);
+        //   },
+        // ), const Spacer(flex: 2),
       ],
     );
   }

@@ -21,13 +21,7 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final loginCubit = context.read<LoginCubit>();
-    // final tokenData = loginCubit.decodedToken;
-    //
-    // if (tokenData == null) {
-    //   return const Center(child: Text("No data available"));
-    // }
-    // String name =token['toke']['firstName'] ?? null;
+
     return Row(
       children: [
         InkWell(

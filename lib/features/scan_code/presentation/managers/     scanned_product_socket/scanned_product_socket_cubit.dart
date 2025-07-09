@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_mart/core/domain/entities/item_model.dart';
 import '../../../../../core/domain/entities/error_model.dart';
 import '../../../../../core/domain/entities/scanned_product_model.dart';
 import '../../../../../core/network/socket_service.dart';
@@ -55,11 +56,13 @@ class ScannedProductSocketCubit extends Cubit<ScannedProductSocketState> {
     };
 
     SocketService().onCartConnected = ( String message) {
+      SocketService().emitStartScanning();
       print('✅✅✅✅✅✅✅✅✅✅ connect to cart  $message');
       // إضافة المنتج لليست
-      emit(ScannedCartSucess(message)); // إرسال المنتج الجديد فقط
+      emit(ScannedCartSucess(message));
+      // إرسال المنتج الجديد فقط
     };
-    SocketService().onScanningStop = ( String message) {
+    SocketService().onClearData = ( String message) {
       print('✅✅✅✅✅✅✅✅✅✅ connect to cart  $message');
       // إضافة المنتج لليست
       emit(ScannedProductsStopped(message)); // إرسال المنتج الجديد فقط

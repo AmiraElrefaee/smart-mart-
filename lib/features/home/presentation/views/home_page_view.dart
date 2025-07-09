@@ -21,6 +21,7 @@ class HomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     // print('from home view ${token}');
 
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<CategoryCubit>(

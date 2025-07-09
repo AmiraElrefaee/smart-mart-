@@ -1,21 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../scan_code/presentation/view/scan_code_view.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({super.key,
     required this.screenWidth,
     this.onTap,
     required this.readOnly,
-    this.onChanged});
+    this.onChanged, this.onPressedScan});
 
   final double screenWidth;
  final  void Function()? onTap;
 final  bool readOnly;
   final void Function(String)? onChanged;
+  final  void Function()? onPressedScan;
 
   @override
   _CustomSearchBarState createState() => _CustomSearchBarState();
@@ -90,7 +94,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
         ),
         suffixIcon: IconButton(
           onPressed: () {
-            // _searchController.clear();
+            context.go(AppRouter.ScanCodeProdct);
           },
           icon: SvgPicture.asset(
             'assets/icons/Vector (11).svg',

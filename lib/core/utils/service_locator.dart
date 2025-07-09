@@ -2,15 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_mart/features/category/dmain/entity/categoty_entity.dart';
 import 'package:smart_mart/features/sign_up/domain/use_case/register_use_case.dart';
 
 import '../../features/category/data/api_service/category_local_data_source.dart';
 import '../../features/category/data/api_service/category_remote_data_source.dart';
+import '../../features/category/data/api_service/product_sub_category_remote_data_source.dart';
 import '../../features/category/data/api_service/sub_category_by_id_remote_data_source.dart';
 import '../../features/category/data/models/category_model.dart';
 import '../../features/category/data/repo_imple/RepoSubCategoryImple.dart';
 import '../../features/category/data/repo_imple/repo_imple_category.dart';
+import '../../features/category/data/repo_imple/repo_imple_product_sub_category.dart';
+import '../../features/details_item/data/api_servce/fetch_simailar_product_remote_data_source.dart';
+import '../../features/details_item/data/repo_imple/repo_imple_similar_product.dart';
 import '../../features/home/data/api_service/fetch_product_remote_data_source.dart';
 import '../../features/home/data/repo_imple/repo_imple_product.dart';
 import '../../features/login/data/api_service/login_remote_data_source.dart';
@@ -23,6 +28,12 @@ import '../../features/login/presentation/managers/refresh_token_cubit/refresh_t
 import '../../features/scan_code/data/api_service/scanned_item_remote_data_source.dart';
 import '../../features/scan_code/data/repo_imple/repo_imple_sacnned_item.dart';
 import '../../features/scan_code/presentation/managers/     scanned_product_socket/scanned_product_socket_cubit.dart';
+import '../../features/search/data/api_service/saved_search_local_data_source.dart';
+import '../../features/search/data/api_service/search_product_remote_data_source.dart';
+import '../../features/search/data/api_service/search_qr_code_remote_data_source.dart';
+import '../../features/search/data/repo_imple/repo_imple_search_product.dart';
+import '../../features/search/data/repo_imple/repo_imple_search_qrcode.dart';
+import '../../features/search/domain/repo/repo_search_qr_code.dart';
 import '../../features/sign_up/data/api_service/OTP_register_remote_data_source_dio.dart';
 import '../../features/sign_up/data/api_service/OTP_sign_up_remote_data_source.dart';
 import '../../features/sign_up/data/api_service/forget_password_remote_data_so9urce_dio.dart';
@@ -201,6 +212,45 @@ getIt.registerLazySingleton<WishlistRemoteDataSource>(
   );
   getIt.registerLazySingleton<RepoImpleProduct>(
       ()=>RepoImpleProduct(getIt<FetchProductRemoteDataSourceImple>())
+  );
+  //---------------------------------------------------------------
+  //fetch product sub category
+  getIt.registerLazySingleton<ProductSubCategoryImple>(
+          ()=>ProductSubCategoryImple()
+  );
+  getIt.registerLazySingleton<RepoImpleProductSubCategory>(
+          ()=>RepoImpleProductSubCategory(productSubCategory: getIt<ProductSubCategoryImple>())
+  );
+
+  //-------------------------------------------------------------
+  //similar_product
+
+  //fetch product sub category
+  getIt.registerLazySingleton<FetchSimailarProductRemoteDataSourceImple>(
+          ()=>FetchSimailarProductRemoteDataSourceImple()
+  );
+  getIt.registerLazySingleton<RepoImpleSimilarProduct>(
+          ()=>RepoImpleSimilarProduct( getIt<FetchSimailarProductRemoteDataSourceImple>())
+  );
+  //-------------------------------------------------------------------
+  //search product
+  getIt.registerLazySingleton<SearchProductRemoteDataSourceImple>(
+          ()=>SearchProductRemoteDataSourceImple()
+  );
+  getIt.registerLazySingleton<RepoImpleSearchProduct>(
+          ()=>RepoImpleSearchProduct(searchProductRemoteDataSource: getIt<SearchProductRemoteDataSourceImple>())
+  );
+  final sharedPrefs = await SharedPreferences.getInstance();
+  getIt.registerLazySingleton<SearchLocalStorageService>(
+          ()=>SearchLocalStorageService(sharedPrefs)
+  );
+//---------------------------------------------------------------
+  //search bt qrcode
+  getIt.registerLazySingleton<SearchQrCodeRemoteDataSourceImple>(
+          ()=>SearchQrCodeRemoteDataSourceImple()
+  );
+  getIt.registerLazySingleton<RepoImpleSearchQrcode>(
+          ()=>RepoImpleSearchQrcode( searchQrCodeRemoteDataSource: getIt<SearchQrCodeRemoteDataSourceImple>())
   );
   await getIt.allReady();
 }

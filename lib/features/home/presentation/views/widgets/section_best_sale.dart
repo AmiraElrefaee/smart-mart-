@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../managers/fetch_product_cubit/fetch_product_cubit.dart';
 import 'Custom_show_discount_item.dart';
 import 'custom_grid_best_sale.dart';
 import 'custom_side_title.dart';
@@ -21,12 +23,13 @@ class SectionBestSale extends StatefulWidget {
 }
 
 class _SectionBestSaleState extends State<SectionBestSale> {
-  bool ViewAll=false;
+  bool ViewAll = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Padding(
-        padding:  EdgeInsets.only(right:  widget.screenWidth * .08, ),
+        padding: EdgeInsets.only(right: widget.screenWidth * .08,),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -37,9 +40,9 @@ class _SectionBestSaleState extends State<SectionBestSale> {
             ),
 
             InkWell(
-              onTap: (){
+              onTap: () {
                 setState(() {
-                  ViewAll=!ViewAll;
+                  ViewAll = !ViewAll;
                 });
               },
               child: Text('view all',
@@ -53,20 +56,20 @@ class _SectionBestSaleState extends State<SectionBestSale> {
         ),
       ),
       Padding(
-        padding: const EdgeInsets.only(bottom: 20,top:5),
+        padding: const EdgeInsets.only(bottom: 20, top: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          SvgPicture.asset('assets/icons/mdi_clock-outline.svg'),
+            SvgPicture.asset('assets/icons/mdi_clock-outline.svg'),
             Text(' ends in 04',
-            style: Styles.Urbanist16.copyWith(
-              color: Color(0xff484C52),
-              fontWeight: FontWeight.w600
-            ),
+              style: Styles.Urbanist16.copyWith(
+                  color: Color(0xff484C52),
+                  fontWeight: FontWeight.w600
+              ),
             ),
             Text('H',
               style: Styles.Urbanist16.copyWith(
-                  color:kColor,
+                  color: kColor,
                   fontWeight: FontWeight.w600
               ),
             ),
@@ -78,7 +81,7 @@ class _SectionBestSaleState extends State<SectionBestSale> {
             ),
             Text('M',
               style: Styles.Urbanist16.copyWith(
-                  color:kColor,
+                  color: kColor,
                   fontWeight: FontWeight.w600
               ),
             ),
@@ -95,16 +98,28 @@ class _SectionBestSaleState extends State<SectionBestSale> {
               ),
             )
 
-        ],),
+          ],),
       ),
 
       Padding(
-        padding:  EdgeInsets.symmetric(horizontal:widget.screenWidth * .08 ),
-        child: CustomGridBestSale(
-            // widget: widget
-            screenWidth: widget.screenWidth,
-             scroll: false,
-             ViewAll: ViewAll),)
+        padding: EdgeInsets.symmetric(horizontal: widget.screenWidth * .08),
+        child: BlocBuilder<FetchProductCubit, FetchProductState>(
+          builder: (context, state) {
+            if (state is FetchProductSucces){
+            return CustomGridBestSale(
+              // widget: widget
+              product: state.products,
+                screenWidth: widget.screenWidth,
+                scroll: false,
+                ViewAll: ViewAll);}
+
+            else if (state is FetchProductLoading){
+              return CircularProgressIndicator(color: kColor);
+            }  else {
+              return Text('there is no offers ');
+            }
+          },
+        ),)
     ],);
   }
 }

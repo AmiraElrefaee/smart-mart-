@@ -1,9 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+// import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_mart/features/category/data/models/category_model.dart';
 import 'const.dart';
 import 'core/network/api_service.dart';
@@ -26,6 +30,8 @@ import 'features/whishList/presentation/managers/whish_list_cubit/whish_list_cub
 import 'firebase_options.dart';
 
 void main() async{
+
+
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   // Hive.registerAdapter(CategoryModelAdapter());
@@ -40,6 +46,14 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform, // تهيئة Firebase
   );
 
+  final response = await Dio().get('${ApiConstants.baseUrl}/payment/config');
+
+  final publicKey = response.data['data']['publicKey'];
+  print('  📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅publicKey : ${publicKey}');
+  // 2. احفظيه في Stripe SDK
+  Stripe.publishableKey = publicKey;
+
+  await Stripe.instance.applySettings();
   await setupLocator();
   runApp(
     MultiBlocProvider(
@@ -67,6 +81,7 @@ void main() async{
         BlocProvider<FetchProductCubit>(
           create: (context) => FetchProductCubit(getIt.get<RepoImpleProduct>())..fetchProducts(),
         ),
+
         // يمكن إضافة أي providers أخرى هنا
       ],
       child: const MyApp(),

@@ -72,7 +72,7 @@ class CustomShowItemOutOfStock extends StatelessWidget {
               ),
 
               CustomPrice(screenWidth: screenWidth,
-              price: 0,itemId: '12345678',
+              price: 0,itemId: '12345678',totalPrice: 0,
               ),
               SizedBox(height: 10,)
 

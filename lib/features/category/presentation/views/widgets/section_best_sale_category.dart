@@ -43,6 +43,7 @@ class SectionBestSaleCategory extends StatelessWidget {
                     product:bestSale[index] ,
                     width: 167.w,
                     hight: 215.h,
+                    widhDiscount: 68.w,
                   )
 
                   // CustomShowItem(screenWidth: screenWidth,

@@ -12,11 +12,12 @@ import '../../../../whishList/presentation/managers/whish_list_cubit/whish_list_
 class CustomPrice extends StatelessWidget {
   const CustomPrice({
     super.key,
-    required this.screenWidth, required this.price, required this.itemId,
+    required this.screenWidth, required this.price, required this.itemId, required this.totalPrice,
   });
 
   final double screenWidth;
   final num price;
+  final num totalPrice;
   final String itemId;
 
   @override
@@ -30,7 +31,7 @@ class CustomPrice extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('$price',
+            Text('${totalPrice.toInt()}',
               style: Styles.Urbanist25.copyWith(
                 color: kColor,
                 fontSize: 20.sp,
@@ -53,7 +54,10 @@ class CustomPrice extends StatelessWidget {
               )
             ],),
 
-            Text('  EGP $price  ',
+           price==totalPrice?Padding(
+             padding:  EdgeInsets.only(right: 5.w),
+             child: Text(''),
+           ):Text('  EGP $price  ',
               style: Styles.Urbanist12.copyWith(
                   fontSize: 10.sp,
                   decoration: TextDecoration.lineThrough,
@@ -67,7 +71,9 @@ class CustomPrice extends StatelessWidget {
               color: const Color(0xffDADADA), // لون الخط
             ),
 
-            customLoveBotton(screenWidth: screenWidth, itemId: itemId,
+            customLoveBotton(
+              screenWidth: screenWidth,
+              itemId: itemId,
             hight: 15.h,
               width: 17.w,
               isLoved: context.watch<WhishListCubit>().isInWishlist(itemId),

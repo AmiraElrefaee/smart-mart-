@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +11,7 @@ import 'package:smart_mart/features/search/presentation/views/widgets/section_bo
 import '../../../../../core/utils/styles.dart';
 import '../../../../home/data/models/categories_item.dart';
 import '../../../../home/presentation/views/widgets/Custom_show_item.dart';
+import '../../managers/search_cubit/search_cubit.dart';
 import 'Section_body_when_searching.dart';
 
 class SearchPageViewBody extends StatefulWidget {
@@ -55,6 +57,7 @@ class _SearchPageViewBodyState extends State<SearchPageViewBody> {
                       onChanged: (value){
                         setState(() {
                           search = value.isEmpty;
+                          context.read<SearchCubit>().FetchSearchProduct(keyords: value);
                         });
 
                       },

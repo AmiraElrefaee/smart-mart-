@@ -11,4 +11,5 @@ abstract class ItemModel {
   String get createdAt;
   String get id;
   String get state;
+  String get subCategoryName;
 }

@@ -22,7 +22,8 @@ class FetchProductRemoteDataSourceImple implements FetchProductRemoteDataSource 
       if (response.statusCode == 200) {
         print('yesss2');
         // استخراج بيانات bestSeller وتحويلها إلى موديل BestSeller
-        List dataBestSellers = jsonDecode(response.body)['data'];
+        List   dataBestSellers = jsonDecode(response.body)['data']['products'];
+        print(dataBestSellers);
         print('yesss3');
         return dataBestSellers.map((e) => BestSeller.fromJson(e)).toList();
       } else {

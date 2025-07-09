@@ -32,7 +32,9 @@ class DetailsScanProductView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SectionShowProductPhoto(screenWidth: screenWidth, photo: '',),
+                  SectionShowProductPhoto(screenWidth: screenWidth, photo: '',
+                  id: '1',
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
@@ -161,6 +163,7 @@ class DetailsScanProductView extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 15),
                           child: CustomShowItem(screenWidth: screenWidth,
                         item: BestSeller(
+                          subCategoryName: '',
                           state: 'available',
                         id: '1',
                         title: 'Sample Item',

@@ -160,6 +160,7 @@ class _SectionBakeryAndPastryState extends State<SectionBakeryAndPastry> {
                         : CustomShowItem(
                       screenWidth: widget.screenWidth,
                       item: BestSeller(
+                        subCategoryName: '',
                         state: 'available',
                         id: '1',
                         title: 'Sample Item',

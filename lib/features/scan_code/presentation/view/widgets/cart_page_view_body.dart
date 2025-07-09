@@ -10,6 +10,7 @@ import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_
 import '../../../../../core/domain/entities/scanned_product_model.dart';
 import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../../core/widgets/custom_botton.dart';
+import '../../../../details_item/presentation/managers/similar_product_cubit/similar_product_cubit.dart';
 import '../../managers/     scanned_product_socket/scanned_product_socket_cubit.dart';
 
 
@@ -34,9 +35,9 @@ class _CartPageViewBodyState extends State<CartPageViewBody> {
 
     return BlocConsumer<ScannedProductSocketCubit, ScannedProductSocketState>(
       listener: (context, state) {
-        if (state is ScannedProductsStopped ){
-          context.go(AppRouter.kScanPage);
-        }
+        // if (state is ScannedProductsStopped ){
+        //   context.go(AppRouter.kScanPage);
+        // }
       },
       builder: (context, state) {
         if (state is ScannedProductsLoading) {

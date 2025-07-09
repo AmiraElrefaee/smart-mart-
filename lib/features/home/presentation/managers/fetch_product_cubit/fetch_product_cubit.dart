@@ -16,6 +16,7 @@ class FetchProductCubit extends Cubit<FetchProductState> {
       emit(FetchProductLoading());
 
       final products = await repoProduct.FetchProduct();
+      print('the products is $products');
       emit(FetchProductSucces(products:products ));
     } catch (e) {
       print('SubCategoryCubit fetchBestSellers error ${e.toString()}  ');

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 
 import '../../../../../core/utils/functions/Navigate_to_page.dart';
 
@@ -16,8 +18,8 @@ class sectonArrowBack extends StatelessWidget {
     return Padding(
       padding:  EdgeInsets.only(right: screenWidth*.05),
       child: InkWell(onTap: (){
-        Navigator.pop(context);
-
+        // Navigator.pop(context);
+        context.go(AppRouter.khome);
 
       }, child: Icon(Icons.arrow_back_ios_new_outlined,
         size: screenWidth*.06,

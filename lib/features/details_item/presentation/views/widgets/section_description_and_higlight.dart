@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../const.dart';
 import '../../../../../core/utils/styles.dart';
@@ -40,7 +41,9 @@ class _SectionDEscriptionAndHighlightState extends State<SectionDEscriptionAndHi
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text('Description',
               style: Styles.Urbanist15.copyWith(
-                  fontWeight: FontWeight.w600
+                  fontWeight: FontWeight.w600,
+                fontSize: 14.sp
+
               ),
             ),
           ),
@@ -48,7 +51,8 @@ class _SectionDEscriptionAndHighlightState extends State<SectionDEscriptionAndHi
           Text(widget.Description,
             style: Styles.Urbanist13.copyWith(
                 fontWeight: FontWeight.w600,
-                color:kcolor3
+                color:kcolor3,
+              fontSize: 13.sp
             ),
           ),
 
@@ -65,7 +69,8 @@ class _SectionDEscriptionAndHighlightState extends State<SectionDEscriptionAndHi
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text('Highlights',
               style: Styles.Urbanist15.copyWith(
-                  fontWeight: FontWeight.w600
+                  fontWeight: FontWeight.w600,
+                fontSize: 14.sp
               ),
             ),
           ),
@@ -77,7 +82,8 @@ class _SectionDEscriptionAndHighlightState extends State<SectionDEscriptionAndHi
                     maxLines: showMore ? null : 4,
                     style: Styles.Urbanist13.copyWith(
                         fontWeight: FontWeight.w600,
-                        color:kcolor3
+                        color:kcolor3,
+                      fontSize: 13.sp
                     ),
                   ),
                 ),

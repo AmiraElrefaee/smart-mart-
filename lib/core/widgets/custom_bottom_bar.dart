@@ -20,7 +20,17 @@ class CustomBottomBar extends StatefulWidget {
 }
 
 class _CustomBottomBarState extends State<CustomBottomBar> {
-  int selectedIndex=0;
+  // int selectedIndex=0;
+  int getCurrentIndex(BuildContext context) {
+    final location = GoRouterState.of(context).uri.toString();
+
+    if (location.startsWith(AppRouter.khome)) return 0;
+    if (location.startsWith(AppRouter.kwhishList)) return 1;
+    if (location.startsWith(AppRouter.kAddToCart)) return 2;
+    if (location.startsWith(AppRouter.kprofile)) return 3;
+    return -1; // أي حاجة خارج التابز
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,10 +52,12 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
                   iconPath: 'assets/icons/Vector (6).svg',
                   label: 'Home',
                   index: 0,
-                  selectedIndex: selectedIndex,
+                  // selectedIndex: selectedIndex,
+                  selectedIndex: getCurrentIndex(context),
+
                   onTap: (){
                     setState(() {
-                      selectedIndex=0;
+                      // selectedIndex=0;
                     });
 
                     context.go(AppRouter.khome);
@@ -56,13 +68,17 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
                   iconPath: 'assets/icons/Vector (9).svg',
                   label: 'Wishlist',
                   index: 1,
-                  selectedIndex: selectedIndex,
+                  // selectedIndex: selectedIndex,
+                  selectedIndex: getCurrentIndex(context),
+
                   onTap: () {
 
                     setState(() {
-                      selectedIndex=1;
+                      // selectedIndex=1;
                     });
-                    context.go('/favorites');
+// sss
+                    context.go(AppRouter.kwhishList);
+
                   },
                 ),
 
@@ -71,12 +87,14 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
                   iconPath: 'assets/icons/Vector (7).svg',
                   label: 'Cart',
                   index: 2,
-                  selectedIndex: selectedIndex,
+                  // selectedIndex: selectedIndex,
+                  selectedIndex: getCurrentIndex(context),
+
                   onTap: () {
                     setState(() {
-                      selectedIndex=2;
+                      // selectedIndex=2;
                     });
-                    context.go('/cart');
+                    context.go(AppRouter.kAddToCart);
 
                   },
                 ),
@@ -85,12 +103,14 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
                     iconPath: 'assets/icons/li_user.svg',
                     label: 'Profile',
                     index: 3,
-                    selectedIndex: selectedIndex,
+                    // selectedIndex: selectedIndex,
+                    selectedIndex: getCurrentIndex(context),
+
                     onTap: () {
                       setState(() {
-                        selectedIndex=3;
+                        // selectedIndex=3;
                       });
-                      context.go('/profile');
+                      context.go( AppRouter.kprofile);
                     }
                 ),
               ],
@@ -102,7 +122,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
             child:   CustomFloatingActionButton(
               onItemTapped: (){
                 setState(() {
-                  selectedIndex=5;
+                  // selectedIndex=5;
                 });
                 context.go(AppRouter.kScanPage);
               },

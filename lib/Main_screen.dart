@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
       body:
       Stack(
         children: [
-          Positioned.fill(child: widget.child), // الشاشة الرئيسية
+          widget.child, // الشاشة الرئيسية
 
           // عنصر SectionDraggleTotalNum تحته البوتوم بار
 

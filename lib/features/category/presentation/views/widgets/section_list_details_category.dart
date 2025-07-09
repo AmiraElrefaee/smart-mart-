@@ -1,161 +1,121 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_mart/features/category/presentation/managers/Sub_category_cubit/sub_category_cubit.dart';
+
+import 'package:smart_mart/features/category/presentation/managers/selected_sub_category_cubit/selected_sub_categoru_state.dart';
 import 'package:smart_mart/features/category/presentation/views/widgets/section_best_sale_category.dart';
-import 'package:smart_mart/features/category/presentation/views/widgets/section_bottons.dart';
 import 'package:smart_mart/features/category/presentation/views/widgets/section_details_bottons.dart';
 
 import '../../../../../const.dart';
-import '../../../../home/presentation/views/widgets/custom_grid_best_sale.dart';
 import '../../../data/models/sub_category_model.dart';
+import '../../managers/product_sub_category_cubit/product_sub_category_cubit.dart';
+import '../../managers/selected_sub_category_cubit/selected_sub_category_cubit.dart';
 
-class SectionListDetailsCategory extends StatefulWidget {
-  const SectionListDetailsCategory({
-    super.key,
-    required this.screenWidth,
-    required this.DetailCategoryTop,
-    required this.DetailCategoryBottom,
-  });
-
+class SectionListDetailsCategory extends StatelessWidget {
+  const SectionListDetailsCategory({super.key, required this.screenWidth});
   final double screenWidth;
-  final List<Map<String, String>> DetailCategoryTop;
-  final List<Map<String, String>> DetailCategoryBottom;
-
-  @override
-  State<SectionListDetailsCategory> createState() => _SectionListDetailsCategoryState();
-}
-
-class _SectionListDetailsCategoryState extends State<SectionListDetailsCategory> {
-  int? selectedIndexTop;
-  int? selectedIndexBottom;
-
-  void _onTopItemTapped(int index) {
-    setState(() {
-      selectedIndexTop = (selectedIndexTop == index) ? null : index;
-      selectedIndexBottom = null; // إلغاء تحديد العنصر في القائمة الثانية
-    });
-  }
-
-  void _onBottomItemTapped(int index) {
-    setState(() {
-      selectedIndexBottom = (selectedIndexBottom == index) ? null : index;
-      selectedIndexTop = null; // إلغاء تحديد العنصر في القائمة الأولى
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SubCategoryCubit, SubCategoryState>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    if(state is SubCategorySucess ){
-      final mid = (state.subCategories.length / 2).ceil();
-      final topList = state.subCategories.take(mid).toList();
-      final bottomList = state.subCategories.skip(mid).toList(); // الباقي
-    return Padding(
-      padding: const EdgeInsets.only(left: 15, top: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildCategoryList(topList,
-              selectedIndexTop, _onTopItemTapped,
-          false
-          ),
-          SizedBox(height: 5),
-          // المسافة بين القائمتين
-          _buildCategoryList(bottomList,
-              selectedIndexBottom, _onBottomItemTapped,
-          true
-          ),
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is SubCategorySucess) {
+          final mid = (state.subCategories.length / 2).ceil();
+          final topList = state.subCategories.take(mid).toList();
+          final bottomList = state.subCategories.skip(mid).toList();
 
-          Builder(
-            builder: (context) {
-              if(selectedIndexBottom== null&& selectedIndexTop==null)
-           {
+          return Padding(
+            padding: const EdgeInsets.only(left: 15, top: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildCategoryList(context, topList, screenWidth),
+                const SizedBox(height: 5),
+                _buildCategoryList(context, bottomList, screenWidth),
+                BlocBuilder<SelectedSubCategoryCubit, SelectedSubCategoryState>(
+                  builder: (context, state2) {
+                    if (state2 is SubCategorySelected) {
+                      context.read<ProductSubCategoryCubit>().FetchProduct(name: state2.selectedId);
+                      return SectionDetailsBottons(name: state2.name);
+                    } else {
+                      return SectionBestSaleCategory(
+                        screenWidth: screenWidth,
+                        bestSale: state.bestSellers,
+                      );
 
-             return SectionBestSaleCategory
-                (screenWidth: widget.screenWidth,
-               bestSale: state.bestSellers,
-             );
-
-
-
-           }
-
-              else{
-               return SectionDetailsBottons(
-                   selectedIndexBottom: selectedIndexBottom,
-                   widget: widget,
-                   selectedIndexTop: selectedIndexTop);
-              }
-            }
-          )
-        ],
-      ),
+                    }
+                  },
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const Center(child: Text('Loading...'));
+        }
+      },
     );
   }
-  else {
-   return Center(child: Text('laoding'));
-    }
-  }
 
-);
-  }
-
-  Widget _buildCategoryList(List<SubCategoryModel> categoryList,
-      int? selectedIndex, Function(int) onTap,
-      bool reverse
+  Widget _buildCategoryList(
+      BuildContext context,
+      List<SubCategoryModel> categoryList,
+      double screenWidth,
       ) {
-    return SizedBox(
-      width: widget.screenWidth,
-      height: widget.screenWidth * .17,
-      child: ListView.builder(
-        reverse: reverse,
-        itemCount: categoryList.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          bool selectedItem = selectedIndex == index;
-          return InkWell(
-            onTap: () => onTap(index),
-            child: Container(
+    final selectedState = context.watch<SelectedSubCategoryCubit>().state;
+    String? selectedId;
+    if (selectedState is SubCategorySelected) {
+      selectedId = selectedState.selectedId;
+    }
 
-              margin: EdgeInsets.only(left: 12, top: 6),
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+
+    return SizedBox(
+      width: screenWidth,
+      height: screenWidth * .17,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categoryList.length,
+        itemBuilder: (context, index) {
+          final model = categoryList[index];
+          final selected = model.id == selectedId;
+
+          return GestureDetector(
+            onTap: () {
+              context.read<SelectedSubCategoryCubit>().select(model.id, model.name);
+            },
+            child: Container(
+              margin: const EdgeInsets.only(left: 12, top: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: Color(0xffF8F8F8),
+                color: const Color(0xffF8F8F8),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   width: 1,
-                  color: selectedItem ? kColor : Color(0xffF8F8F8),
+                  color: selected ? kColor : const Color(0xffF8F8F8),
                 ),
               ),
               child: Row(
                 children: [
                   SizedBox(
-                    height: widget.screenWidth * .12,
+                    height: screenWidth * .12,
                     child: CachedNetworkImage(
-                      imageUrl:categoryList[index].image,
+                      imageUrl: model.image,
                       fit: BoxFit.fill,
                       placeholder: (context, url) => Container(
                         color: Colors.grey.shade300,
-                        child: const Center(child: CircularProgressIndicator()),
+                        child: const Center(child: CircularProgressIndicator(color: kColor)),
                       ),
-                      errorWidget: (context, url, error) => Container(
-                        color: Colors.grey.shade300,
-                        child: const Center(child: Icon(Icons.error)),
+                      errorWidget: (context, url, error) => const Center(
+                        child: Icon(Icons.error, color: Colors.grey),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
-                    categoryList[index].name,
+                    model.name,
                     style: TextStyle(
-                      color: selectedItem ? kColor : kcolor4,
+                      color: selected ? kColor : kcolor4,
                       fontSize: 15,
                       fontFamily: 'Urbanist',
                       fontWeight: FontWeight.w600,
@@ -170,4 +130,3 @@ class _SectionListDetailsCategoryState extends State<SectionListDetailsCategory>
     );
   }
 }
-

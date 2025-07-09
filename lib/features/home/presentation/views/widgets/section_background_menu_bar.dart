@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 
 import '../../../../../const.dart';
 
@@ -14,10 +17,7 @@ class SectionBackgroundMenuBar extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          // top:  MediaQuery.of(context).size.height*.036,
-          // left: 0,
-          // right: 0,
-          // bottom: 2,
+
           child: Center(
             child: SvgPicture.asset('assets/back_grounds/background_menuBar.svg',
               width: MediaQuery.of(context).size.width,
@@ -37,23 +37,31 @@ class SectionBackgroundMenuBar extends StatelessWidget {
         ),
 
         Positioned(
-          top:  MediaQuery.of(context).size.height*.12,
+          top:  MediaQuery.of(context).size.height*.11,
           left:  MediaQuery.of(context).size.width*.27,
+          width: 103.w,
+          height: 29.h
+          ,
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 40,
-                vertical: 8
-            ),
+            // padding: EdgeInsets.symmetric(
+            //     vertical: 8
+            // ),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10)
             ),
-            child: Text('Scan',
-
-              style: TextStyle(
-                  color: kColor,
-                  fontSize:  MediaQuery.of(context).size.width*.03,
-                  fontFamily: 'Urbanist',
-                  fontWeight: FontWeight.w500
+            child: InkWell(
+              onTap: (){
+                context.go(AppRouter.kScanPage);
+              },
+              child: Text('Scan',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: kColor,
+                    fontSize:  14.sp,
+                    fontFamily: 'Urbanist',
+                    fontWeight: FontWeight.w500
+                ),
               ),
             ),),
         ),

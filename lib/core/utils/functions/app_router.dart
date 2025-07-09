@@ -9,6 +9,7 @@ import 'package:smart_mart/features/details_item/presentation/views/details_psge
 import 'package:smart_mart/features/home/presentation/views/home_page_view.dart';
 import 'package:smart_mart/features/login/presentation/views/login_view.dart';
 import 'package:smart_mart/features/on_boarding/presentation/views/onBoarding_view.dart';
+import 'package:smart_mart/features/profile/presentation/views/profile_page_view.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/scan_code_view.dart';
 import 'package:smart_mart/features/sign_up/presentation/views/OTP_view.dart';
 
@@ -22,6 +23,7 @@ import '../../../features/payment/presentation/views/complete_page_view.dart';
 import '../../../features/payment/presentation/views/payment_page_view.dart';
 import '../../../features/scan_code/presentation/view/cart_page_view.dart';
 import '../../../features/scan_code/presentation/view/sucess_page_view.dart';
+import '../../../features/search/presentation/views/scan_Qr_code_product_view.dart';
 import '../../../features/search/presentation/views/search_page_view.dart';
 import '../../../features/sign_up/domain/use_case/register_use_case.dart';
 import '../../../features/sign_up/presentation/views/OTP_forget_password_page_view.dart';
@@ -46,11 +48,14 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
   static const kOtpForgetPasswordPage='/OtpForgetPasswordPageView';
   static const kCreateNewPasswordpage='/CreateNewPasswordpageView';
     static const khome='/HomePageView';
-
+  //
   // static const khome='/';
   static const kdetails='/DetailsPageView';
-  static const kwishList='/WishlistPageView';
+  static const kprofile='/ProfilePageView';
+  // static const kwishList='/WishlistPageView';
   static const kScanPage='/ScanCodeView';
+  static const ScanCodeProdct='/ScanCodeProdct';
+  //ScanCodeView
   static const kPayment='/PaymentView';
   static const kaddCartCard='/AddCartCardsPage';
   static const kcompletePayment='/CompletePageView';
@@ -97,9 +102,15 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
                return HomePageView();
              },
            ),
+           GoRoute(path: kAddToCart,
+               builder: (context,state)=> const CartPageView()),
            GoRoute(
              path: kwhishList,
              builder: (context, state) =>const WhisListView(),
+           ),
+           GoRoute(
+             path: kprofile,
+             builder: (context, state) =>const ProfilePageView(),
            ),
            GoRoute(
              path: '/profile',
@@ -114,6 +125,10 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
              builder: (context, state) =>const ScanCodeView(),
            ),
            GoRoute(
+             path: ScanCodeProdct,
+             builder: (context, state) =>const ScanQrCodeProductView(),
+           ),
+           GoRoute(
              path:kdetails,
              builder: (context, state) {
                final data = state.extra as ItemModel ;
@@ -122,13 +137,6 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
                );
              },
            ),
-           // GoRoute(path: ksucessConnectToCart,
-           //
-           //     builder: (context, state )=>const SucessPageView ()
-           // ),
-           // GoRoute(path: kcompletePayment,
-           //     builder: (context, state )=>const CompletePageView()
-           // ),
          ],
        builder: (context, state, child) {
              return MainScreen(child: child);},
@@ -156,11 +164,7 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
           return HomePageView();
         },
       ),
-      // GoRoute(path: kdetails,
-      //     builder: (contxet,state)=>const DetailsPageView()
-      // ),
-      GoRoute(path: kAddToCart,
-          builder: (context,state)=> const CartPageView()),
+
 
       GoRoute(path: kCreateNewPasswordpage,
       builder: (context,state)=> const CreateNewPasswordpageView()),

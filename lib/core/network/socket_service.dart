@@ -10,10 +10,14 @@ import '../domain/entities/scanned_product_model.dart';
 class SocketService {
   static final SocketService _instance = SocketService._internal();
   late IO.Socket socket;
+  String? cartId2;
+  String? socketId;
   Function(Product)? onProductsReceived;
   Function(ErrorModel)? onErrorReceived;
   Function( String message)? onCartConnected;
   Function( String message)? onScanningStop;
+  Function( String message)? onPaymentSucess;
+  Function( String message)? onClearData;
 
 
   final List<Product> _products = [];
@@ -49,6 +53,7 @@ class SocketService {
     socket.connect();
 
     socket.onConnect((_) {
+      socketId = socket.id;
       print('✅ Connected to Socket Server');
       _isConnected = true;
     });
@@ -160,6 +165,25 @@ class SocketService {
       print('🛒🛒🛒🛒🛒🛒🛒  scanning stoped by you ');
       // هنا ممكن تخزني cartQrCode أو تعرضي رسالة للمستخدم حسب السيناريو
     });
+    socket.on('payment_success', (data) {
+      print('🛒🟢 scanning-stopped Event Received: $data');
+      final success = data['success'];
+      final cartQrCode = data['cartQrCode'];
+      final message = data['message'];
+      if (success == true ||data.success) {
+        onScanningStop?.call(message);
+      }});
+
+
+
+    socket.on('cart-cleared', (data) {
+      print('🛒🟢 cart-cleared Event Received: $data');
+      final success = data['success'];
+      final cartQrCode = data['cartQrCode'];
+      final message = data['message'];
+      if (success == true ||data.success) {
+        onClearData?.call(message);
+      }});
 
 
 }
@@ -186,33 +210,26 @@ class SocketService {
 
 //----------------------- emit ----------------------
   void emitScanCart({required String cartId, required String userId}) {
+    cartId2=cartId;
     socket.emit('set-cart-data', {
       'cartQrCode': "8799",
 
     });
     print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted scan-cart event: cartId=$cartId, userId=$userId');
   }
+
   void emitStopCartScanning() {
     socket.emit('stop-cart-scanning');
     print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ stop scan event emited');
   }
-
-  // void emitDisconnected() {
-    // socket.emit('scan-cart-qr', {
-    //   'cartQrCode': "8799",
-    //   'userId':userId,
-    // });
-  //   print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted disconnected: ');
-  // }
-  // void emitCheckout() {
-    // socket.emit('scan-cart-qr', {
-    //   'cartQrCode': "8799",
-    //   'userId':userId,
-    // });
-  //   print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Emitted Checkout event: ');
-  // }
-
-
+  void emitStartScanning() {
+    socket.emit('scan-cart-qr');
+    print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ Start scan event emited');
+  }
+  void emitClearData() {
+    socket.emit('clear-cart');
+    print('📤✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ cart-cleared event emited');
+  }
   void disconnect() {
     socket.disconnect();
   }

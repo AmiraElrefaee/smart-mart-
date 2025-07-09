@@ -76,6 +76,7 @@ class SectonShowItemLisView extends StatelessWidget {
                         product: item,
                         width: 160.w,
                         hight: 201.h,
+                        widhDiscount: 60.w,
                       );
                     },
                   );

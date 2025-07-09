@@ -61,7 +61,8 @@ class ParentCategory {
 }
 
 class BestSeller implements ItemModel {
-  final String id;
+  final String _id;
+  final String _subCategoryName;
   final String _state;
   final String _title; // Changed from title to _title
   final num _price; // Changed from price to _price
@@ -80,7 +81,7 @@ class BestSeller implements ItemModel {
   final String _createdAt; // Changed from createdAt to _createdAt
 
   BestSeller({
-    required this.id,
+    required  String id,
     required String title,
     required String state,
     required num price,
@@ -97,7 +98,11 @@ class BestSeller implements ItemModel {
     required num rating,
     required num discount,
     required String createdAt,
+    required String ?subCategoryName,
+
   })  : _title = title,
+        _id=id,
+        _subCategoryName=subCategoryName ??'',
         _state=state,
         _price = price,
         _brand = brand,
@@ -114,10 +119,12 @@ class BestSeller implements ItemModel {
         _discount = discount,
         _createdAt = createdAt;
 
+
   factory BestSeller.fromJson(Map<String, dynamic> json) {
     return BestSeller(
       state: json['state']?? 'null',
       id: json['_id'] ?? 'null',
+      subCategoryName: json['subCategoryName']??'',
       title: json['title'] ?? 'null',
       price: json['price'] ?? 0,
       brand: json['brand'] ?? 'null',
@@ -144,6 +151,8 @@ class BestSeller implements ItemModel {
 
   @override
   String get brand => _brand; // Using private variable _brand
+  @override
+  String get id => _id;
 
   @override
   String get description => _description; // Using private variable _description
@@ -182,4 +191,8 @@ class BestSeller implements ItemModel {
   String get createdAt => _createdAt; // Using private variable _createdAt
   @override
   String get state => _state;
+
+  @override
+
+  String get subCategoryName => _subCategoryName ??'';
 }

@@ -7,6 +7,8 @@ class ProductModel extends Product {
     required super.weight,
     required super.description,
     required super.image,
+    required super.Discount
+
   });
 
 
@@ -17,6 +19,8 @@ class ProductModel extends Product {
       price: (data['price'] ),
       weight: (data['weight'] ),
       description: data['description'] ?? '',
+        Discount:data['discount'] ??''
+
     );
   }
 }

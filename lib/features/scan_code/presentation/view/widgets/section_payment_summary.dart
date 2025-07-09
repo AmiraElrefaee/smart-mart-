@@ -22,10 +22,24 @@ class SectionPaymentSummary extends StatelessWidget {
     for (int i=0;i<products.length; i++){
       if (products[i].price!=null) {
         print('the price ${products[i].price ??0} ');
-        totla+=products[i].price ??0 ;
+        totla+=products[i].price*products[i].quantity ??0 ;
       }
 
     } return  totla;
+  }
+  num TotlaDiscont (){
+    num totlaDiscont=0 ;
+    for (int i=0;i<products.length; i++){
+      if (products[i].duscount!=null) {
+        print('the price ${products[i].price ??0} ');
+        totlaDiscont+=products[i].price*(products[i].duscount/100)*products[i].quantity??0 ;
+      }
+
+    } return  totlaDiscont;
+  }
+  num totalPrice (){
+    num totlaDiscont=0 ;
+   return (Total()-TotlaDiscont());
   }
 
   @override
@@ -51,7 +65,7 @@ class SectionPaymentSummary extends StatelessWidget {
         customPrices(
           title: 'Discount',
           kindMoney: '-EGP',
-          price: 0,
+          price: TotlaDiscont(),
         ),
 
 
@@ -65,7 +79,7 @@ class SectionPaymentSummary extends StatelessWidget {
           child: customPrices(
             title: 'Total',
             kindMoney: 'EGP',
-            price: Total() ?? 0 ,
+            price: totalPrice() ?? 0 ,
           ),
 
         )

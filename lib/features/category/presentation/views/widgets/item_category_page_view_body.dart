@@ -23,50 +23,16 @@ class ItemCategoryPageViewBody extends StatefulWidget {
 
 class _ItemCategoryPageViewBodyState extends State<ItemCategoryPageViewBody> {
 
-  // late String categoryId;
-  // late String title;
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //
-  //   final extra = GoRouter.of(context).routerDelegate.currentConfiguration.extra;
-  //   if (extra is Map<String, String>) {
-  //     categoryId = extra['id'] ?? '';
-  //     title = extra['title'] ?? 'Default Title';
-  //   } else {
-  //     categoryId = '';
-  //     title = 'Default Title';
-  //   }
-
   @override
   Widget build(BuildContext context) {
-    final  List<Map<String, String>> DetailCategory=[
-      {'title':'Baby Diapers',
-        'photo':'assets/category/image 55.png'
-      },
-      {'title':'Wipes & creams',
-        'photo':'assets/category/image56.png'
-      },
-      {'title':'Baby Milk',
-        'photo':'assets/category/Baby_Milk_734678aa30.png'
-      },
-      {'title':'Baby Food',
-        'photo':'assets/category/Baby_Food_6c7ceb03ef 1.png'
-      }
-    ];
-    // final title = GoRouterState.of(context).extra as String? ?? 'Default Title';
+
     final args = GoRouterState.of(context).extra as Map<String, dynamic>;
     final id = args['id'];
     final name = args['name'];
     final image = args['image'];
 
     double  screenWidth= MediaQuery.of(context).size.width;
-
-
-
-
-      return  SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -78,9 +44,10 @@ class _ItemCategoryPageViewBodyState extends State<ItemCategoryPageViewBody> {
           photo: image,
             title: name,
           ),
+
           SectionListDetailsCategory(screenWidth: screenWidth,
-              DetailCategoryTop: DetailCategory,
-          DetailCategoryBottom:DetailCategory ,
+          //     DetailCategoryTop: DetailCategory,
+          // DetailCategoryBottom:DetailCategory ,
           ),
 
 

@@ -22,7 +22,10 @@ required this.item});
   final double screenWidth;
 
 final ItemModel item;
-
+  num Total(){
+    num total =item.price-(item.price*(item.discount/100));
+    return total ;
+  }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -111,6 +114,7 @@ final ItemModel item;
           CustomPrice(screenWidth: screenWidth,
           price: item.price,
             itemId: item.id,
+            totalPrice: Total(),
           ),
           SizedBox(height: 10,)
 

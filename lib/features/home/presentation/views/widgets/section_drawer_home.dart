@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_background_menu_bar.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_identify.dart';
 import 'package:smart_mart/features/home/presentation/views/widgets/section_lis_tile.dart';
@@ -24,14 +27,21 @@ class SectionDrawerHome extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SvgPicture.asset('assets/images/Frame 1984078320.svg',
-                width: MediaQuery.of(context).size.width*.12,
+                width:41.w
               ),
               SizedBox(
                 height: 25,
               ),
-              SectionIdentify(),
+              SectionIdentify(
+                fontName: 16.sp,
+                fontEmail: 14.sp,
+                raduis:  MediaQuery.of(context).size.width * .055,
+              ),
 
-              CustomBottonMenuBar(),
+              CustomBottonMenuBar(
+                widthBotton:175.w,
+                heightBotton: 35.h,
+              ),
               SectionListTile(),
 
 
@@ -49,7 +59,9 @@ class SectionDrawerHome extends StatelessWidget {
           SizedBox(height: 10,),
           SectionBackgroundMenuBar(),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              context.go(AppRouter.kloginPage);
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
