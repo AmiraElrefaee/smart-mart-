@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_mart/features/profile/presentation/views/widgets/section_app_bar_profile.dart';
+import 'package:smart_mart/features/profile/presentation/views/widgets/section_payment_recet.dart';
 
 class PaymentHistoryPageView extends StatelessWidget {
   const PaymentHistoryPageView({super.key});
@@ -7,13 +9,16 @@ class PaymentHistoryPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 30),
+      padding:  EdgeInsets.symmetric(horizontal: 27.w,vertical: 30),
       child: Column(children: [
 
         SecttionAppBarProfile(
           title: 'Payment History',
         ),
+
+        SectionpaymentsRecet()
       ],),
     );
   }
 }
+

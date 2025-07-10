@@ -4,16 +4,18 @@ import 'package:dio/dio.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:smart_mart/const.dart';
 import 'package:smart_mart/core/network/socket_service.dart';
+import 'package:smart_mart/core/network/strip_key.dart';
 import 'package:smart_mart/core/network/token_storage.dart';
 
 Future<void> makePayment({required String totalamount, required num amount }) async {
 
   try {
+    await initStripeKey();
     final token = await TokenStorage.getAccessToken();
     final decodedToken = JwtDecoder.decode(token!);
     final socketService = SocketService(); // خذ النسخة
     final cartId = socketService.cartId2;
-    final socketId = socketService.socketId;
+    final socketId = socketService.socket.id;
     // ApiConstants.firstName =_decodedToken!['firstName'];
     // await TokenStorage.saveTokens(user.token, user.refreshToken);
     String userId = decodedToken!['_id']; // هنا طلعنا ال id
@@ -29,14 +31,16 @@ Future<void> makePayment({required String totalamount, required num amount }) as
       data: {
         "amount": amount,
         "userId": userId,
-        "cartId": cartId,
-        "socketId": socketId
+        "cartQrcode": '8799',
+
       },
     );
 
     final clientSecret = response.data['data']['clientSecret'];
+    print('🟢 Active SocketService().socket.id: ${SocketService().socket.id}');
+    print('🟠 Used socketId in request: $socketId');
 
-    print('the respone is ${response}');
+    print('🛒🟢🛒🟢🛒🟢🛒🟢🛒🟢 the respone is ${response}');
     // 2. ابدأي الـ PaymentSheet
     // await Stripe.instance.initPaymentSheet(
     //   paymentSheetParameters: SetupPaymentSheetParameters(
@@ -90,8 +94,7 @@ Future<void> makePayment({required String totalamount, required num amount }) as
       await Stripe.instance.presentPaymentSheet();
       print("✅ Payment done successfully");
 
-        SocketService().emitStopCartScanning();
-        SocketService().emitClearData();
+
 
 
     } on StripeException catch (e) {

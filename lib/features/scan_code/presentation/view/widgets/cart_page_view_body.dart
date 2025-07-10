@@ -8,6 +8,7 @@ import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_show_added_product.dart';
 
 import '../../../../../core/domain/entities/scanned_product_model.dart';
+import '../../../../../core/network/socket_service.dart';
 import '../../../../../core/utils/functions/app_router.dart';
 import '../../../../../core/widgets/custom_botton.dart';
 import '../../../../details_item/presentation/managers/similar_product_cubit/similar_product_cubit.dart';
@@ -25,11 +26,12 @@ class CartPageViewBody extends StatefulWidget {
 }
 
 class _CartPageViewBodyState extends State<CartPageViewBody> {
-
-
+  @override
 
   @override
   Widget build(BuildContext context) {
+    @override
+
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 

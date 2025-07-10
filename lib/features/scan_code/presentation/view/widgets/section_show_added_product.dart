@@ -148,7 +148,8 @@ class SectionShowAddedProduct extends StatelessWidget {
                           screenHeight: 26.h,
                           screenWidth: 299.w,
                           onTap: ()async {
-
+                            // SocketService().emitStopCartScanning();
+                            // SocketService().emitClearData();
                             await makePayment(
                               totalamount: _products.length.toString()
                               , // اكتبي القيمة الحقيقية هنا حسب حالتك

@@ -31,6 +31,10 @@ class SocketService {
   bool _isConnected = false;
   bool get isConnected => _isConnected;
   void connect() async {
+
+    // SocketService.onAny((event, data) {
+    //   print('📡 Received Event: $event => $data');
+    // });
     final token = await TokenStorage.getAccessToken();
     print('🔁🔁🔁 ❌❌the token is $token');
 
@@ -57,6 +61,10 @@ class SocketService {
       print('✅ Connected to Socket Server');
       _isConnected = true;
     });
+    socket.onAny((event, data) {
+      print('📡 Received Event: $event => $data');
+    });
+
     socket.onConnectError((data) async {
       print('🔁 Connect Error: $data');
       print('🔁  🔁🔁🔁🔁🔁🔁🔁🔁Try refreshing token...');
@@ -158,10 +166,9 @@ class SocketService {
       final cartQrCode = data['cartQrCode'];
       final message = data['message'];
       if (success == true ||data.success) {
-        onPaymentSucess?.call(message);
+        onScanningStop?.call(message);
 
       }
-
       print('🛒🛒🛒🛒🛒🛒🛒  scanning stoped by you ');
       // هنا ممكن تخزني cartQrCode أو تعرضي رسالة للمستخدم حسب السيناريو
     });
@@ -171,7 +178,7 @@ class SocketService {
       final cartQrCode = data['cartQrCode'];
       final message = data['message'];
       if (success == true ||data.success) {
-        onScanningStop?.call(message);
+        onPaymentSucess?.call(message);
       }});
 
 

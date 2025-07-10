@@ -22,6 +22,7 @@ import '../../../features/login/presentation/managers/login_cubit/login_cubit.da
 import '../../../features/payment/presentation/views/add_cart_cards_page.dart';
 import '../../../features/payment/presentation/views/complete_page_view.dart';
 import '../../../features/payment/presentation/views/payment_page_view.dart';
+import '../../../features/profile/presentation/views/payment_details_page.dart';
 import '../../../features/profile/presentation/views/payment_history_page.dart';
 import '../../../features/scan_code/presentation/view/cart_page_view.dart';
 import '../../../features/scan_code/presentation/view/sucess_page_view.dart';
@@ -68,6 +69,7 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
   static const kAddToCart='/CartPageView';
   static const kwhishList='/favorites';
   static const kpaymentHistoy='/PaymentHistoryPage';
+  static const kPaymentDetailsPageView='/PaymentDetailsPageView';
    static final router = GoRouter(
 
     routes: [
@@ -91,6 +93,10 @@ import '../../../features/whishList/presentation/whis_list_view.dart';
              // final data = state.extra as ItemModel ;
              return CategoryPageView();}),
 
+           GoRoute(path: kPaymentDetailsPageView,
+               builder: (context,state){
+                 // final data = state.extra as ItemModel ;
+                 return PaymentDetailsPageView();}),
            GoRoute(path: kpaymentHistoy,
                builder: (context,state){
                  // final data = state.extra as ItemModel ;
