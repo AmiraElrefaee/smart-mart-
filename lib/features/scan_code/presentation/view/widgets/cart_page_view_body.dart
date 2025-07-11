@@ -37,9 +37,9 @@ class _CartPageViewBodyState extends State<CartPageViewBody> {
 
     return BlocConsumer<ScannedProductSocketCubit, ScannedProductSocketState>(
       listener: (context, state) {
-        // if (state is ScannedProductsStopped ){
-        //   context.go(AppRouter.kScanPage);
-        // }
+        if (state is PaymenySuccess ){
+          context.go(AppRouter.kcompletePayment);
+        }
       },
       builder: (context, state) {
         if (state is ScannedProductsLoading) {

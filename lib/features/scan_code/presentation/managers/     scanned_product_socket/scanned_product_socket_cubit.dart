@@ -65,17 +65,15 @@ class ScannedProductSocketCubit extends Cubit<ScannedProductSocketState> {
     SocketService().onClearData = ( String message) {
       print('✅✅✅✅✅✅✅✅✅✅ connect to cart  $message');
       // إضافة المنتج لليست
-      // emit(ScannedProductsStopped(message)); // إرسال المنتج الجديد فقط
+      emit(ScannedProductsStopped()); // إرسال المنتج الجديد فقط
     };
 
-    SocketService().onPaymentSucess = (String message) {
-      print("🔥🔥 ✅✅ Received from socket onPaymentSucess:  $message");
+    SocketService().onPaymentSucess = () {
+      print("🔥🔥 ✅✅ Received from socket onPaymentSucess:  ");
       Text("✅ Payment confirmed via socket");
       SocketService().emitStopCartScanning();
       SocketService().emitClearData();
-      emit(ScannedProductsStopped(message));
-
-
+      emit(PaymenySuccess());
     };
     SocketService().onErrorReceived = (ErrorModel error) {
       switch (error.event) {

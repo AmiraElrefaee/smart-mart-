@@ -23,14 +23,17 @@ ScannedCartSucess(this.mesaage);
 //
 //   ScannedProductError(this.message);
 // }
+class PaymenySuccess extends ScannedProductSocketState {
 
+
+  PaymenySuccess();
+}
 class ScannedProductsError extends ScannedProductSocketState {
   final String message;
 
   ScannedProductsError(this.message);
 }
 class ScannedProductsStopped extends ScannedProductSocketState {
-  final String message;
 
-  ScannedProductsStopped(this.message);
+  ScannedProductsStopped();
 }

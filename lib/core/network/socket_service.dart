@@ -16,7 +16,7 @@ class SocketService {
   Function(ErrorModel)? onErrorReceived;
   Function( String message)? onCartConnected;
   Function( String message)? onScanningStop;
-  Function( String message)? onPaymentSucess;
+  Function()? onPaymentSucess;
   Function( String message)? onClearData;
 
 
@@ -174,12 +174,9 @@ class SocketService {
     });
     socket.on('payment_success', (data) {
       print('🛒🟢 on payment_success Event Received: $data');
-      final success = data['success'];
-      final cartQrCode = data['cartQrCode'];
-      final message = data['message'];
-      if (success == true ||data.success) {
-        onPaymentSucess?.call(message);
-      }});
+
+        onPaymentSucess?.call();
+      });
 
 
 

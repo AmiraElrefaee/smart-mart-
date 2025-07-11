@@ -25,6 +25,8 @@ import '../../features/login/data/repo_imple/refresh_token_repo_imple.dart';
 import '../../features/login/domain/repo/login_repo.dart';
 import '../../features/login/domain/use_case/login_use_case.dart';
 import '../../features/login/presentation/managers/refresh_token_cubit/refresh_token_cubit.dart';
+import '../../features/profile/data/api_service/fectch_product_recet_remote_data_source.dart';
+import '../../features/profile/data/repo_imple/repo_imple_recet_products.dart';
 import '../../features/scan_code/data/api_service/scanned_item_remote_data_source.dart';
 import '../../features/scan_code/data/repo_imple/repo_imple_sacnned_item.dart';
 import '../../features/scan_code/presentation/managers/     scanned_product_socket/scanned_product_socket_cubit.dart';
@@ -251,6 +253,14 @@ getIt.registerLazySingleton<WishlistRemoteDataSource>(
   );
   getIt.registerLazySingleton<RepoImpleSearchQrcode>(
           ()=>RepoImpleSearchQrcode( searchQrCodeRemoteDataSource: getIt<SearchQrCodeRemoteDataSourceImple>())
+  );
+  //----------------------------------------------------------
+  //info recet
+  getIt.registerLazySingleton<OrderRemoteDataSourceImpl>(
+          ()=>OrderRemoteDataSourceImpl()
+  );
+  getIt.registerLazySingleton<RepoImpleRecetProducts>(
+          ()=>RepoImpleRecetProducts( getIt<OrderRemoteDataSourceImpl>())
   );
   await getIt.allReady();
 }

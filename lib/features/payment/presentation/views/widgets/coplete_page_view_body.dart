@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smart_mart/const.dart';
+import 'package:smart_mart/core/utils/functions/app_router.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../core/widgets/custom_botton.dart';
@@ -15,15 +17,25 @@ class  CopletePageViewBody extends StatefulWidget {
 class _CopletePageViewBodyState extends State<CopletePageViewBody> {
   late VideoPlayerController _controller;
   void initState() {
+    // void initState() {
+    //   super.initState();
+    // تأكدي من أن الكيوبت مُهيأ بشكل صحيح
+    // context.read<ScannedProductSocketCubit>();
+    // }
     super.initState();
+    // context.read<ScannedProductSocketCubit>();
     _controller = VideoPlayerController.asset(
       'assets/video/e232cd7e5def8bce8ab885c43be920b7b293bbe0.mp4',
     )..initialize().then((_) {
       print("Video initialized successfully!");
-      // تشغيل الفيديو تلقائيًا بعد التهيئة
-      _controller.setLooping(true); // إعادة التشغيل التلقائي (Loop)
-      _controller.play(); // بدء التشغيل
-      // setState(() {});
+      _controller.setLooping(true);
+      _controller.play();
+
+      // ✨ الانتقال بعد ثانيتين
+      // Future.delayed(Duration(seconds: 3), () {
+      //   context.go(AppRouter.kAddToCart);
+      //   // navigateToPage(AppRouter.kAddToCart, context);
+      // });
     }).catchError((error) {
       print("Error initializing video: $error");
     });
@@ -44,12 +56,12 @@ class _CopletePageViewBodyState extends State<CopletePageViewBody> {
           margin: EdgeInsets.only(bottom: 50),
           height:MediaQuery.of(context).size.width*.3 ,
           alignment: Alignment.center,
-          child: _controller.value.isInitialized
-              ? AspectRatio(
+          child:
+               AspectRatio(
             aspectRatio: _controller.value.aspectRatio,
             child: VideoPlayer(_controller),
           )
-              : CircularProgressIndicator(),
+              // : CircularProgressIndicator(),
         ),
 
         Text('Payment Successful !',
@@ -107,7 +119,9 @@ class _CopletePageViewBodyState extends State<CopletePageViewBody> {
               text: 'Done',
             screenWidth: MediaQuery.of(context).size.width,
             screenHeight: MediaQuery.of(context).size.height,
-            onTap: (){},
+            onTap: (){
+              context.go(AppRouter.kAddToCart);
+            },
           ),
         ),
 

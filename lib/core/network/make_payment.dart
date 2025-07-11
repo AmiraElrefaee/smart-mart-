@@ -29,10 +29,9 @@ Future<void> makePayment({required String totalamount, required num amount }) as
     final response = await Dio().post(
       '${ApiConstants.baseUrl}/payment/create-payment-intent',
       data: {
-        "amount": amount,
+        "amount": 1000,
         "userId": userId,
         "cartQrcode": '8799',
-
       },
     );
 
