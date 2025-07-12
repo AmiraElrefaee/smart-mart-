@@ -31,7 +31,6 @@ class CustomPhotoScannedItem extends StatelessWidget {
      imageUrl: image,
      width: screenWidth,
      height: screenHeight,
-
      placeholder: (context, url) => Center(child: CircularProgressIndicator()),
      errorWidget: (context, url, error) => Icon(Icons.error, color: Colors.red),
    ),

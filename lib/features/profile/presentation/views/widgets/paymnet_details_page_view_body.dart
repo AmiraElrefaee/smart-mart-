@@ -27,7 +27,7 @@ class PaymnetDetailsPageViewBody extends StatelessWidget {
         ),
         Padding(
           padding:  EdgeInsets.only(top:38.h,bottom: 15.h),
-          child: Text('Your cart (3 Items )',
+          child: Text('Your cart ',
           style: TextStyle(
             fontFamily: 'Urbanist',
             fontWeight: FontWeight.w600,

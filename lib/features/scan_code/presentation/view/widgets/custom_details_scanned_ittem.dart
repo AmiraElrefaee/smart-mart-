@@ -41,7 +41,7 @@ class customDetailsSCannedItem extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.only(left: 10.w),
           child: CustomPhotoScannedItem(
-            image: products[index].itemWeight,
+            image: products[index].imageUrl,
               index: index,
               screenHeight: screenHeight*.11,
               screenWidth: screenWidth*.18),

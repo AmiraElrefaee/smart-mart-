@@ -28,7 +28,9 @@ class _PaymentHistoryPageViewState extends State<PaymentHistoryPageView> {
           title: 'Payment History',
         ),
 
-        SectionpaymentsRecet()
+        SectionpaymentsRecet(),
+        SizedBox(height: 80,)
+
       ],),
     );
   }

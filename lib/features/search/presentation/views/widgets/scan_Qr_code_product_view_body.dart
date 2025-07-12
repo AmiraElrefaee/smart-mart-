@@ -10,6 +10,7 @@ import 'package:smart_mart/features/scan_code/presentation/view/widgets/section-
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_box_message.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/section_draggle_total_num.dart';
 import 'package:smart_mart/features/scan_code/presentation/view/widgets/square_camera.dart';
+import 'package:smart_mart/features/search/presentation/views/widgets/section_box_massege_qr.dart';
 import '../../../../../core/network/socket_service.dart';
 import '../../../../login/presentation/managers/login_cubit/login_cubit.dart';
 import '../../managers/search_qr_code_cubit/search_qr_code_cubit.dart';
@@ -150,7 +151,7 @@ class _ScanCodeViewBodyState extends State<ScanQrCodeProductViewBody> {
               }
             },
           ),
-          SectionBoxMassege(
+          SectionBoxMassegeQr(
             screenHeight: screenHeight,
             screenWidth: screenWidth,
             // scanResult: scanResult, // Commented out as per your code

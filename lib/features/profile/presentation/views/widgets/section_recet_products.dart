@@ -150,21 +150,18 @@ class SectionRecetProducts extends StatelessWidget {
                 SizedBox(height: 10.h,),
                 sectionPaymentSummary(
                   title1: 'Payment ID',
-                  title2:'#23421' ,
+                  title2:'#${products.paymentIntentId.substring(0, 10)}' ,
                 ),
                 sectionPaymentSummary(
                   title1: 'Date',
-                  title2:'#23421' ,
+                  title2:'${products.createdAt.day}:${products.createdAt.month}:${products.createdAt.year}' ,
                 ), sectionPaymentSummary(
                   title1: 'Subtotal',
-                  title2:'#23421' ,
-                ), sectionPaymentSummary(
-                  title1: 'Discount',
-                  title2:'#23421' ,
+                  title2:'${products.totalPrice}' ,
                 ),
                 sectionPaymentSummary(
                   title1: 'Paid by',
-                  title2:'#23421' ,
+                  title2:'${products.paymentMethod}' ,
                 ),
             ],)
           ),

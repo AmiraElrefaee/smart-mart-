@@ -35,7 +35,7 @@ class SectionpaymentsRecet extends StatelessWidget {
             children: [
               Padding(
                 padding:  EdgeInsets.symmetric(vertical: 19.h),
-                child: Text('${state.orders[index].createdAt}',
+                child: Text('${state.orders[index].createdAt.day}:${state.orders[index].createdAt.month}:${state.orders[index].createdAt.year}',
                   style: TextStyle(
                     fontSize:15.sp,
                     fontFamily: 'Urbanist',
@@ -78,7 +78,7 @@ class SectionpaymentsRecet extends StatelessWidget {
                         ),
                       ),
                       Spacer(),
-                      Text('3:45 PM',
+                      Text('${order.createdAt.hour} :00',
                         style: TextStyle(
                           fontSize:15.sp,
                           fontFamily: 'Urbanist',

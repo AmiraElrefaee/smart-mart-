@@ -42,7 +42,7 @@ class _customLovedItemState extends State<customLovedItem> {
       duration: Duration(milliseconds: 300),
       opacity: _isVisible ? 1.0 : 0.0,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 17, vertical: 18),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(width: 1, color: Color(0xffDADADA)),

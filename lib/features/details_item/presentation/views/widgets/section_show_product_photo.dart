@@ -34,7 +34,7 @@ class SectionShowProductPhoto extends StatelessWidget {
             // width: 172.w,
             height: 228.h,
             child: CachedNetworkImage(
-              imageUrl: photo.startsWith('http') ? photo : 'https://th.bing.com/th/id/OIP.eKE8nrMRCK3bdvd62kWJ_wHaEK?w=306&h=180&c=7&r=0&o=5&pid=1.7',
+              imageUrl:photo ,
               fit: BoxFit.fill,
               placeholder: (context, url) => Container(
                 color: Colors.grey.shade300,

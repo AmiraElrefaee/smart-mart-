@@ -18,7 +18,7 @@ class SearchQrCodeRemoteDataSourceImple implements SearchQrCodeRemoteDataSource{
     try{
       print('$Qrcode');
       final response =
-      await http.get(Uri.parse('${ApiConstants.baseUrl}/product/barcode/62220335232438'));
+      await http.get(Uri.parse('${ApiConstants.baseUrl}/product/barcode/6801577de3f3a3034148f8ea'));
       if ( jsonDecode(response.body)['success'] == true) {
         print('yesss0');
         print(response.body);

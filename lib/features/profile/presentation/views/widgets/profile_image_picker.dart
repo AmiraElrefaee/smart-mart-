@@ -40,6 +40,7 @@ class _ProfileImagePickerState extends State<ProfileImagePicker> {
   Future<void> _pickImage() async {
     final picker = ImagePicker();
 
+    // نعرض الـ BottomSheet ونستنى اختيار الصورة
     final pickedFile = await showModalBottomSheet<XFile?>(
       context: context,
       builder: (context) => SafeArea(
@@ -52,7 +53,7 @@ class _ProfileImagePickerState extends State<ProfileImagePicker> {
                 title: Text('Take Photo'),
                 onTap: () async {
                   final photo = await picker.pickImage(source: ImageSource.camera);
-                  Navigator.of(context).pop(photo);
+                  Navigator.of(context).pop(photo); // نرجع بالصورة
                 },
               ),
               ListTile(
@@ -60,7 +61,7 @@ class _ProfileImagePickerState extends State<ProfileImagePicker> {
                 title: Text('Choose from Gallery'),
                 onTap: () async {
                   final gallery = await picker.pickImage(source: ImageSource.gallery);
-                  Navigator.of(context).pop(gallery);
+                  Navigator.of(context).pop(gallery); // نرجع بالصورة
                 },
               ),
             ],
@@ -69,14 +70,17 @@ class _ProfileImagePickerState extends State<ProfileImagePicker> {
       ),
     );
 
+    // بعد ما تختار الصورة، نحفظها ونحدث الواجهة مباشرة
     if (pickedFile != null) {
       final appDir = await getApplicationDocumentsDirectory();
-      final savedImage = await File(pickedFile.path).copy('${appDir.path}/profile_image.png');
+      final savedImage = await File(pickedFile.path)
+          .copy('${appDir.path}/profile_image_${widget.email}.png'); // سميها باسم الإيميل لو حابة
 
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('saved_image_path', savedImage.path);
-      await prefs.setString('saved_email', widget.email); // نحفظ الإيميل المرتبط بالصورة
+      await prefs.setString('saved_email', widget.email);
 
+      // هنا التحديث الفوري
       setState(() {
         _imageFile = savedImage;
       });
